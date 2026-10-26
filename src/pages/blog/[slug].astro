@@ -204,8 +204,9 @@ const htmlContent = convertMarkdownToHtml(article.content);
           src={article.image}
           alt={article.imageAlt}
           class="article-featured-image"
-          width="800"
-          height="450"
+          width="1200"
+          height="750"
+          decoding="async"
           loading="eager"
         />
         {article.imageAlt && (

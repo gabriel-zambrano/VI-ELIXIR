@@ -48,8 +48,9 @@ function formatDate(dateStr: string): string {
                     src={article.image}
                     alt={article.imageAlt}
                     class="blog-image"
-                    width="600"
-                    height="380"
+                    width="1200"
+                    height="750"
+                    decoding="async"
                     loading={idx === 0 ? 'eager' : 'lazy'}
                   />
                   <div class="blog-badge-overlay">
