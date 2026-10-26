@@ -4,52 +4,86 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="La Marca"
-  description="Conocé la identidad de VI-ELIXIR: perfumería árabe contemporánea que busca conectar tradición olfativa con una estética moderna y una experiencia digital cuidada."
+  description="Conocé la historia, misión, visión y valores de VI-ELIXIR: perfumería árabe contemporánea concebida como un espacio de descubrimiento y expresión personal."
   ogImage="/images/editorial/brand.svg"
 >
   <!-- Hero Section (Light / Ivory) -->
   <section class="brand-hero section-padding--lg bg-ivory" aria-labelledby="brand-hero-title">
     <div class="container--narrow text-center">
-      <span class="text-label brand-hero-label reveal">Identidad & Visión</span>
-      <h1 id="brand-hero-title" class="brand-hero-title reveal reveal-delay-1">VI-ELIXIR</h1>
-      <p class="brand-hero-subtitle reveal reveal-delay-2">Perfumería Árabe Contemporánea</p>
-      <div class="brand-hero-slogan-wrapper reveal reveal-delay-3">
+      <span class="text-label brand-hero-label reveal">Historia & Filosofía</span>
+      <h1 id="brand-hero-title" class="brand-hero-title reveal reveal-delay-1">El arte de dejar una esencia</h1>
+      <div class="brand-hero-slogan-wrapper reveal reveal-delay-2">
         <span class="brand-hero-slogan">«Dejá tu esencia.»</span>
       </div>
-      <p class="brand-hero-intro lead reveal reveal-delay-4">
-        Una curaduría donde la profundidad de las notas orientales se encuentra con la sobriedad del diseño moderno. Un espacio para descubrir y experimentar aromas que desafían lo convencional.
+      <p class="brand-hero-intro lead reveal reveal-delay-3">
+        VI-ELIXIR nace de una idea sencilla: hay aromas que acompañan un momento y otros que se convierten en parte de nuestra identidad.
       </p>
     </div>
   </section>
 
-  <!-- Philosophy Section (Dark / Carbon) -->
-  <section class="brand-philosophy section-padding--lg bg-carbon" aria-labelledby="philosophy-title">
+  <!-- Narrative / Story Section (Dark / Carbon) -->
+  <section class="brand-philosophy section-padding--lg bg-carbon text-ivory" aria-labelledby="story-title">
     <div class="container--narrow">
       <div class="philosophy-header text-center reveal">
-        <span class="text-label text-stone">Nuestra Filosofía</span>
-        <h2 id="philosophy-title" class="philosophy-title text-ivory">El arte de curar, no de fabricar</h2>
+        <span class="text-label text-stone">Nuestra Historia</span>
+        <h2 id="story-title" class="philosophy-title text-ivory">Inspiración oriental con mirada contemporánea</h2>
         <div class="brand-divider"></div>
       </div>
 
-      <div class="philosophy-content text-ivory reveal reveal-delay-1">
+      <div class="philosophy-content reveal reveal-delay-1">
         <p class="philosophy-lead">
-          La tradición perfumista de Medio Oriente encierra una riqueza sensorial extraordinaria: el oud milenario, el azafrán dorado, la rosa de Taif y los almizcles más delicados. Durante siglos, estas materias primas dieron vida a fragancias con una profundidad y permanencia difíciles de hallar en las composiciones occidentales habituales.
+          Inspirada en la riqueza sensorial de la perfumería árabe, la marca surge con el propósito de acercar un universo de fragancias intensas, envolventes y distintivas a una nueva generación que entiende el perfume como una forma de expresión personal.
         </p>
 
         <p>
-          VI-ELIXIR no pretende inventar una tradición ni atribuirse una manufactura centenaria. Nuestro enfoque es estrictamente contemporáneo y curatorial: exploramos, seleccionamos y ponemos en valor composiciones de perfumería árabe que dialogan con una sensibilidad estética actual. Despojamos al perfume oriental de excesos ornamentales para dejar que hable la materia prima.
+          Creemos que una fragancia es mucho más que un aroma. Es una elección íntima, una forma de presentarse ante el mundo y una manera de expresar aquello que las palabras no siempre consiguen transmitir.
         </p>
 
         <p>
-          Pensamos esta propuesta para quienes viven en Argentina y buscan una alternativa a los aromas masivos. Una selección honesta y rigurosa donde cada fragancia tiene un propósito, una narrativa y una presencia que acompaña sin invadir.
+          Por eso, imaginamos VI-ELIXIR como un espacio de descubrimiento: un lugar donde explorar notas, contrastes y personalidades olfativas para encontrar una esencia que conecte con cada individuo.
+        </p>
+
+        <p>
+          Nuestra mirada combina la inspiración oriental con una estética contemporánea, donde la sofisticación no necesita excesos y cada detalle tiene un propósito. Porque no se trata simplemente de llevar un perfume: se trata de encontrar aquello que te representa.
         </p>
       </div>
 
       <div class="philosophy-quote reveal reveal-delay-2">
         <blockquote>
-          «No buscamos la ostentación del aroma, sino la resonancia de una nota bien elegida.»
-          <cite>Concepto VI-ELIXIR</cite>
+          «No se trata simplemente de llevar un perfume. Se trata de encontrar aquello que te representa.»
+          <cite>VI-ELIXIR · Dejá tu esencia</cite>
         </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision Section (Light / Ivory) -->
+  <section class="brand-purpose section-padding--lg bg-ivory" aria-labelledby="purpose-title">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="text-label">Propósito Estratégico</span>
+        <h2 id="purpose-title" class="values-main-title">Misión & Visión</h2>
+        <p class="values-subtitle">Los principios rectores que orientan nuestra propuesta y experiencia digital.</p>
+      </div>
+
+      <div class="purpose-grid grid-2">
+        <!-- Misión -->
+        <article class="purpose-card reveal reveal-delay-1">
+          <div class="purpose-eyebrow">Misión</div>
+          <h3 class="purpose-title">Facilitar el descubrimiento olfativo</h3>
+          <p class="purpose-description">
+            Acercar el universo de la perfumería árabe a través de una experiencia digital cuidada, facilitando el descubrimiento de fragancias que permitan expresar la identidad, el estilo y la personalidad de cada individuo.
+          </p>
+        </article>
+
+        <!-- Visión -->
+        <article class="purpose-card reveal reveal-delay-2">
+          <div class="purpose-eyebrow">Visión</div>
+          <h3 class="purpose-title">Referencia en perfumería contemporánea</h3>
+          <p class="purpose-description">
+            Convertirnos en una marca de referencia dentro de la perfumería árabe contemporánea, reconocida por una identidad visual distintiva, una experiencia de compra intuitiva y una propuesta que invite a descubrir nuevas formas de expresión personal.
+          </p>
+        </article>
       </div>
     </div>
   </section>
@@ -59,35 +93,62 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <div class="section-header text-center reveal">
         <span class="text-label">Pilares Esenciales</span>
-        <h2 id="values-title" class="values-main-title">Tres valores que guían nuestra selección</h2>
-        <p class="values-subtitle">Cada fragancia de la colección responde a un criterio definido de apreciación y respeto olfativo.</p>
+        <h2 id="values-title" class="values-main-title">Nuestros Valores</h2>
+        <p class="values-subtitle">Seis convicciones que definen cada aspecto de VI-ELIXIR, desde la selección de acordes hasta la interacción digital.</p>
       </div>
 
       <div class="values-grid grid-3">
-        <!-- Value 1 -->
+        <!-- Valor 1: Autenticidad -->
         <article class="value-card reveal reveal-delay-1">
           <div class="value-number" aria-hidden="true">01</div>
-          <h3 class="value-title">Descubrimiento</h3>
-          <p class="value-description">
-            Abrir las puertas a un territorio olfativo poco explorado en nuestro medio. Brindamos información clara y honesta sobre notas, intensidades y familias olfativas para que cada persona pueda adentrarse en la perfumería oriental a su propio ritmo.
-          </p>
-        </article>
-
-        <!-- Value 2 -->
-        <article class="value-card reveal reveal-delay-2">
-          <div class="value-number" aria-hidden="true">02</div>
           <h3 class="value-title">Autenticidad</h3>
           <p class="value-description">
-            Transparencia total en el relato y en la curaduría. Reconocemos el origen de las materias primas y las fórmulas sin relatos ficticios de realeza ni promesas grandilocuentes: solo fragancias de carácter genuino, evaluadas por su calidad y equilibrio.
+            Creemos que cada persona tiene una identidad propia que merece ser expresada sin imposturas ni fórmulas prestadas.
           </p>
         </article>
 
-        <!-- Value 3 -->
+        <!-- Valor 2: Distinción -->
+        <article class="value-card reveal reveal-delay-2">
+          <div class="value-number" aria-hidden="true">02</div>
+          <h3 class="value-title">Distinción</h3>
+          <p class="value-description">
+            Buscamos propuestas olfativas con personalidad, carácter y permanencia que dejen una huella memorable.
+          </p>
+        </article>
+
+        <!-- Valor 3: Exploración -->
         <article class="value-card reveal reveal-delay-3">
           <div class="value-number" aria-hidden="true">03</div>
-          <h3 class="value-title">Expresión</h3>
+          <h3 class="value-title">Exploración</h3>
           <p class="value-description">
-            El aroma concebido como la extensión más íntima de la identidad personal. Creemos que un perfume debe reflejar la individualidad de quien lo lleva, creando una memoria sensorial singular y dejando una estela indeleble en su entorno.
+            Creemos en descubrir nuevos aromas, contrastes inéditos y preferencias personales a través de la curiosidad sensorial.
+          </p>
+        </article>
+
+        <!-- Valor 4: Estética -->
+        <article class="value-card reveal reveal-delay-1">
+          <div class="value-number" aria-hidden="true">04</div>
+          <h3 class="value-title">Estética</h3>
+          <p class="value-description">
+            Cuidamos cada detalle de la identidad visual, la tipografía y la experiencia digital con rigor editorial y sobriedad.
+          </p>
+        </article>
+
+        <!-- Valor 5: Cercanía -->
+        <article class="value-card reveal reveal-delay-2">
+          <div class="value-number" aria-hidden="true">05</div>
+          <h3 class="value-title">Cercanía</h3>
+          <p class="value-description">
+            Queremos facilitar la elección de una fragancia mediante información clara, transparente y accesible para todos.
+          </p>
+        </article>
+
+        <!-- Valor 6: Coherencia -->
+        <article class="value-card reveal reveal-delay-3">
+          <div class="value-number" aria-hidden="true">06</div>
+          <h3 class="value-title">Coherencia</h3>
+          <p class="value-description">
+            Cada punto de contacto con la marca debe transmitir el mismo universo visual, sensorial y conceptual.
           </p>
         </article>
       </div>
@@ -101,7 +162,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="visual-image-wrapper">
           <img
             src="/images/editorial/brand.svg"
-            alt="Composición editorial de la identidad VI-ELIXIR"
+            alt="Composición editorial de la identidad VI-ELIXIR con frascos sobre superficies de piedra clara"
             class="visual-image"
             width="1200"
             height="600"
@@ -110,10 +171,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
         <div class="visual-caption">
           <div class="visual-caption-inner">
-            <span class="text-label text-stone">Estética Visual</span>
-            <h3 id="visual-title" class="visual-title">Minimalismo, silencio y materia</h3>
+            <span class="text-label text-stone">Dirección de Arte</span>
+            <h3 id="visual-title" class="visual-title">Materia prima, silencio y forma</h3>
             <p class="visual-text">
-              La dirección de arte de VI-ELIXIR fusiona la calidez del marfil, la sobriedad del carbón y la profundidad del borgoña con líneas puras y tipografía editorial. Una puesta en escena sobria donde el producto y su aroma son los verdaderos protagonistas.
+              La dirección de arte de VI-ELIXIR fusiona la calidez del marfil, la sobriedad del carbón y la profundidad del borgoña con líneas puras y tipografía editorial. Una puesta en escena donde el aroma es el verdadero protagonista.
             </p>
           </div>
         </div>
@@ -121,14 +182,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- Academic Disclaimer Section (Light Ivory with refined framed border) -->
+  <!-- Academic Disclaimer Section -->
   <section class="brand-academic section-padding bg-ivory" aria-labelledby="academic-title">
     <div class="container--narrow">
       <div class="academic-card reveal">
         <div class="academic-badge">Nota Institucional</div>
-        <h3 id="academic-title" class="academic-title">Marco del Proyecto</h3>
+        <h3 id="academic-title" class="academic-title">Marco Académico del Proyecto</h3>
         <p class="academic-text">
-          <strong>VI-ELIXIR</strong> es un proyecto conceptual desarrollado con fines puramente académicos en el marco de la asignatura de <em>Comercio Electrónico</em>. La marca, su catálogo de fragancias, los valores de referencia y la experiencia digital constituyen un ejercicio de diseño, desarrollo web y comunicación estratégica de marca.
+          <strong>VI-ELIXIR</strong> es un proyecto conceptual desarrollado con fines exclusivamente académicos en el marco de la asignatura de <em>Comercio Electrónico</em>. La marca, su catálogo de fragancias, los valores de referencia y la experiencia digital constituyen un ejercicio de diseño, desarrollo web y comunicación estratégica de marca.
         </p>
         <p class="academic-subtext">
           No operamos como laboratorio de manufactura ni realizamos comercialización transaccional real. Cualquier interacción en este sitio está destinada a demostrar capacidades de arquitectura de información, experiencia de usuario y desarrollo frontend.
@@ -142,13 +203,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container--narrow">
       <span class="text-label text-stone reveal">El Catálogo</span>
       <h2 id="cta-title" class="brand-cta-title text-ivory reveal reveal-delay-1">
-        Descubrí la colección
+        Descubrí tu próxima esencia
       </h2>
       <p class="brand-cta-subtitle text-stone reveal reveal-delay-2">
-        Seis composiciones olfativas curadas para invitarte a explorar nuevas facetas de tu identidad.
+        Explorá nuestras colecciones masculinas, femeninas y unisex, organizadas por familias olfativas y notas de autor.
       </p>
       <div class="brand-cta-actions reveal reveal-delay-3">
-        <a href="/perfumes" class="btn btn--primary btn--lg">Explorar Perfumes</a>
+        <a href="/perfumes" class="btn btn--primary btn--lg">Explorar el Catálogo</a>
         <a href="/journal" class="btn btn--outline btn--lg brand-cta-secondary">Leer el Journal</a>
       </div>
     </div>
@@ -156,116 +217,166 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  /* ==========================================================================
-     La Marca — Scoped Styles
-     ========================================================================== */
-
-  /* Hero Section */
+  /* Hero */
   .brand-hero {
-    border-bottom: 1px solid var(--color-stone);
-    border-bottom-color: rgba(184, 178, 168, 0.25);
+    padding-top: calc(var(--header-height) + var(--space-3xl));
   }
 
   .brand-hero-label {
+    color: var(--color-burgundy);
     margin-bottom: var(--space-md);
   }
 
   .brand-hero-title {
-    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-size: clamp(2.5rem, 6vw, 4.25rem);
     font-weight: var(--font-weight-light);
-    letter-spacing: var(--letter-spacing-wider);
     line-height: var(--line-height-tight);
-    margin-bottom: var(--space-xs);
     color: var(--color-carbon);
-  }
-
-  .brand-hero-subtitle {
-    font-family: var(--font-body);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--letter-spacing-widest);
-    text-transform: uppercase;
-    color: var(--color-carbon-light);
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-md);
   }
 
   .brand-hero-slogan-wrapper {
-    margin-bottom: var(--space-2xl);
+    margin: var(--space-md) 0 var(--space-xl);
   }
 
   .brand-hero-slogan {
-    display: inline-block;
     font-family: var(--font-display);
     font-size: var(--font-size-2xl);
     font-style: italic;
     color: var(--color-burgundy);
     position: relative;
-    padding-inline: var(--space-md);
+    display: inline-block;
   }
 
   .brand-hero-intro {
     font-size: var(--font-size-xl);
-    line-height: 1.7;
+    line-height: var(--line-height-snug);
     color: var(--color-carbon-light);
     max-width: 680px;
     margin-inline: auto;
   }
 
-  /* Philosophy Section */
-  .brand-philosophy {
-    position: relative;
-  }
-
+  /* Philosophy / Story Section */
   .philosophy-header {
     margin-bottom: var(--space-3xl);
   }
 
   .philosophy-title {
-    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: var(--font-weight-light);
     margin-top: var(--space-sm);
-    margin-bottom: var(--space-md);
+    line-height: var(--line-height-snug);
   }
 
   .brand-divider {
     width: 60px;
     height: 1px;
     background-color: var(--color-burgundy);
-    margin-inline: auto;
-    margin-top: var(--space-lg);
+    margin: var(--space-lg) auto 0;
   }
 
   .philosophy-content {
     font-size: var(--font-size-base);
-    line-height: 1.85;
-    color: rgba(242, 238, 230, 0.88);
+    line-height: var(--line-height-normal);
+    max-width: 680px;
+    margin-inline: auto;
+    color: var(--color-ivory);
+    opacity: 0.92;
   }
 
   .philosophy-content p {
-    color: inherit;
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
   }
 
   .philosophy-lead {
     font-size: var(--font-size-lg);
-    line-height: 1.75;
-    color: var(--color-ivory) !important;
+    line-height: var(--line-height-normal);
+    color: var(--color-ivory);
+    font-weight: var(--font-weight-light);
   }
 
   .philosophy-quote {
     margin-top: var(--space-3xl);
+    max-width: 640px;
+    margin-inline: auto;
   }
 
   .philosophy-quote blockquote {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-style: italic;
+    line-height: var(--line-height-snug);
     color: var(--color-ivory);
     border-left-color: var(--color-burgundy);
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.03);
     padding: var(--space-xl);
     border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
   }
 
   .philosophy-quote cite {
     color: var(--color-stone);
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+    display: block;
+    margin-top: var(--space-md);
+  }
+
+  /* Purpose (Misión / Visión) */
+  .purpose-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    max-width: 960px;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 768px) {
+    .purpose-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .purpose-card {
+    background: var(--color-white);
+    border: 1px solid rgba(184, 178, 168, 0.4);
+    border-radius: var(--border-radius-sm);
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .purpose-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .purpose-eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+    color: var(--color-burgundy);
+    margin-bottom: var(--space-sm);
+  }
+
+  .purpose-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-carbon);
+    margin-bottom: var(--space-md);
+    line-height: var(--line-height-snug);
+  }
+
+  .purpose-description {
+    font-size: var(--font-size-base);
+    color: var(--color-carbon-light);
+    line-height: var(--line-height-normal);
   }
 
   /* Values Section */
@@ -278,154 +389,164 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .values-main-title {
     font-size: clamp(2rem, 4vw, 2.75rem);
     font-weight: var(--font-weight-light);
+    color: var(--color-carbon);
     margin-top: var(--space-xs);
     margin-bottom: var(--space-sm);
   }
 
   .values-subtitle {
-    color: var(--color-carbon-light);
     font-size: var(--font-size-base);
+    color: var(--color-carbon-light);
+    line-height: var(--line-height-normal);
   }
 
   .values-grid {
-    margin-top: var(--space-xl);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 640px) {
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .values-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   .value-card {
-    background-color: var(--color-ivory);
-    padding: var(--space-2xl) var(--space-xl);
-    border: 1px solid rgba(184, 178, 168, 0.35);
+    background: var(--color-ivory);
+    border: 1px solid rgba(184, 178, 168, 0.4);
     border-radius: var(--border-radius-sm);
+    padding: var(--space-xl);
     position: relative;
-    display: flex;
-    flex-direction: column;
-    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
   }
 
   .value-card:hover {
     transform: translateY(-4px);
-    border-color: var(--color-burgundy);
     box-shadow: var(--shadow-md);
+    border-color: var(--color-burgundy);
   }
 
   .value-number {
     font-family: var(--font-display);
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-light);
-    color: var(--color-burgundy);
-    line-height: 1;
-    margin-bottom: var(--space-md);
-    opacity: 0.8;
+    color: var(--color-stone-text);
+    margin-bottom: var(--space-sm);
   }
 
   .value-title {
-    font-size: var(--font-size-2xl);
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
     font-weight: var(--font-weight-regular);
-    margin-bottom: var(--space-md);
     color: var(--color-carbon);
+    margin-bottom: var(--space-sm);
   }
 
   .value-description {
     font-size: var(--font-size-sm);
-    line-height: 1.7;
     color: var(--color-carbon-light);
-    margin-bottom: 0;
+    line-height: var(--line-height-normal);
   }
 
-  /* Editorial Visual Section */
+  /* Visual Section */
   .visual-card {
-    border: 1px solid rgba(184, 178, 168, 0.3);
+    border: 1px solid rgba(184, 178, 168, 0.4);
     border-radius: var(--border-radius-sm);
     overflow: hidden;
-    background-color: var(--color-white);
+    background: var(--color-white);
   }
 
   .visual-image-wrapper {
     width: 100%;
-    background-color: var(--color-carbon);
+    overflow: hidden;
+    background: var(--color-ivory-dark);
   }
 
   .visual-image {
     width: 100%;
     height: auto;
-    display: block;
     object-fit: cover;
+    display: block;
+    aspect-ratio: 2 / 1;
   }
 
   .visual-caption {
-    padding: var(--space-2xl) var(--space-xl);
-    background-color: var(--color-ivory);
-    border-top: 1px solid rgba(184, 178, 168, 0.2);
+    padding: var(--space-2xl);
+    background: var(--color-white);
   }
 
   .visual-caption-inner {
-    max-width: 760px;
-    margin-inline: auto;
-    text-align: center;
+    max-width: 640px;
   }
 
   .visual-title {
     font-size: var(--font-size-2xl);
-    margin-top: var(--space-xs);
-    margin-bottom: var(--space-sm);
+    font-weight: var(--font-weight-light);
     color: var(--color-carbon);
+    margin: var(--space-xs) 0 var(--space-sm);
   }
 
   .visual-text {
     font-size: var(--font-size-base);
     color: var(--color-carbon-light);
-    line-height: 1.75;
-    margin-bottom: 0;
+    line-height: var(--line-height-normal);
   }
 
-  /* Academic Card */
+  /* Academic Notice */
   .academic-card {
-    padding: var(--space-2xl);
-    border: 1px dashed var(--color-stone);
+    border: 1px solid rgba(184, 178, 168, 0.4);
     border-radius: var(--border-radius-sm);
-    background-color: rgba(255, 255, 255, 0.6);
+    padding: var(--space-2xl);
+    background: var(--color-ivory-dark);
+    text-align: center;
     position: relative;
-    text-align: left;
   }
 
   .academic-badge {
     display: inline-block;
     font-family: var(--font-body);
-    font-size: 0.6875rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
     letter-spacing: var(--letter-spacing-widest);
     text-transform: uppercase;
     color: var(--color-burgundy);
-    background-color: rgba(84, 43, 53, 0.08);
-    padding: 0.25rem 0.625rem;
+    background: var(--color-ivory);
+    padding: var(--space-xs) var(--space-md);
     border-radius: var(--border-radius-sm);
     margin-bottom: var(--space-md);
   }
 
   .academic-title {
     font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-medium);
-    margin-bottom: var(--space-sm);
+    font-weight: var(--font-weight-regular);
     color: var(--color-carbon);
+    margin-bottom: var(--space-md);
   }
 
   .academic-text {
-    font-size: var(--font-size-sm);
-    line-height: 1.7;
+    font-size: var(--font-size-base);
     color: var(--color-carbon);
-    margin-bottom: var(--space-sm);
+    line-height: var(--line-height-normal);
+    margin-bottom: var(--space-md);
   }
 
   .academic-subtext {
-    font-size: var(--font-size-xs);
-    line-height: 1.6;
+    font-size: var(--font-size-sm);
     color: var(--color-carbon-light);
-    margin-bottom: 0;
+    line-height: var(--line-height-normal);
+    font-style: italic;
   }
 
-  /* CTA Section */
+  /* CTA */
   .brand-cta-title {
-    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: var(--font-weight-light);
     margin-top: var(--space-xs);
     margin-bottom: var(--space-md);
@@ -433,42 +554,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .brand-cta-subtitle {
     font-size: var(--font-size-lg);
-    line-height: 1.6;
-    max-width: 540px;
+    line-height: var(--line-height-normal);
+    max-width: 580px;
     margin-inline: auto;
     margin-bottom: var(--space-2xl);
+    color: var(--color-ivory);
+    opacity: 0.85;
   }
 
   .brand-cta-actions {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     gap: var(--space-md);
+    flex-wrap: wrap;
   }
 
   .brand-cta-secondary {
+    border-color: rgba(242, 238, 230, 0.4);
     color: var(--color-ivory);
-    border-color: var(--color-stone);
   }
 
   .brand-cta-secondary:hover {
-    background-color: var(--color-ivory);
-    color: var(--color-carbon);
     border-color: var(--color-ivory);
+    color: var(--color-ivory);
+    background: rgba(242, 238, 230, 0.08);
   }
 
-  /* Responsive Adjustments */
-  @media (max-width: 639px) {
-    .brand-cta-actions .btn {
-      width: 100%;
+  @media (max-width: 640px) {
+    .brand-hero-title {
+      font-size: 2.25rem;
     }
 
-    .value-card {
-      padding: var(--space-xl) var(--space-md);
-    }
-
-    .academic-card {
-      padding: var(--space-xl) var(--space-md);
+    .brand-cta-actions {
+      flex-direction: column;
+      align-items: stretch;
     }
   }
 </style>

@@ -1,64 +1,112 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import { products, categories, formatPrice } from '../../data/products';
-
-function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
-  const normFamily = product.family.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  const tags = product.tags.map((t) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''));
-  const ids: string[] = [];
-  if (normFamily.includes('amaderada') || tags.includes('amaderada')) ids.push('amaderadas');
-  if (
-    normFamily.includes('ambar') ||
-    normFamily.includes('especiada') ||
-    tags.includes('ambar') ||
-    tags.includes('especiada')
-  ) {
-    ids.push('ambar-especiadas');
-  }
-  if (normFamily.includes('floral') || tags.includes('floral')) ids.push('florales');
-  if (normFamily.includes('almizclada') || tags.includes('almizclada')) ids.push('almizcladas');
-  if (normFamily.includes('fresca') || tags.includes('fresca')) ids.push('frescas');
-  return ids;
-}
+import {
+  products,
+  mainCategories,
+  olfactoryFamilies,
+  formatPrice,
+  getMainCategoryById,
+  getSubCategoryById,
+  getOlfactoryFamilyBySlug,
+} from '../../data/products';
 ---
 
 <BaseLayout
-  title="Perfumes"
-  description="Explorá el catálogo completo de fragancias VI-ELIXIR. Perfumería árabe contemporánea con distintas familias olfativas, intensidades y ocasiones."
+  title="Catálogo de Perfumes"
+  description="Explorá la colección de perfumes árabes de VI-ELIXIR organizados por categorías principales, subcategorías y familias olfativas."
 >
   <!-- Page Header -->
   <header class="catalog-header">
     <div class="container">
-      <nav class="catalog-breadcrumb" aria-label="Miga de pan">
+      <nav class="catalog-breadcrumb" id="catalog-breadcrumb" aria-label="Miga de pan">
         <a href="/">Inicio</a>
         <span class="breadcrumb-sep" aria-hidden="true">/</span>
-        <span aria-current="page">Perfumes</span>
+        <a href="/perfumes" id="bc-perfumes-link">Perfumes</a>
+        <span id="bc-dynamic-container"></span>
       </nav>
-      <span class="catalog-eyebrow text-label">Alta Perfumería de Autor</span>
-      <h1 class="catalog-title">Nuestras fragancias</h1>
-      <p class="catalog-subtitle lead">
+
+      <span class="catalog-eyebrow text-label">Alta Perfumería de Autor · Organización Jerárquica</span>
+      <h1 class="catalog-title" id="catalog-main-title">Nuestras fragancias</h1>
+      <p class="catalog-subtitle lead" id="catalog-main-subtitle">
         Composiciones olfativas concebidas a partir de materias primas nobles de la tradición oriental.
         Oud ahumado, resinas de ámbar, azafrán milenario y rosas aterciopeladas en interpretaciones
-        contemporáneas formuladas para fundirse íntimamente con tu piel.
+        contemporáneas clasificadas por categoría, subcategoría y familia olfativa.
       </p>
+
+      <!-- Category Navigation Tabs (CATEGORÍA PRINCIPAL) -->
+      <div class="category-tabs-wrapper">
+        <div class="category-tabs" role="tablist" aria-label="Categorías principales">
+          <button
+            type="button"
+            class="category-tab active"
+            data-cat-tab=""
+            role="tab"
+            aria-selected="true"
+          >
+            Todas las fragancias <span class="tab-count">({products.length})</span>
+          </button>
+          {mainCategories.map((cat) => {
+            const count = products.filter((p) => p.categoriaPrincipalId === cat.id).length;
+            return (
+              <button
+                type="button"
+                class="category-tab"
+                data-cat-tab={cat.slug}
+                role="tab"
+                aria-selected="false"
+              >
+                {cat.name} <span class="tab-count">({count})</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Subcategory Navigation Chips (SUBCATEGORÍAS) -->
+      <div class="subcategory-chips-bar" id="subcategory-chips-bar" aria-label="Filtro por subcategoría">
+        <span class="chips-label">Subcategorías:</span>
+        <div class="chips-scroll">
+          <button
+            type="button"
+            class="subcat-chip active"
+            data-subcat-chip=""
+            data-parent-cat="all"
+          >
+            Todas
+          </button>
+          {mainCategories.flatMap((cat) =>
+            cat.subcategories.map((sub) => (
+              <button
+                type="button"
+                class="subcat-chip"
+                data-subcat-chip={sub.slug}
+                data-parent-cat={cat.slug}
+                title={`Subcategoría de ${cat.name}`}
+              >
+                {sub.name}
+              </button>
+            ))
+          )}
+        </div>
+      </div>
     </div>
   </header>
 
   <div class="catalog-main section-padding">
     <div class="container">
-      <!-- Filter Bar -->
-      <section class="filter-section" aria-label="Filtros del catálogo">
+      <!-- Filter Bar (Secondary filters: Olfactory Family, Intensity, Occasion) -->
+      <section class="filter-section" aria-label="Filtros complementarios">
         <form class="filter-bar" id="filter-form" onsubmit="return false;">
           <div class="filter-controls">
-            <!-- Family Filter -->
+            <!-- Olfactory Family Filter -->
             <div class="filter-group">
-              <label for="filter-family" class="filter-label">Familia</label>
+              <label for="filter-family" class="filter-label">Familia Olfativa</label>
               <div class="select-wrapper">
-                <select id="filter-family" name="family" class="filter-select">
+                <select id="filter-family" name="familia" class="filter-select">
                   <option value="">Todas las familias</option>
-                  {categories.map((cat) => (
-                    <option value={cat.id}>{cat.name}</option>
+                  {olfactoryFamilies.map((fam) => (
+                    <option value={fam.slug}>{fam.name}</option>
                   ))}
                 </select>
                 <svg class="select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -109,9 +157,9 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
               type="button"
               class="clear-filters-btn"
               id="clear-filters"
-              aria-label="Restablecer filtros"
+              aria-label="Restablecer todos los filtros"
             >
-              Limpiar filtros
+              Restablecer filtros
             </button>
           </div>
         </form>
@@ -121,14 +169,15 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
       <section class="products-section" aria-label="Listado de perfumes">
         <ul class="product-grid" id="product-grid" role="list">
           {products.map((product) => {
-            const familyIds = getCategoryIdsForProduct(product).join(' ');
             return (
               <li
                 class="product-item"
                 data-product-item
                 data-slug={product.slug}
+                data-category-id={product.categoriaPrincipalId}
+                data-subcategory-id={product.subcategoriaId}
+                data-family-ids={product.familiasOlfativas.join(' ')}
                 data-family={product.family}
-                data-family-ids={familyIds}
                 data-intensity={product.intensity}
                 data-occasion={product.occasion}
                 data-tags={product.tags.join(' ')}
@@ -138,6 +187,8 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
                   slug={product.slug}
                   image={product.image}
                   family={product.family}
+                  category={product.categoriaPrincipal}
+                  subcategory={product.subcategoria}
                   shortDescription={product.shortDescription}
                   price={product.price}
                 />
@@ -156,7 +207,7 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
           </div>
           <h2 class="empty-state-title">No encontramos fragancias con esos criterios</h2>
           <p class="empty-state-desc">
-            Probá ajustando la familia olfativa, la intensidad o la ocasión para descubrir otras creaciones de nuestra colección.
+            Probá seleccionando otra categoría o limpiando los filtros para descubrir todas las creaciones de nuestra colección.
           </p>
           <button type="button" class="btn btn--outline" id="empty-clear-btn">
             Ver todas las fragancias
@@ -173,11 +224,12 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
     background-color: var(--color-ivory);
     border-bottom: 1px solid var(--color-ivory-dark);
     padding-top: calc(var(--header-height) + var(--space-xl));
-    padding-bottom: var(--space-3xl);
+    padding-bottom: var(--space-2xl);
   }
 
   .catalog-breadcrumb {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: var(--space-xs);
     font-size: var(--font-size-xs);
@@ -203,6 +255,11 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
     opacity: 0.6;
   }
 
+  .catalog-breadcrumb [aria-current="page"] {
+    color: var(--color-burgundy);
+    font-weight: var(--font-weight-medium);
+  }
+
   .catalog-eyebrow {
     color: var(--color-burgundy);
     margin-bottom: var(--space-xs);
@@ -219,9 +276,104 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
   .catalog-subtitle {
     max-width: 780px;
     color: var(--color-carbon-light);
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-base);
     line-height: var(--line-height-normal);
-    margin-bottom: 0;
+    margin-bottom: var(--space-xl);
+  }
+
+  /* Category Tabs (Nivel 1: Categorías Principales) */
+  .category-tabs-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: var(--space-md);
+    padding-bottom: 4px;
+  }
+
+  .category-tabs {
+    display: flex;
+    gap: var(--space-sm);
+    min-width: max-content;
+  }
+
+  .category-tab {
+    font-family: var(--font-display);
+    font-size: var(--font-size-base);
+    padding: var(--space-sm) var(--space-lg);
+    background: transparent;
+    border: 1px solid rgba(184, 178, 168, 0.4);
+    border-radius: var(--border-radius-full);
+    color: var(--color-carbon);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  .category-tab:hover {
+    border-color: var(--color-burgundy);
+    color: var(--color-burgundy);
+  }
+
+  .category-tab.active {
+    background: var(--color-carbon);
+    border-color: var(--color-carbon);
+    color: var(--color-ivory);
+  }
+
+  .tab-count {
+    font-size: var(--font-size-xs);
+    opacity: 0.8;
+  }
+
+  /* Subcategory Chips (Nivel 2: Subcategorías) */
+  .subcategory-chips-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding-top: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .chips-label {
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-widest);
+    color: var(--color-stone-text, #6B665E);
+    font-weight: 600;
+  }
+
+  .chips-scroll {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .subcat-chip {
+    font-size: var(--font-size-xs);
+    padding: 6px 12px;
+    background: var(--color-white);
+    border: 1px solid rgba(184, 178, 168, 0.35);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-stone-text, #6B665E);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .subcat-chip:hover {
+    border-color: var(--color-burgundy);
+    color: var(--color-burgundy);
+  }
+
+  .subcat-chip.active {
+    background: var(--color-burgundy);
+    border-color: var(--color-burgundy);
+    color: var(--color-white);
+  }
+
+  .subcat-chip.is-hidden-parent {
+    display: none !important;
   }
 
   /* Filter Section */
@@ -248,24 +400,23 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
-    gap: var(--space-md);
-    flex-grow: 1;
+    gap: var(--space-lg);
   }
 
   .filter-group {
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
-    min-width: 190px;
-    flex: 1 1 190px;
+    min-width: 170px;
   }
 
   .filter-label {
+    font-family: var(--font-body);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-medium);
     text-transform: uppercase;
     letter-spacing: var(--letter-spacing-widest);
-    color: var(--color-carbon-light);
+    color: var(--color-stone-text, #6B665E);
   }
 
   .select-wrapper {
@@ -280,86 +431,82 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
     background-color: var(--color-white);
     border: 1px solid var(--color-stone);
     border-radius: var(--border-radius-sm);
-    padding: 0.75rem 2.25rem 0.75rem 1rem;
+    padding: var(--space-sm) var(--space-xl) var(--space-sm) var(--space-md);
     font-family: var(--font-body);
     font-size: var(--font-size-sm);
     color: var(--color-carbon);
     cursor: pointer;
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    transition: border-color var(--transition-fast);
   }
 
-  .filter-select:hover {
-    border-color: var(--color-carbon);
-  }
-
-  .filter-select:focus {
-    outline: none;
+  .filter-select:focus-visible {
+    outline: 2px solid var(--color-burgundy);
+    outline-offset: 1px;
     border-color: var(--color-burgundy);
-    box-shadow: 0 0 0 2px rgba(84, 43, 53, 0.15);
   }
 
   .select-arrow {
     position: absolute;
-    right: 0.875rem;
+    right: var(--space-sm);
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-    color: var(--color-carbon);
-    opacity: 0.6;
-    transition: transform var(--transition-fast);
+    color: var(--color-stone-text, #6B665E);
   }
 
   .filter-meta {
     display: flex;
     align-items: center;
-    gap: var(--space-lg);
-    padding-top: var(--space-xs);
+    gap: var(--space-md);
   }
 
   .results-count {
     font-size: var(--font-size-sm);
-    color: var(--color-carbon-light);
-    font-weight: var(--font-weight-regular);
-    white-space: nowrap;
+    color: var(--color-stone-text, #6B665E);
   }
 
   .clear-filters-btn {
-    font-family: var(--font-body);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-medium);
-    text-transform: uppercase;
-    letter-spacing: var(--letter-spacing-wider);
-    color: var(--color-burgundy);
     background: none;
     border: none;
-    padding: 0.25rem 0.5rem;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-widest);
+    color: var(--color-burgundy);
     cursor: pointer;
     text-decoration: underline;
-    text-underline-offset: 3px;
-    opacity: 0.85;
-    transition: opacity var(--transition-fast), color var(--transition-fast);
+    transition: opacity var(--transition-fast);
   }
 
-  .clear-filters-btn:hover {
-    opacity: 1;
-    color: var(--color-burgundy-light);
-  }
-
-  .clear-filters-btn[disabled] {
+  .clear-filters-btn:disabled {
     opacity: 0.35;
     cursor: not-allowed;
     text-decoration: none;
   }
 
-  /* Product Grid */
+  /* Products Grid */
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-3xl) var(--space-xl);
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
     list-style: none;
     padding: 0;
     margin: 0;
-    transition: opacity var(--transition-base);
+  }
+
+  @media (min-width: 640px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-2xl) var(--space-xl);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .product-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-3xl) var(--space-xl);
+    }
   }
 
   .product-item {
@@ -367,33 +514,26 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
   }
 
   .product-item.is-hidden {
-    display: none;
+    display: none !important;
   }
 
   /* Empty State */
   .empty-state {
     text-align: center;
-    padding: var(--space-4xl) var(--space-md);
-    background-color: var(--color-ivory-dark);
-    border-radius: var(--border-radius-md);
+    padding: var(--space-4xl) var(--space-lg);
+    background-color: var(--color-white);
+    border: 1px dashed rgba(184, 178, 168, 0.4);
+    border-radius: var(--border-radius-sm);
     max-width: 580px;
-    margin: var(--space-2xl) auto 0;
+    margin: 0 auto;
   }
 
   .empty-state-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background-color: var(--color-ivory);
-    color: var(--color-burgundy);
+    color: var(--color-stone);
     margin-bottom: var(--space-md);
   }
 
   .empty-state-title {
-    font-family: var(--font-display);
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-regular);
     color: var(--color-carbon);
@@ -401,67 +541,17 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
   }
 
   .empty-state-desc {
-    color: var(--color-carbon-light);
+    color: var(--color-stone-text, #6B665E);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-normal);
     margin-bottom: var(--space-xl);
   }
-
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .product-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-2xl) var(--space-md);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .filter-bar {
-      flex-direction: column;
-      align-items: stretch;
-      gap: var(--space-md);
-    }
-
-    .filter-controls {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .filter-group {
-      width: 100%;
-      min-width: unset;
-    }
-
-    .filter-meta {
-      justify-content: space-between;
-      border-top: 1px solid var(--color-ivory-dark);
-      padding-top: var(--space-md);
-    }
-  }
-
-  @media (max-width: 600px) {
-    .catalog-header {
-      padding-top: calc(var(--header-height) + var(--space-lg));
-      padding-bottom: var(--space-2xl);
-    }
-
-    .product-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-2xl);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .product-item,
-    .filter-select,
-    .product-grid {
-      transition: none !important;
-    }
-  }
 </style>
 
 <script>
-  function initCatalogFilters() {
+  function initCatalogHierarchy() {
+    const catTabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-cat-tab]'));
+    const subcatChips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-subcat-chip]'));
     const familySelect = document.getElementById('filter-family') as HTMLSelectElement | null;
     const intensitySelect = document.getElementById('filter-intensity') as HTMLSelectElement | null;
     const occasionSelect = document.getElementById('filter-occasion') as HTMLSelectElement | null;
@@ -471,12 +561,38 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
     const emptyState = document.getElementById('empty-state');
     const grid = document.getElementById('product-grid');
     const productItems = Array.from(document.querySelectorAll<HTMLLIElement>('[data-product-item]'));
+    const bcContainer = document.getElementById('bc-dynamic-container');
 
-    if (!familySelect || !intensitySelect || !occasionSelect || productItems.length === 0) {
-      return;
-    }
+    if (productItems.length === 0) return;
 
     const totalCount = productItems.length;
+
+    // Category names and subcategory names mapping
+    const categoryLabels: Record<string, string> = {
+      masculinos: 'Perfumes Masculinos',
+      femeninos: 'Perfumes Femeninos',
+      unisex: 'Perfumes Unisex',
+    };
+
+    const subcategoryLabels: Record<string, string> = {
+      'amaderados-intensos': 'Amaderados intensos',
+      'ambar-especiados': 'Ámbar y especiados',
+      'florales-orientales': 'Florales orientales',
+      'ambar-envolventes': 'Ámbar y envolventes',
+      'amaderados-contemporaneos': 'Amaderados contemporáneos',
+      'almizclados-suaves': 'Almizclados y suaves',
+    };
+
+    const familyLabels: Record<string, string> = {
+      amaderados: 'Amaderados',
+      florales: 'Florales',
+      'ambar-especiados': 'Ámbar y especiados',
+      almizclados: 'Almizclados',
+      frescos: 'Frescos',
+    };
+
+    let activeCategory = '';
+    let activeSubcategory = '';
 
     function normalizeText(text: string): string {
       return text
@@ -488,27 +604,90 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
 
     function syncStateFromURL() {
       const params = new URLSearchParams(window.location.search);
-      const fam = params.get('family') || '';
+      activeCategory = params.get('categoria') || params.get('category') || '';
+      activeSubcategory = params.get('subcategoria') || params.get('subcategory') || '';
+      const fam = params.get('familia') || params.get('family') || '';
       const int = params.get('intensity') || '';
       const occ = params.get('occasion') || '';
 
       if (familySelect) familySelect.value = fam;
       if (intensitySelect) intensitySelect.value = int;
       if (occasionSelect) occasionSelect.value = occ;
+
+      updateCategoryTabsUI();
+      updateSubcategoryChipsUI();
     }
 
-    function updateURL(family: string, intensity: string, occasion: string) {
+    function updateCategoryTabsUI() {
+      catTabs.forEach((tab) => {
+        const catVal = tab.dataset.catTab || '';
+        const isSelected = catVal === activeCategory;
+        tab.classList.toggle('active', isSelected);
+        tab.setAttribute('aria-selected', String(isSelected));
+      });
+    }
+
+    function updateSubcategoryChipsUI() {
+      subcatChips.forEach((chip) => {
+        const parentCat = chip.dataset.parentCat || '';
+        const chipVal = chip.dataset.subcatChip || '';
+
+        // If a category is selected, show only chips for that category + "all"
+        if (activeCategory) {
+          if (parentCat === 'all' || parentCat === activeCategory) {
+            chip.classList.remove('is-hidden-parent');
+          } else {
+            chip.classList.add('is-hidden-parent');
+          }
+        } else {
+          // If no category selected, show all chips
+          chip.classList.remove('is-hidden-parent');
+        }
+
+        const isSelected = chipVal === activeSubcategory;
+        chip.classList.toggle('active', isSelected);
+      });
+    }
+
+    function updateURLAndHistory() {
       const params = new URLSearchParams();
-      if (family) params.set('family', family);
-      if (intensity) params.set('intensity', intensity);
-      if (occasion) params.set('occasion', occasion);
+      if (activeCategory) params.set('categoria', activeCategory);
+      if (activeSubcategory) params.set('subcategoria', activeSubcategory);
 
-      const newQuery = params.toString();
-      const newURL = newQuery
-        ? `${window.location.pathname}?${newQuery}`
-        : window.location.pathname;
+      const fam = familySelect?.value || '';
+      const int = intensitySelect?.value || '';
+      const occ = occasionSelect?.value || '';
 
+      if (fam) params.set('familia', fam);
+      if (int) params.set('intensity', int);
+      if (occ) params.set('occasion', occ);
+
+      const query = params.toString();
+      const newURL = query ? `${window.location.pathname}?${query}` : window.location.pathname;
       window.history.replaceState({}, '', newURL);
+    }
+
+    function updateBreadcrumb() {
+      if (!bcContainer) return;
+      let html = '';
+
+      if (activeCategory) {
+        const catName = categoryLabels[activeCategory] || activeCategory;
+        if (activeSubcategory) {
+          const subName = subcategoryLabels[activeSubcategory] || activeSubcategory;
+          html += ` <span class="breadcrumb-sep" aria-hidden="true">/</span> <a href="/perfumes?categoria=${activeCategory}">${catName}</a> <span class="breadcrumb-sep" aria-hidden="true">/</span> <span aria-current="page">${subName}</span>`;
+        } else {
+          html += ` <span class="breadcrumb-sep" aria-hidden="true">/</span> <span aria-current="page">${catName}</span>`;
+        }
+      } else if (activeSubcategory) {
+        const subName = subcategoryLabels[activeSubcategory] || activeSubcategory;
+        html += ` <span class="breadcrumb-sep" aria-hidden="true">/</span> <span aria-current="page">${subName}</span>`;
+      } else if (familySelect && familySelect.value) {
+        const famName = familyLabels[familySelect.value] || familySelect.value;
+        html += ` <span class="breadcrumb-sep" aria-hidden="true">/</span> <span aria-current="page">Familia: ${famName}</span>`;
+      }
+
+      bcContainer.innerHTML = html;
     }
 
     function applyFilters() {
@@ -519,28 +698,40 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
       let visibleCount = 0;
 
       productItems.forEach((item) => {
-        const itemFamily = item.dataset.family || '';
+        const itemCat = item.dataset.categoryId || '';
+        const itemSubcat = item.dataset.subcategoryId || '';
         const itemFamilyIds = (item.dataset.familyIds || '').split(' ');
         const itemIntensity = item.dataset.intensity || '';
         const itemOccasion = normalizeText(item.dataset.occasion || '');
         const itemTags = normalizeText(item.dataset.tags || '');
 
-        // 1. Family matching
+        // 1. Category matching
+        let matchesCategory = true;
+        if (activeCategory) {
+          matchesCategory = itemCat === activeCategory;
+        }
+
+        // 2. Subcategory matching
+        let matchesSubcategory = true;
+        if (activeSubcategory) {
+          matchesSubcategory = itemSubcat === activeSubcategory;
+        }
+
+        // 3. Olfactory Family matching
         let matchesFamily = true;
         if (selectedFamily) {
           matchesFamily =
             itemFamilyIds.includes(selectedFamily) ||
-            normalizeText(itemFamily).includes(selectedFamily);
+            normalizeText(itemFamilyIds.join(' ')).includes(selectedFamily);
         }
 
-        // 2. Intensity matching
+        // 4. Intensity matching
         let matchesIntensity = true;
         if (selectedIntensity) {
-          matchesIntensity =
-            normalizeText(itemIntensity) === normalizeText(selectedIntensity);
+          matchesIntensity = normalizeText(itemIntensity) === normalizeText(selectedIntensity);
         }
 
-        // 3. Occasion matching
+        // 5. Occasion matching
         let matchesOccasion = true;
         if (selectedOccasion) {
           if (selectedOccasion === 'dia') {
@@ -553,7 +744,6 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
             matchesOccasion =
               itemOccasion.includes('noche') ||
               itemOccasion.includes('nocturn') ||
-              itemOccasion.includes('eventos') ||
               itemTags.includes('noche');
           } else {
             matchesOccasion =
@@ -561,7 +751,13 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
           }
         }
 
-        const isVisible = matchesFamily && matchesIntensity && matchesOccasion;
+        const isVisible =
+          matchesCategory &&
+          matchesSubcategory &&
+          matchesFamily &&
+          matchesIntensity &&
+          matchesOccasion;
+
         if (isVisible) {
           item.classList.remove('is-hidden');
           item.removeAttribute('aria-hidden');
@@ -595,38 +791,83 @@ function getCategoryIdsForProduct(product: (typeof products)[0]): string[] {
       }
 
       // Clear button disabled state
-      const hasActiveFilters = Boolean(selectedFamily || selectedIntensity || selectedOccasion);
+      const hasActiveFilters = Boolean(
+        activeCategory ||
+          activeSubcategory ||
+          selectedFamily ||
+          selectedIntensity ||
+          selectedOccasion
+      );
       if (clearBtn) {
         clearBtn.disabled = !hasActiveFilters;
       }
 
-      updateURL(selectedFamily, selectedIntensity, selectedOccasion);
+      updateBreadcrumb();
+      updateURLAndHistory();
     }
 
     function clearAllFilters() {
+      activeCategory = '';
+      activeSubcategory = '';
       if (familySelect) familySelect.value = '';
       if (intensitySelect) intensitySelect.value = '';
       if (occasionSelect) occasionSelect.value = '';
+      updateCategoryTabsUI();
+      updateSubcategoryChipsUI();
       applyFilters();
     }
 
-    // Attach listeners
-    familySelect.addEventListener('change', applyFilters);
-    intensitySelect.addEventListener('change', applyFilters);
-    occasionSelect.addEventListener('change', applyFilters);
+    // Category Tabs click listeners
+    catTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const cat = tab.dataset.catTab || '';
+        activeCategory = cat;
+        // If switched category, reset subcategory if it does not belong
+        if (activeSubcategory) {
+          const validSub = subcatChips.find(
+            (c) =>
+              c.dataset.subcatChip === activeSubcategory &&
+              (!cat || c.dataset.parentCat === cat)
+          );
+          if (!validSub) activeSubcategory = '';
+        }
+        updateCategoryTabsUI();
+        updateSubcategoryChipsUI();
+        applyFilters();
+      });
+    });
+
+    // Subcategory Chips click listeners
+    subcatChips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        const sub = chip.dataset.subcatChip || '';
+        const parent = chip.dataset.parentCat || '';
+        activeSubcategory = sub;
+        if (parent && parent !== 'all' && !activeCategory) {
+          activeCategory = parent;
+          updateCategoryTabsUI();
+        }
+        updateSubcategoryChipsUI();
+        applyFilters();
+      });
+    });
+
+    // Select filters
+    familySelect?.addEventListener('change', applyFilters);
+    intensitySelect?.addEventListener('change', applyFilters);
+    occasionSelect?.addEventListener('change', applyFilters);
 
     clearBtn?.addEventListener('click', clearAllFilters);
     emptyClearBtn?.addEventListener('click', clearAllFilters);
 
-    // Initial sync
+    // Initial setup from URL
     syncStateFromURL();
     applyFilters();
   }
 
-  // Support initial load and potential client-side navigation
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCatalogFilters);
+    document.addEventListener('DOMContentLoaded', initCatalogHierarchy);
   } else {
-    initCatalogFilters();
+    initCatalogHierarchy();
   }
 </script>

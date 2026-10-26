@@ -16,6 +16,7 @@ const {
 } = Astro.props;
 
 import '../styles/global.css';
+import { mainCategories, olfactoryFamilies } from '../data/products';
 
 const siteTitle = 'VI-ELIXIR · Perfumería Árabe';
 const fullTitle = title === 'Inicio' ? siteTitle : `${title} — ${siteTitle}`;
@@ -86,18 +87,79 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
             src="/images/logo-header.png"
             alt="VI-ELIXIR Perfumería Árabe"
             class="logo-img"
-            width="140"
-            height="38"
+            width="155"
+            height="42"
           />
         </a>
 
         <nav class="header-nav" aria-label="Navegación principal">
           <ul class="nav-list">
-            <li><a href="/perfumes" class:list={[{ active: currentPath.startsWith('/perfumes') }]}>Perfumes</a></li>
-            <li><a href="/la-marca" class:list={[{ active: currentPath === '/la-marca' }]}>La Marca</a></li>
-            <li><a href="/journal" class:list={[{ active: currentPath.startsWith('/journal') }]}>Journal</a></li>
-            <li><a href="/blog" class:list={[{ active: currentPath.startsWith('/blog') }]}>Blog</a></li>
-            <li><a href="/contacto" class:list={[{ active: currentPath === '/contacto' }]}>Contacto</a></li>
+            <!-- Menú Jerárquico: Categorías y Subcategorías -->
+            <li class="nav-item nav-item--dropdown">
+              <a href="/perfumes" class:list={['nav-link-main', { active: currentPath.startsWith('/perfumes') }]}>
+                <span>Perfumes</span>
+                <svg class="dropdown-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </a>
+              <div class="nav-megamenu" role="menu">
+                <div class="megamenu-inner">
+                  {mainCategories.map((cat) => (
+                    <div class="megamenu-column">
+                      <a href={`/perfumes?categoria=${cat.slug}`} class="megamenu-title">
+                        {cat.name}
+                      </a>
+                      <ul class="megamenu-subcategories">
+                        {cat.subcategories.map((sub) => (
+                          <li>
+                            <a href={`/perfumes?categoria=${cat.slug}&subcategoria=${sub.slug}`}>
+                              {sub.name}
+                            </a>
+                          </li>
+                        ))}
+                        <li>
+                          <a href={`/perfumes?categoria=${cat.slug}`} class="megamenu-see-category">
+                            Ver {cat.shortName.toLowerCase()} &rarr;
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+                <div class="megamenu-bottom">
+                  <a href="/perfumes" class="megamenu-all">
+                    Ver catálogo completo de fragancias &rarr;
+                  </a>
+                </div>
+              </div>
+            </li>
+
+            <!-- Familias Olfativas independientes -->
+            <li class="nav-item nav-item--dropdown">
+              <a href="/perfumes#familias" class="nav-link-main">
+                <span>Familias Olfativas</span>
+                <svg class="dropdown-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </a>
+              <div class="nav-dropdown-menu" role="menu">
+                <ul class="dropdown-simple-list">
+                  {olfactoryFamilies.map((fam) => (
+                    <li>
+                      <a href={`/perfumes?familia=${fam.slug}`} class="dropdown-family-link">
+                        <span class="family-item-name">{fam.name}</span>
+                        <span class="family-item-desc">{fam.description.split('.')[0]}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+
+            <li class="nav-item"><a href="/la-marca" class:list={['nav-link-main', { active: currentPath === '/la-marca' }]}>La Marca</a></li>
+            <li class="nav-item"><a href="/journal" class:list={['nav-link-main', { active: currentPath.startsWith('/journal') }]}>Journal</a></li>
+            <li class="nav-item"><a href="/blog" class:list={['nav-link-main', { active: currentPath.startsWith('/blog') }]}>Blog</a></li>
+            <li class="nav-item"><a href="/contacto" class:list={['nav-link-main', { active: currentPath === '/contacto' }]}>Contacto</a></li>
           </ul>
         </nav>
 
@@ -132,11 +194,54 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
       <div class="mobile-menu" data-mobile-menu aria-hidden="true">
         <nav aria-label="Navegación móvil">
           <ul class="mobile-nav-list">
-            <li><a href="/perfumes">Perfumes</a></li>
-            <li><a href="/la-marca">La Marca</a></li>
-            <li><a href="/journal">Journal</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/contacto">Contacto</a></li>
+            <!-- Acordeón Perfumes por Categoría -->
+            <li class="mobile-nav-group">
+              <button class="mobile-accordion-toggle" data-mobile-accordion aria-expanded="false">
+                <span>Perfumes por Categoría</span>
+                <svg class="mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="mobile-accordion-panel" hidden>
+                {mainCategories.map((cat) => (
+                  <div class="mobile-cat-block">
+                    <a href={`/perfumes?categoria=${cat.slug}`} class="mobile-cat-title">{cat.name}</a>
+                    <ul class="mobile-subcat-links">
+                      {cat.subcategories.map((sub) => (
+                        <li>
+                          <a href={`/perfumes?categoria=${cat.slug}&subcategoria=${sub.slug}`}>{sub.name}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+                <a href="/perfumes" class="mobile-cat-all">Explorar todas las fragancias &rarr;</a>
+              </div>
+            </li>
+
+            <!-- Acordeón Familias Olfativas -->
+            <li class="mobile-nav-group">
+              <button class="mobile-accordion-toggle" data-mobile-accordion aria-expanded="false">
+                <span>Familias Olfativas</span>
+                <svg class="mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="mobile-accordion-panel" hidden>
+                <ul class="mobile-subcat-links">
+                  {olfactoryFamilies.map((fam) => (
+                    <li>
+                      <a href={`/perfumes?familia=${fam.slug}`}>{fam.name}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+
+            <li><a href="/la-marca" class="mobile-single-link">La Marca</a></li>
+            <li><a href="/journal" class="mobile-single-link">Journal</a></li>
+            <li><a href="/blog" class="mobile-single-link">Blog</a></li>
+            <li><a href="/contacto" class="mobile-single-link">Contacto</a></li>
           </ul>
         </nav>
       </div>
@@ -235,7 +340,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
     <!-- Scripts -->
     <script>
       // ============================================
-      // Mobile Menu Toggle
+      // Mobile Menu Toggle & Accordions
       // ============================================
       const menuToggle = document.querySelector('[data-menu-toggle]') as HTMLButtonElement;
       const mobileMenu = document.querySelector('[data-mobile-menu]') as HTMLElement;
@@ -245,6 +350,19 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
         menuToggle.setAttribute('aria-expanded', String(!isOpen));
         mobileMenu.setAttribute('aria-hidden', String(isOpen));
         document.body.classList.toggle('menu-open', !isOpen);
+      });
+
+      // Mobile Accordions
+      const mobileAccordionToggles = document.querySelectorAll('[data-mobile-accordion]');
+      mobileAccordionToggles.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!isExpanded));
+          const panel = btn.nextElementSibling as HTMLElement;
+          if (panel) {
+            panel.hidden = isExpanded;
+          }
+        });
       });
 
       // ============================================
@@ -441,10 +559,17 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
       }
 
       .logo-img {
-        height: 32px;
+        height: 40px;
         width: auto;
         object-fit: contain;
         object-position: left center;
+        transition: height var(--transition-fast);
+      }
+
+      @media (max-width: 640px) {
+        .logo-img {
+          height: 36px;
+        }
       }
 
       .header-nav {
@@ -460,13 +585,17 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
       .nav-list {
         display: flex;
         align-items: center;
-        gap: var(--space-xl);
+        gap: var(--space-lg);
         list-style: none;
         margin: 0;
         padding: 0;
       }
 
-      .nav-list a {
+      .nav-item {
+        position: relative;
+      }
+
+      .nav-link-main {
         font-family: var(--font-body);
         font-size: var(--font-size-sm);
         font-weight: var(--font-weight-regular);
@@ -476,10 +605,13 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
         color: var(--color-carbon);
         transition: color var(--transition-fast);
         padding: var(--space-xs) 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
         position: relative;
       }
 
-      .nav-list a::after {
+      .nav-link-main::after {
         content: '';
         position: absolute;
         bottom: -2px;
@@ -490,17 +622,201 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
         transition: width var(--transition-base);
       }
 
-      .nav-list a:hover::after,
-      .nav-list a.active::after {
+      .nav-link-main:hover::after,
+      .nav-link-main.active::after {
         width: 100%;
       }
 
-      .nav-list a:hover {
+      .nav-link-main:hover {
         color: var(--color-burgundy);
       }
 
-      .nav-list a.active {
+      .nav-link-main.active {
         color: var(--color-burgundy);
+      }
+
+      .dropdown-caret {
+        transition: transform var(--transition-fast);
+        opacity: 0.6;
+      }
+
+      .nav-item--dropdown:hover .dropdown-caret,
+      .nav-item--dropdown:focus-within .dropdown-caret {
+        transform: rotate(180deg);
+        opacity: 1;
+        color: var(--color-burgundy);
+      }
+
+      /* Megamenú de Perfumes (Categorías y Subcategorías) */
+      .nav-megamenu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(12px);
+        width: 660px;
+        background: var(--color-white);
+        border: 1px solid rgba(184, 178, 168, 0.4);
+        border-radius: var(--border-radius-sm);
+        box-shadow: var(--shadow-lg);
+        padding: var(--space-xl);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+        z-index: var(--z-dropdown);
+      }
+
+      .nav-item--dropdown:hover .nav-megamenu,
+      .nav-item--dropdown:focus-within .nav-megamenu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(4px);
+      }
+
+      .megamenu-inner {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+        padding-bottom: var(--space-md);
+        border-bottom: 1px solid var(--color-ivory-dark);
+      }
+
+      .megamenu-title {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: var(--color-carbon);
+        text-transform: none;
+        letter-spacing: normal;
+        margin-bottom: var(--space-sm);
+        text-decoration: none;
+        transition: color var(--transition-fast);
+      }
+
+      .megamenu-title:hover {
+        color: var(--color-burgundy);
+      }
+
+      .megamenu-subcategories {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .megamenu-subcategories a {
+        font-family: var(--font-body);
+        font-size: var(--font-size-xs);
+        text-transform: none;
+        letter-spacing: normal;
+        color: var(--color-stone-text);
+        text-decoration: none;
+        display: block;
+        transition: color var(--transition-fast), transform var(--transition-fast);
+      }
+
+      .megamenu-subcategories a:hover {
+        color: var(--color-burgundy);
+        transform: translateX(3px);
+      }
+
+      .megamenu-see-category {
+        font-size: 0.6875rem !important;
+        font-weight: 600 !important;
+        color: var(--color-burgundy) !important;
+        margin-top: 6px;
+      }
+
+      .megamenu-bottom {
+        padding-top: var(--space-md);
+        text-align: right;
+      }
+
+      .megamenu-all {
+        font-family: var(--font-body);
+        font-size: var(--font-size-xs);
+        font-weight: 500;
+        color: var(--color-burgundy);
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        transition: text-decoration var(--transition-fast);
+      }
+
+      .megamenu-all:hover {
+        text-decoration: underline;
+      }
+
+      /* Dropdown de Familias Olfativas */
+      .nav-dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        transform: translateY(12px);
+        width: 320px;
+        background: var(--color-white);
+        border: 1px solid rgba(184, 178, 168, 0.4);
+        border-radius: var(--border-radius-sm);
+        box-shadow: var(--shadow-lg);
+        padding: var(--space-sm);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+        z-index: var(--z-dropdown);
+      }
+
+      .nav-item--dropdown:hover .nav-dropdown-menu,
+      .nav-item--dropdown:focus-within .nav-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(4px);
+      }
+
+      .dropdown-simple-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .dropdown-family-link {
+        display: flex;
+        flex-direction: column;
+        padding: var(--space-sm) var(--space-md);
+        border-radius: var(--border-radius-sm);
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        transition: background-color var(--transition-fast);
+      }
+
+      .dropdown-family-link:hover {
+        background-color: var(--color-ivory);
+      }
+
+      .family-item-name {
+        font-family: var(--font-display);
+        font-size: var(--font-size-base);
+        color: var(--color-carbon);
+        font-weight: 500;
+      }
+
+      .dropdown-family-link:hover .family-item-name {
+        color: var(--color-burgundy);
+      }
+
+      .family-item-desc {
+        font-size: 0.75rem;
+        color: var(--color-stone-text);
+        margin-top: 2px;
       }
 
       /* Header Actions */
@@ -596,7 +912,8 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
         bottom: 0;
         background: var(--color-ivory);
         z-index: var(--z-overlay);
-        padding: var(--space-2xl);
+        padding: var(--space-xl) var(--space-lg);
+        overflow-y: auto;
         opacity: 0;
         visibility: hidden;
         transition: opacity var(--transition-base), visibility var(--transition-base);
@@ -613,23 +930,94 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
         margin: 0;
       }
 
-      .mobile-nav-list li {
+      .mobile-nav-list > li {
         border-bottom: 1px solid rgba(184, 178, 168, 0.3);
       }
 
-      .mobile-nav-list a {
+      .mobile-single-link {
         display: block;
-        padding: var(--space-lg) 0;
+        padding: var(--space-md) 0;
         font-family: var(--font-display);
-        font-size: var(--font-size-2xl);
+        font-size: var(--font-size-xl);
         font-weight: 400;
         color: var(--color-carbon);
         text-decoration: none;
         transition: color var(--transition-fast);
       }
 
-      .mobile-nav-list a:hover {
+      .mobile-single-link:hover {
         color: var(--color-burgundy);
+      }
+
+      .mobile-accordion-toggle {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: none;
+        border: none;
+        padding: var(--space-md) 0;
+        font-family: var(--font-display);
+        font-size: var(--font-size-xl);
+        font-weight: 400;
+        color: var(--color-carbon);
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .mobile-chevron {
+        transition: transform var(--transition-fast);
+        opacity: 0.6;
+      }
+
+      .mobile-accordion-toggle[aria-expanded="true"] .mobile-chevron {
+        transform: rotate(180deg);
+        opacity: 1;
+        color: var(--color-burgundy);
+      }
+
+      .mobile-accordion-panel {
+        padding: 0 0 var(--space-lg) var(--space-sm);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+
+      .mobile-cat-block {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .mobile-cat-title {
+        font-family: var(--font-display);
+        font-size: var(--font-size-base);
+        font-weight: 600;
+        color: var(--color-carbon);
+        text-decoration: none;
+      }
+
+      .mobile-subcat-links {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0 var(--space-sm);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .mobile-subcat-links a {
+        font-size: var(--font-size-sm);
+        color: var(--color-stone-text);
+        text-decoration: none;
+      }
+
+      .mobile-cat-all {
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+        color: var(--color-burgundy);
+        text-decoration: none;
+        margin-top: var(--space-xs);
       }
 
       body.menu-open {

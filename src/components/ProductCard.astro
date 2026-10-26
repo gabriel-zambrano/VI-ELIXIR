@@ -6,11 +6,13 @@ export interface Props {
   slug: string;
   image: string;
   family: string;
+  category?: string;
+  subcategory?: string;
   shortDescription: string;
   price: number;
 }
 
-const { name, slug, image, family, shortDescription, price } = Astro.props;
+const { name, slug, image, family, category, subcategory, shortDescription, price } = Astro.props;
 ---
 
 <a href={`/perfumes/${slug}`} class="product-card">
@@ -18,8 +20,12 @@ const { name, slug, image, family, shortDescription, price } = Astro.props;
     <img src={image} alt={name} width="400" height="530" loading="lazy" />
   </div>
   <div class="product-card-info">
-    <span class="product-card-family">{family}</span>
+    <div class="product-card-tags">
+      {category && <span class="product-card-cat">{category}</span>}
+      {subcategory && <span class="product-card-subcat"> · {subcategory}</span>}
+    </div>
     <h3 class="product-card-name">{name}</h3>
+    <span class="product-card-family">{family}</span>
     <p class="product-card-desc">{shortDescription}</p>
     <span class="product-card-price">{formatPrice(price)}</span>
   </div>
@@ -66,6 +72,21 @@ const { name, slug, image, family, shortDescription, price } = Astro.props;
     padding-top: var(--space-md);
     gap: var(--space-xs);
     flex-grow: 1;
+  }
+
+  .product-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.6875rem;
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+    color: var(--color-burgundy);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .product-card-subcat {
+    color: var(--color-stone-text, #6B665E);
   }
 
   .product-card-family {

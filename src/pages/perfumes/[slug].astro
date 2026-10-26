@@ -42,6 +42,10 @@ const galleryImages = product.images && product.images.length > 0 ? product.imag
         <li class="breadcrumb-sep" aria-hidden="true">/</li>
         <li><a href="/perfumes">Perfumes</a></li>
         <li class="breadcrumb-sep" aria-hidden="true">/</li>
+        <li><a href={`/perfumes?categoria=${product.categoriaPrincipalId}`}>{product.categoriaPrincipal}</a></li>
+        <li class="breadcrumb-sep" aria-hidden="true">/</li>
+        <li><a href={`/perfumes?categoria=${product.categoriaPrincipalId}&subcategoria=${product.subcategoriaId}`}>{product.subcategoria}</a></li>
+        <li class="breadcrumb-sep" aria-hidden="true">/</li>
         <li aria-current="page" class="breadcrumb-current">{product.name}</li>
       </ol>
     </div>
@@ -142,6 +146,26 @@ const galleryImages = product.images && product.images.length > 0 ? product.imag
 
           <!-- Specifications -->
           <div class="product-meta-card">
+            <!-- Categoría Principal -->
+            <div class="meta-row">
+              <span class="meta-key">Categoría</span>
+              <span class="meta-value">
+                <a href={`/perfumes?categoria=${product.categoriaPrincipalId}`} class="meta-link">
+                  {product.categoriaPrincipal}
+                </a>
+              </span>
+            </div>
+
+            <!-- Subcategoría -->
+            <div class="meta-row">
+              <span class="meta-key">Subcategoría</span>
+              <span class="meta-value">
+                <a href={`/perfumes?categoria=${product.categoriaPrincipalId}&subcategoria=${product.subcategoriaId}`} class="meta-link">
+                  {product.subcategoria}
+                </a>
+              </span>
+            </div>
+
             <!-- Character -->
             <div class="meta-row">
               <span class="meta-key">Carácter</span>
@@ -250,6 +274,8 @@ const galleryImages = product.images && product.images.length > 0 ? product.imag
                 slug={item.slug}
                 image={item.image}
                 family={item.family}
+                category={item.categoriaPrincipal}
+                subcategory={item.subcategoria}
                 shortDescription={item.shortDescription}
                 price={item.price}
               />
@@ -563,6 +589,16 @@ const galleryImages = product.images && product.images.length > 0 ? product.imag
   .meta-value {
     color: var(--color-carbon-light);
     text-align: right;
+  }
+
+  .meta-link {
+    color: var(--color-burgundy);
+    text-decoration: underline;
+    transition: opacity var(--transition-fast);
+  }
+
+  .meta-link:hover {
+    opacity: 0.8;
   }
 
   /* Intensity Meter */
