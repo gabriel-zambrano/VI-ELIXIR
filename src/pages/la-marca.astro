@@ -182,6 +182,48 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Ritual Olfativo Section (Light / Ivory Dark) -->
+  <section class="brand-ritual section-padding--lg bg-ivory-dark" aria-labelledby="ritual-title">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="text-label text-stone">El Uso Consciente</span>
+        <h2 id="ritual-title" class="ritual-main-title">El Ritual Olfativo</h2>
+        <p class="ritual-subtitle">
+          En la tradición oriental, el perfume no se rocía con prisa: se viste como una segunda piel. Tres principios para experimentar la plenitud de cada esencia.
+        </p>
+      </div>
+
+      <div class="ritual-grid grid-3">
+        <!-- Paso 1 -->
+        <article class="ritual-card reveal reveal-delay-1">
+          <div class="ritual-step" aria-hidden="true">01</div>
+          <h3 class="ritual-title">Puntos de Calor</h3>
+          <p class="ritual-description">
+            Aplicá la fragancia donde late el pulso: cuello, base de las clavículas y muñecas. La temperatura corporal natural activa los aceites esenciales de forma continua sin alterar su pirámide.
+          </p>
+        </article>
+
+        <!-- Paso 2 -->
+        <article class="ritual-card reveal reveal-delay-2">
+          <div class="ritual-step" aria-hidden="true">02</div>
+          <h3 class="ritual-title">Tiempo y Maduración</h3>
+          <p class="ritual-description">
+            Evitá frotar la piel al aplicar. Dejá que las notas de salida se asienten durante 15 minutos; el corazón de resinas, especias y maderas nobles florecerá con serenidad a lo largo de 8 a 12 horas.
+          </p>
+        </article>
+
+        <!-- Paso 3 -->
+        <article class="ritual-card reveal reveal-delay-3">
+          <div class="ritual-step" aria-hidden="true">03</div>
+          <h3 class="ritual-title">Proyección Íntima</h3>
+          <p class="ritual-description">
+            Nuestras fórmulas están concebidas para crear un aura personal distinguida. No invaden un espacio cerrado, sino que invitan a la cercanía y dejan una estela inolvidable al pasar.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- Academic Disclaimer Section -->
   <section class="brand-academic section-padding bg-ivory" aria-labelledby="academic-title">
     <div class="container--narrow">
@@ -495,6 +537,74 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .visual-text {
     font-size: var(--font-size-base);
+    color: var(--color-carbon-light);
+    line-height: var(--line-height-normal);
+  }
+
+  /* Ritual Olfativo */
+  .ritual-main-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: var(--font-weight-light);
+    color: var(--color-carbon);
+    margin-top: var(--space-xs);
+    margin-bottom: var(--space-sm);
+  }
+
+  .ritual-subtitle {
+    font-size: var(--font-size-base);
+    color: var(--color-carbon-light);
+    max-width: 620px;
+    margin-inline: auto;
+    line-height: var(--line-height-normal);
+  }
+
+  .ritual-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+  }
+
+  @media (min-width: 768px) {
+    .ritual-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .ritual-card {
+    background: var(--color-ivory);
+    border: 1px solid rgba(184, 178, 168, 0.4);
+    border-radius: var(--border-radius-sm);
+    padding: var(--space-xl);
+    position: relative;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .ritual-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-burgundy);
+  }
+
+  .ritual-step {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-light);
+    color: var(--color-stone-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .ritual-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-carbon);
+    margin-bottom: var(--space-sm);
+  }
+
+  .ritual-description {
+    font-size: var(--font-size-sm);
     color: var(--color-carbon-light);
     line-height: var(--line-height-normal);
   }

@@ -120,6 +120,151 @@ La perfumería árabe ofrece un universo de posibilidades que va mucho más all�
 Si necesitás orientación, también podés usar nuestro [selector de fragancias](/perfumes#descubrimiento) para explorar opciones según tus preferencias.
     `,
   },
+  {
+    id: 'journal-02',
+    title: 'El secreto del Oud: historia, extracción y el «oro líquido» de Oriente',
+    slug: 'el-secreto-del-oud',
+    excerpt: 'Descubrí el origen milenario de la madera de agar, el proceso natural de resinación que la convierte en el ingrediente más cotizado del mundo y cómo evoluciona en la perfumería contemporánea.',
+    author: 'VI-ELIXIR',
+    date: '2026-10-18',
+    readTime: '7 min',
+    image: '/images/editorial/bodegon-ingredientes.jpg',
+    imageAlt: 'Madera de agar, especias orientales y resinas aromáticas — VI-ELIXIR',
+    category: 'Materias Primas',
+    tags: ['oud', 'materias primas', 'historia', 'perfumería árabe'],
+    metaTitle: 'El secreto del Oud: historia y extracción del oro líquido | VI-ELIXIR',
+    metaDescription: 'Conocé la historia del oud o madera de agar, su proceso de destilación y cómo VI-ELIXIR lo reinterpreta en fragancias contemporáneas como NOCTURNE y OUD BLANC.',
+    type: 'journal',
+    content: `
+## ¿Qué es exactamente el Oud?
+
+Pocos ingredientes en la historia de la perfumería universal despiertan tanta fascinación, misterio y reverencia como el **oud** (también conocido como madera de agar, *aloeswood* o *gaharu*). Considerado el «oro líquido» de Oriente, su valor por kilogramo en los mercados internacionales supera a menudo al de los metales preciosos más codiciados.
+
+Sin embargo, a diferencia de otras materias primas botánicas como la rosa, el jazmín o la lavanda, el oud no nace de una floración ni de una hoja aromática. Es el resultado de un prodigioso fenómeno defensivo de la naturaleza: una alquimia botánica entre la herida de un árbol y el paso paciente del tiempo.
+
+## El milagro botánico del árbol de Aquilaria
+
+El oud se origina en el corazón de ciertas especies arbóreas del género *Aquilaria*, árboles perennes nativos de las densas selvas tropicales del Sudeste Asiático e India. En su estado natural y sano, la madera de Aquilaria es pálida, ligera, inodora y carente de valor aromático.
+
+La transformación comienza cuando el árbol sufre una agresión exterior: la perforación de un insecto, una hendidura provocada por el viento monzónico o la colonización de un hongo silvestre (*Phialophora parasitica*). En respuesta a esta infección, el árbol activa un mecanismo inmunitario asombroso: secreta una resina oscura, densa y sumamente aromática para saturar las fibras leñosas y aislar la herida.
+
+A lo largo de décadas, esta resina penetra la madera, volviéndola pesada, compacta y de una coloración pardo-negruzca. De un árbol herido que lucha por sanar nace una de las sustancias más complejas y ricas que el olfato humano puede experimentar.
+
+## De la resina al destilado: paciencia y maestría
+
+La extracción del aceite esencial puro de oud (*Dahn Al Oud*) es un arte que no admite atajos industriales. El proceso tradicional comprende varias etapas fundamentales:
+
+1. **Selección minuciosa:** Los recolectores experimentados identifican y limpian a mano los fragmentos leñosos saturados de resina, separando la madera blanca inerte de las vetas oscuras cargadas de esencia.
+2. **Molienda y maceración:** La madera resinosa se pulveriza y se deja macerar en agua de manantial durante semanas. Esta fermentación controlada despierta facetas balsámicas, terrosas y ligeramente dulces que definen el carácter del extracto.
+3. **Hidrodestilación en alambiques de cobre:** Mediante una cocción lenta a fuego moderado que puede extenderse por varios días, el vapor arrastra las moléculas aromáticas pesadas. El aceite resultante sobrenada en la superficie del hidrolato y es recolectado gota a gota.
+4. **Maduración:** Al igual que un vino de guarda, el oud recién destilado necesita reposar durante meses —o incluso años— en recipientes protegidos de la luz para que sus aristas más punzantes se redondeen y alcancen una plenitud sedosa.
+
+## El perfil sensorial: un universo en una sola nota
+
+Definir el aroma del oud es un desafío para cualquier perfumista. No es una nota lineal; es un caleidoscopio olfativo que evoluciona constantemente en contacto con el calor de la piel.
+
+En un oud de alta calidad conviven matices amaderados profundos, humo de incienso, toques balsámicos y coriáceos, y una calidez animal que aporta una fijación inigualable. Mientras que los acordes sintéticos occidentales a menudo reducen el oud a una nota amaderada plana, el verdadero extracto oriental respira con vitalidad propia, ofreciendo una experiencia inmersiva y conmovedora.
+
+## Las dos almas del Oud en la colección VI-ELIXIR
+
+En VI-ELIXIR concebimos la perfumería árabe como un diálogo vivo entre el legado clásico y la vanguardia contemporánea. Por eso, en lugar de tratar al oud como un recurso estático, exploramos sus facetas opuestas a través de dos creaciones de nuestro [catálogo de fragancias](/perfumes):
+
+### 1. La profundidad nocturna: NOCTURNE
+
+En [NOCTURNE](/perfumes/nocturne), el oud se presenta en su máxima expresión de misterio y sofisticación. Combinado con bergamota en la salida, rosa damascena y azafrán en el corazón, y un fondo imponente de cuero y madera de agar camboyana, esta fragancia encarna la solemnidad de las noches orientales: densa, magnética y con una permanencia memorable.
+
+### 2. La pureza contemporánea: OUD BLANC
+
+En contraposición, [OUD BLANC](/perfumes/oud-blanc) desafía la gravedad del ingrediente al situarlo en un marco de luz y transparencia. Acá, el oud se despoja de sus facetas más ahumadas y se viste de neroli mediterráneo, pomelo fresco, cedro blanco y almizcle algodonoso. Es la demostración de que una madera milenaria puede convertirse en un aroma diáfano, sutil y perfecto para el uso diario.
+
+## Cómo experimentar el Oud en tu piel
+
+Si es tu primera aproximación al oud, tené en cuenta estos principios:
+
+- **Paciencia:** Nunca juzgues una fragancia con oud en los primeros 30 segundos. Las notas de salida frescas o especiadas deben disiparse para que la madera revele su verdadera riqueza.
+- **Microdosis:** Debido a su extraordinaria concentración molecular, una pequeña pulverización en los puntos de pulso es suficiente para acompañarte durante más de doce horas.
+- **Evolución personal:** El oud interactúa de manera muy singular con el pH y la temperatura de cada persona. En algunas pieles acentúa matices dulces y ambarinos; en otras, revela maderas secas y acordes minerales.
+
+El oud no es simplemente un aroma: es un viaje histórico a través de las rutas caravaneras de Oriente y un homenaje a la belleza que nace de la transformación natural. Te invitamos a descubrir cómo habita en tu piel a través de [nuestras fragancias de autor](/perfumes).
+    `,
+  },
+  {
+    id: 'journal-03',
+    title: 'El arte del Layering: cómo superponer fragancias para crear tu aroma firma',
+    slug: 'el-arte-del-layering',
+    excerpt: 'Una guía técnica e intuitiva para dominar la milenaria costumbre árabe de combinar dos o más perfumes en la piel, logrando una estela personal e irrepetible.',
+    author: 'VI-ELIXIR',
+    date: '2026-10-22',
+    readTime: '6 min',
+    image: '/images/editorial/universo-aromas-editorial.jpg',
+    imageAlt: 'Texturas de mármol, maderas nobles y esencias superpuestas — VI-ELIXIR',
+    category: 'Técnicas',
+    tags: ['layering', 'técnicas', 'guía', 'acordes', 'perfumería árabe'],
+    metaTitle: 'El arte del Layering: superposición de perfumes | Guía VI-ELIXIR',
+    metaDescription: 'Aprendé a hacer layering con perfumes árabes. Reglas de peso molecular, combinaciones recomendadas y cómo personalizar tu fragancia con acordes de VI-ELIXIR.',
+    type: 'journal',
+    content: `
+## La tradición de vestir capas de aroma
+
+En el mundo occidental solemos concebir el perfume como una obra terminada e intocable: una fórmula embotellada que se aplica de manera aislada. Sin embargo, en la cultura de Oriente Medio, el acto de perfumarse nunca ha sido un gesto único, sino un ritual ceremonial conocido como *layering* (superposición por capas).
+
+Durante siglos, antes de salir a un encuentro social o a una celebración, hombres y mujeres en los países del Golfo preparaban su piel con aceites esenciales puros (*attars*), perfumaban sus ropas con el humo de astillas de madera de agar sobre brasas (*bakhoor*), y culminaban con destilados florales sobre el cabello y las muñecas. El resultado no era el perfume de una marca comercial, sino un aura irrepetible que pertenecía exclusivamente a esa persona.
+
+En la actualidad, el layering se ha convertido en el secreto mejor guardado de los entusiastas de la perfumería nicho. Superponer fragancias no significa enmascarar o saturar: es una forma de expresión personal para modular la intensidad, prolongar la fijación y crear un **aroma firma** que nadie más en el mundo pueda copiar.
+
+## La regla de oro: la física de las moléculas aromáticas
+
+Para combinar dos fragancias con éxito no hace falta ser químico profesional, pero sí comprender una regla física elemental: **el peso de las moléculas**.
+
+Las fragancias están compuestas por ingredientes con diferentes densidades y tasas de evaporación:
+
+- **Notas pesadas (Bases):** Maderas densas, resinas, oud, cuero, ámbar, vainilla y almizcle. Sus moléculas son voluminosas y se fijan con tenacidad a los lípidos de la piel.
+- **Notas ligeras (Cúpulas):** Cítricos (bergamota, limón, pomelo), hierbas aromáticas, notas ozónicas y aldehídos. Se evaporan con rapidez aportando frescura inicial.
+
+Si aplicás una fragancia ligera y volátil y luego rociás encima un perfume amaderado y pesado, este último sofocará por completo a la primera. Por lo tanto, el principio rector del layering es invariable: **primero la fragancia más densa, profunda o amaderada; luego la fragancia más ligera, fresca o floral.**
+
+## Paso a paso: cómo construir tu superposición
+
+Para lograr una armonía impecable en tu piel, seguí este método en cuatro pasos:
+
+### 1. Prepará la piel
+Una piel bien hidratada retiene las partículas de perfume hasta tres veces más tiempo que una piel seca. Aplicá una crema o loción corporal neutra sin perfume después de la ducha antes de comenzar el ritual.
+
+### 2. Establecé la base profunda
+Seleccioná tu fragancia con mayor presencia de notas de fondo (maderas, resinas o ámbar) y aplicala en los puntos clave de pulso: cuello y muñecas. Dejala asentarse durante uno o dos minutos para que los acordes interactúen con el calor corporal.
+
+### 3. Incorporá la capa superior
+Rociá la segunda fragancia —más ligera, floral o especiada— justo encima o en zonas complementarias (por ejemplo, la base de las clavículas, los antebrazos o el cabello).
+
+### 4. No frotes la piel
+Frotar las muñecas entre sí es el error más extendido en perfumería: la fricción genera calor excesivo que rompe las moléculas más delicadas de salida y acelera artificialmente la evaporación. Dejá que las capas se fundan por evaporación natural.
+
+## Tres combinaciones exclusivas con la colección VI-ELIXIR
+
+Cada una de las fragancias de nuestro [catálogo](/perfumes) fue concebida con una arquitectura de notas noble y equilibrada, lo que las hace extraordinariamente aptas para dialogar entre sí. Acá te proponemos tres recetas de autor probadas por nuestro equipo:
+
+### Combinación 1: «Sombra & Rosa Imperial»
+- **Base:** [NOCTURNE](/perfumes/nocturne) (Oud, cuero, incienso).
+- **Capa superior:** [VELVET ROSE](/perfumes/velvet-rose) (Rosa de Taif, frambuesa, peonía).
+- **El resultado:** El clásico maridaje oriental entre la rosa y la madera de agar. La oscuridad profunda del oud en NOCTURNE sostiene la dulzura aterciopelada de la rosa, otorgándole un aire misterioso, regio y sofisticado. Ideal para eventos nocturnos de gran distinción.
+
+### Combinación 2: «Calidez & Seda Blanca»
+- **Base:** [AMBRE](/perfumes/ambre) (Ámbar dorado, canela, benjuí).
+- **Capa superior:** [MUSK VEIL](/perfumes/musk-veil) (Almizcle blanco, lirio, flor de algodón).
+- **El resultado:** El ámbar puede resultar sumamente envolvente y licoroso; al coronarlo con la pureza etérea de MUSK VEIL, la composición se transforma en un velo suave y cremoso que recuerda a una bufanda de cachemira en una tarde fría. Perfecto para días otoñales y momentos de intimidad.
+
+### Combinación 3: «Luz Solar & Fuego Especiado»
+- **Base:** [OUD BLANC](/perfumes/oud-blanc) (Oud blanco, neroli, cedro).
+- **Capa superior:** [SAFFRON](/perfumes/saffron) (Azafrán, cuero, cardamomo).
+- **El resultado:** Una explosión de contrastes contemporáneos. La frescura solar del neroli y el pomelo de OUD BLANC aporta un halo vibrante que ilumina el corazón especiado y magnético del azafrán, logrando una estela moderna, elegante y sumamente energizante.
+
+## Explorá tu propia firma olfativa
+
+El objetivo del layering no es seguir mandatos rígidos, sino reconectar con el placer del descubrimiento. Te sugerimos experimentar con distintas proporciones (dos pulverizaciones de la base por una de la fragancia superior, o aplicar una en el pecho y otra en la nuca) hasta encontrar la proporción exacta que dialogue con tu personalidad.
+
+En un mundo saturado de fragancias estandarizadas, crear tu propia mezcla es el gesto de distinción definitivo. Te invitamos a [explorar nuestras fragancias](/perfumes) y comenzar a escribir tu propia historia sensorial.
+    `,
+  },
 ];
 
 export const blogArticles: Article[] = [
