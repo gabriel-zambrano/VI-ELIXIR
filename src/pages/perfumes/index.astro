@@ -241,6 +241,29 @@ import {
           </button>
         </div>
       </section>
+
+      <!-- Collection Panorama Section -->
+      <section class="panorama-section" aria-label="Biblioteca Olfativa Completa">
+        <div class="panorama-card">
+          <div class="panorama-header text-center">
+            <span class="text-label" style="color: var(--color-burgundy);">Biblioteca Olfativa</span>
+            <h2 class="panorama-title">Mapa de fragancias árabes</h2>
+            <p class="panorama-desc">
+              Un recorrido panorámico por las notas, familias y pirámides olfativas de la perfumería oriental contemporánea.
+            </p>
+          </div>
+          <div class="panorama-img-wrapper">
+            <img
+              src="/images/editorial/catalogo-universo.jpg"
+              alt="Guía visual de fragancias árabes organizadas por Femeninas, Masculinas y Unisex — VI-ELIXIR"
+              width="1024"
+              height="1024"
+              class="panorama-img"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </BaseLayout>
@@ -642,6 +665,54 @@ import {
     font-size: var(--font-size-sm);
     line-height: var(--line-height-normal);
     margin-bottom: var(--space-xl);
+  }
+
+  /* Panorama Section */
+  .panorama-section {
+    margin-top: var(--space-5xl);
+    padding-top: var(--space-3xl);
+    border-top: 1px solid var(--color-ivory-dark);
+  }
+
+  .panorama-card {
+    background: var(--color-white);
+    border: 1px solid rgba(184, 178, 168, 0.4);
+    border-radius: var(--border-radius-sm);
+    padding: var(--space-3xl) var(--space-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .panorama-header {
+    max-width: 650px;
+    margin-inline: auto;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .panorama-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: var(--font-weight-light);
+    color: var(--color-carbon);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .panorama-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-stone-text, #6B665E);
+    line-height: var(--line-height-normal);
+  }
+
+  .panorama-img-wrapper {
+    max-width: 880px;
+    margin-inline: auto;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+
+  .panorama-img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 </style>
 

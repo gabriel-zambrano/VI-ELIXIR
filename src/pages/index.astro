@@ -16,7 +16,14 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
       </div>
     </div>
     <div class="hero-image">
-      <img src="/images/editorial/hero.svg" alt="Frasco de perfume VI-ELIXIR sobre fondo minimalista" width="800" height="450" />
+      <img
+        src="/images/editorial/bodegon-ingredientes.jpg"
+        alt="Materias primas nobles de VI-ELIXIR: vainilla, flor de azahar, maderas nobles y café sobre piedra travertino"
+        width="800"
+        height="450"
+        class="hero-img-photo"
+        loading="eager"
+      />
     </div>
   </section>
 
@@ -60,8 +67,29 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
           <a href="/la-marca" class="btn btn--outline" style="border-color: var(--color-ivory); color: var(--color-ivory);">Conocer la marca</a>
         </div>
         <div class="brand-story-image">
-          <img src="/images/editorial/brand.svg" alt="Universo VI-ELIXIR" width="600" height="400" loading="lazy" />
+          <img src="/images/editorial/universo-aromas-editorial.jpg" alt="Un universo de aromas por descubrir — VI-ELIXIR" width="600" height="400" loading="lazy" style="border-radius: var(--border-radius-sm); object-fit: cover;" />
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3.5 Nuestras Esencias / Acordes Section -->
+  <section class="sensory-accords section-padding bg-ivory text-center">
+    <div class="container container--narrow">
+      <div class="section-header reveal">
+        <span class="text-label" style="color: var(--color-burgundy);">Materias Primas</span>
+        <h2>Aromas que cuentan historias</h2>
+        <p>Acordes nobles seleccionados por su pureza, calidez y permanencia sobre la piel.</p>
+      </div>
+      <div class="sensory-infographic-wrapper reveal">
+        <img
+          src="/images/editorial/esencias-arcos.jpg"
+          alt="Nuestras esencias: Vainilla, Naranja, Flores, Madera y Café — VI-ELIXIR"
+          width="1024"
+          height="682"
+          class="sensory-infographic-img"
+          loading="lazy"
+        />
       </div>
     </div>
   </section>
@@ -280,6 +308,30 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
       max-width: 100%;
       max-height: 72vh;
     }
+  }
+
+  .hero-img-photo {
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-lg);
+    object-fit: cover;
+    aspect-ratio: 16 / 10;
+  }
+
+  .sensory-infographic-wrapper {
+    max-width: 900px;
+    margin-inline: auto;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background: var(--color-white);
+    border: 1px solid rgba(184, 178, 168, 0.4);
+  }
+
+  .sensory-infographic-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
   }
 
   /* ==========================================================================
