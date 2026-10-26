@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <rect width="1600" height="900" fill="#E8E2D8"/>
+  <rect x="600" y="150" width="240" height="500" rx="8" fill="#D4CEC4" stroke="#B8B2A8" stroke-width="2"/>
+  <rect x="690" y="90" width="60" height="70" rx="4" fill="#C4BEB4"/>
+  <rect x="708" y="50" width="24" height="45" rx="2" fill="#B8B2A8"/>
+  <ellipse cx="720" cy="700" rx="300" ry="40" fill="#D4CEC4" opacity="0.3"/>
+  <text x="720" y="420" text-anchor="middle" font-family="serif" font-size="22" fill="#542B35" letter-spacing="4">VI-ELIXIR</text>
+  <line x1="200" y1="450" x2="500" y2="450" stroke="#B8B2A8" stroke-width="0.5" opacity="0.5"/>
+  <line x1="940" y1="450" x2="1240" y2="450" stroke="#B8B2A8" stroke-width="0.5" opacity="0.5"/>
+</svg>

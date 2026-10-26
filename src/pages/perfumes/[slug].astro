@@ -1,0 +1,772 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products, getProductBySlug, getRelatedProducts, formatPrice } from '../../data/products';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }));
+}
+
+const { product } = Astro.props;
+const related = getRelatedProducts(product.slug, 3);
+
+function getIntensityScore(intensity: string): number {
+  switch (intensity) {
+    case 'Suave':
+      return 1;
+    case 'Moderada':
+      return 2;
+    case 'Moderada-Intensa':
+      return 3;
+    case 'Intensa':
+      return 4;
+    default:
+      return 2;
+  }
+}
+
+const intensityScore = getIntensityScore(product.intensity);
+const galleryImages = product.images && product.images.length > 0 ? product.images : [product.image];
+---
+
+<BaseLayout
+  title={product.name}
+  description={`${product.shortDescription} Fragancia de la familia ${product.family} con intensidad ${product.intensity}. ${product.presentation}.`}
+  ogImage={product.image}
+>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb-container" aria-label="Miga de pan">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="/">Inicio</a></li>
+        <li class="breadcrumb-sep" aria-hidden="true">/</li>
+        <li><a href="/perfumes">Perfumes</a></li>
+        <li class="breadcrumb-sep" aria-hidden="true">/</li>
+        <li aria-current="page" class="breadcrumb-current">{product.name}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Product Detail Section -->
+  <article class="product-detail-section">
+    <div class="container">
+      <div class="product-hero-grid">
+        <!-- Left: Image Gallery -->
+        <div class="gallery-column">
+          <div class="main-image-wrapper">
+            <img
+              id="main-product-image"
+              src={galleryImages[0]}
+              alt={`Frasco de ${product.name}`}
+              width="600"
+              height="800"
+              class="main-image"
+              loading="eager"
+            />
+          </div>
+
+          {galleryImages.length > 1 && (
+            <div class="thumbnail-row" role="tablist" aria-label="Vistas disponibles de la fragancia">
+              {galleryImages.map((img, idx) => (
+                <button
+                  type="button"
+                  class:list={['thumbnail-btn', { 'is-active': idx === 0 }]}
+                  data-thumbnail-btn
+                  data-image-src={img}
+                  data-index={idx}
+                  aria-label={`Ver vista ${idx + 1} de ${product.name}`}
+                  role="tab"
+                  aria-selected={idx === 0 ? 'true' : 'false'}
+                >
+                  <img src={img} alt="" width="100" height="133" loading="lazy" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <!-- Right: Product Info -->
+        <div class="info-column">
+          <div class="info-header">
+            <span class="product-family-badge">{product.family}</span>
+            <h1 class="product-name">{product.name}</h1>
+            <div class="product-price-row">
+              <span class="product-price">{formatPrice(product.price)}</span>
+              <span class="product-presentation-badge">{product.presentation}</span>
+            </div>
+          </div>
+
+          <div class="info-descriptions">
+            <p class="product-short-desc lead">{product.shortDescription}</p>
+            <div class="product-long-desc">
+              <p>{product.longDescription}</p>
+            </div>
+          </div>
+
+          <!-- Fragrance Pyramid -->
+          <section class="pyramid-card" aria-label="Pirámide olfativa">
+            <div class="pyramid-header">
+              <h2 class="pyramid-heading">Pirámide Olfativa</h2>
+              <span class="pyramid-subheading">Evolución de acordes en piel</span>
+            </div>
+
+            <div class="pyramid-body">
+              <!-- Tier 1: Salida -->
+              <div class="pyramid-tier tier-top">
+                <div class="tier-meta">
+                  <span class="tier-badge">Notas de Salida</span>
+                  <span class="tier-phase">Primeros 15 min</span>
+                </div>
+                <p class="tier-notes">{product.notesTop.join(', ')}</p>
+              </div>
+
+              <!-- Tier 2: Corazón -->
+              <div class="pyramid-tier tier-heart">
+                <div class="tier-meta">
+                  <span class="tier-badge">Notas de Corazón</span>
+                  <span class="tier-phase">Desarrollo central</span>
+                </div>
+                <p class="tier-notes">{product.notesHeart.join(', ')}</p>
+              </div>
+
+              <!-- Tier 3: Fondo -->
+              <div class="pyramid-tier tier-base">
+                <div class="tier-meta">
+                  <span class="tier-badge">Notas de Fondo</span>
+                  <span class="tier-phase">Fijación y estela</span>
+                </div>
+                <p class="tier-notes">{product.notesBase.join(', ')}</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Specifications -->
+          <div class="product-meta-card">
+            <!-- Character -->
+            <div class="meta-row">
+              <span class="meta-key">Carácter</span>
+              <span class="meta-value">{product.character}</span>
+            </div>
+
+            <!-- Intensity -->
+            <div class="meta-row items-center">
+              <span class="meta-key">Intensidad</span>
+              <div
+                class="intensity-meter"
+                role="meter"
+                aria-label={`Intensidad: ${product.intensity}`}
+                aria-valuenow={intensityScore}
+                aria-valuemin="1"
+                aria-valuemax="4"
+              >
+                <div class="intensity-bars">
+                  {[1, 2, 3, 4].map((step) => (
+                    <span
+                      class:list={['intensity-bar', { active: step <= intensityScore }]}
+                      title={`Nivel ${step} de 4`}
+                    />
+                  ))}
+                </div>
+                <span class="intensity-text">{product.intensity}</span>
+              </div>
+            </div>
+
+            <!-- Occasion -->
+            <div class="meta-row">
+              <span class="meta-key">Ocasión</span>
+              <span class="meta-value">{product.occasion}</span>
+            </div>
+
+            <!-- Presentation -->
+            <div class="meta-row">
+              <span class="meta-key">Presentación</span>
+              <span class="meta-value">{product.presentation} · Con atomizador vaporizador de precisión</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="purchase-actions">
+            <!-- Hidden JSON for cart handler -->
+            <script
+              type="application/json"
+              data-product-json
+              set:html={JSON.stringify({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                slug: product.slug,
+                presentation: product.presentation,
+              })}
+            />
+
+            <button
+              type="button"
+              class="btn btn--primary btn--full btn--lg add-to-cart-btn"
+              data-add-to-cart
+              aria-label={`Agregar ${product.name} a la selección`}
+            >
+              Agregar a la selección
+            </button>
+
+            <a
+              href={`/contacto?consulta=${encodeURIComponent(`Disponibilidad de ${product.name}`)}`}
+              class="btn btn--outline btn--full consult-btn"
+            >
+              Consultar disponibilidad
+            </a>
+
+            <p class="academic-disclaimer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span>Demostración de catálogo académico. No se procesan cobros ni envíos reales.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Related Products Section -->
+  {related.length > 0 && (
+    <section class="related-section" aria-label="Fragancias complementarias">
+      <div class="container">
+        <div class="related-header">
+          <span class="text-label" style="color: var(--color-burgundy);">Afinidad Olfativa</span>
+          <h2 class="related-title">También te puede interesar</h2>
+          <p class="related-desc">
+            Composiciones seleccionadas con acordes armónicos para profundizar tu experiencia sensorial.
+          </p>
+        </div>
+
+        <ul class="related-grid" role="list">
+          {related.map((item) => (
+            <li>
+              <ProductCard
+                name={item.name}
+                slug={item.slug}
+                image={item.image}
+                family={item.family}
+                shortDescription={item.shortDescription}
+                price={item.price}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  /* Breadcrumb */
+  .breadcrumb-container {
+    padding-top: calc(var(--header-height) + var(--space-lg));
+    padding-bottom: var(--space-md);
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--font-size-xs);
+    color: var(--color-stone-text, #6B665E);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-widest);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breadcrumb-list a {
+    color: var(--color-stone-text, #6B665E);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .breadcrumb-list a:hover {
+    color: var(--color-burgundy);
+    text-decoration: underline;
+  }
+
+  .breadcrumb-sep {
+    color: var(--color-stone);
+    opacity: 0.5;
+  }
+
+  .breadcrumb-current {
+    color: var(--color-carbon);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Two Column Product Hero */
+  .product-detail-section {
+    padding-block: var(--space-xl) var(--space-4xl);
+  }
+
+  .product-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: var(--space-4xl);
+    align-items: start;
+  }
+
+  /* Image Gallery */
+  .gallery-column {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-xl));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .main-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background-color: var(--color-ivory-dark);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    border: 1px solid rgba(184, 178, 168, 0.3);
+  }
+
+  .main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity var(--transition-fast);
+  }
+
+  .thumbnail-row {
+    display: flex;
+    gap: var(--space-sm);
+    overflow-x: auto;
+    padding-bottom: var(--space-xs);
+  }
+
+  .thumbnail-btn {
+    flex: 0 0 84px;
+    aspect-ratio: 3 / 4;
+    padding: 0;
+    border: 1px solid var(--color-stone);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    background-color: var(--color-ivory-dark);
+    cursor: pointer;
+    opacity: 0.65;
+    transition: opacity var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .thumbnail-btn:hover {
+    opacity: 0.9;
+    border-color: var(--color-carbon);
+  }
+
+  .thumbnail-btn.is-active {
+    opacity: 1;
+    border-color: var(--color-burgundy);
+    box-shadow: 0 0 0 2px rgba(84, 43, 53, 0.2);
+  }
+
+  .thumbnail-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Product Info */
+  .info-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .info-header {
+    border-bottom: 1px solid var(--color-ivory-dark);
+    padding-bottom: var(--space-lg);
+  }
+
+  .product-family-badge {
+    display: inline-block;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-widest);
+    color: var(--color-burgundy);
+    margin-bottom: var(--space-xs);
+  }
+
+  .product-name {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: var(--font-weight-light);
+    color: var(--color-carbon);
+    line-height: 1.15;
+    margin-bottom: var(--space-md);
+  }
+
+  .product-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-md);
+  }
+
+  .product-price {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-carbon);
+  }
+
+  .product-presentation-badge {
+    font-size: var(--font-size-xs);
+    color: var(--color-stone-text, #6B665E);
+    letter-spacing: var(--letter-spacing-wide);
+  }
+
+  .info-descriptions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .product-short-desc {
+    color: var(--color-carbon);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-normal);
+  }
+
+  .product-long-desc p {
+    color: var(--color-carbon-light);
+    line-height: 1.7;
+    font-size: var(--font-size-base);
+  }
+
+  /* Fragrance Pyramid */
+  .pyramid-card {
+    background-color: var(--color-white);
+    border: 1px solid rgba(184, 178, 168, 0.4);
+    border-radius: var(--border-radius-sm);
+    padding: var(--space-lg);
+  }
+
+  .pyramid-header {
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--color-ivory-dark);
+  }
+
+  .pyramid-heading {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-carbon);
+    margin: 0 0 2px 0;
+  }
+
+  .pyramid-subheading {
+    font-size: var(--font-size-xs);
+    color: var(--color-stone-text, #6B665E);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+  }
+
+  .pyramid-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .pyramid-tier {
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-ivory);
+    transition: background-color var(--transition-fast);
+  }
+
+  .pyramid-tier:hover {
+    background-color: #EDE7DC;
+  }
+
+  .tier-top {
+    border-left: 3px solid var(--color-burgundy);
+  }
+
+  .tier-heart {
+    border-left: 3px solid var(--color-carbon);
+  }
+
+  .tier-base {
+    border-left: 3px solid var(--color-stone);
+  }
+
+  .tier-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .tier-badge {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-carbon);
+  }
+
+  .tier-phase {
+    font-size: 0.6875rem;
+    color: var(--color-stone-text, #6B665E);
+    font-style: italic;
+  }
+
+  .tier-notes {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--font-size-lg);
+    font-style: italic;
+    color: var(--color-carbon);
+    line-height: 1.4;
+  }
+
+  /* Specifications */
+  .product-meta-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    border-top: 1px solid var(--color-ivory-dark);
+    padding-top: var(--space-lg);
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+
+  .meta-row.items-center {
+    align-items: center;
+  }
+
+  .meta-key {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-carbon);
+    min-width: 100px;
+  }
+
+  .meta-value {
+    color: var(--color-carbon-light);
+    text-align: right;
+  }
+
+  /* Intensity Meter */
+  .intensity-meter {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .intensity-bars {
+    display: flex;
+    gap: 4px;
+  }
+
+  .intensity-bar {
+    width: 22px;
+    height: 8px;
+    background-color: var(--color-stone);
+    opacity: 0.35;
+    border-radius: 1px;
+    transition: background-color var(--transition-fast), opacity var(--transition-fast);
+  }
+
+  .intensity-bar.active {
+    background-color: var(--color-burgundy);
+    opacity: 1;
+  }
+
+  .intensity-text {
+    font-size: var(--font-size-xs);
+    color: var(--color-carbon-light);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Purchase Actions */
+  .purchase-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-sm);
+  }
+
+  .add-to-cart-btn {
+    transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base);
+  }
+
+  .add-to-cart-btn.added {
+    background-color: var(--color-success, #2D6A4F) !important;
+    border-color: var(--color-success, #2D6A4F) !important;
+    color: var(--color-white) !important;
+  }
+
+  .consult-btn {
+    text-align: center;
+  }
+
+  .academic-disclaimer {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xs);
+    font-size: var(--font-size-xs);
+    color: var(--color-stone);
+    line-height: 1.4;
+    margin-top: var(--space-xs);
+  }
+
+  .academic-disclaimer svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Related Products */
+  .related-section {
+    background-color: var(--color-ivory-dark);
+    padding-block: var(--space-4xl);
+    border-top: 1px solid rgba(184, 178, 168, 0.4);
+  }
+
+  .related-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--space-3xl);
+  }
+
+  .related-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-light);
+    color: var(--color-carbon);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .related-desc {
+    font-size: var(--font-size-base);
+    color: var(--color-carbon-light);
+    line-height: var(--line-height-normal);
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .product-hero-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .gallery-column {
+      position: static;
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .related-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .product-hero-grid {
+      gap: var(--space-xl);
+    }
+
+    .meta-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .meta-value {
+      text-align: left;
+    }
+
+    .related-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .main-image,
+    .thumbnail-btn,
+    .add-to-cart-btn {
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  import { addToCart } from '../../scripts/cart';
+
+  function initProductPage() {
+    // Add to Cart handling
+    const addBtn = document.querySelector('[data-add-to-cart]') as HTMLButtonElement | null;
+    const productDataEl = document.querySelector('[data-product-json]') as HTMLElement | null;
+
+    if (addBtn && productDataEl) {
+      addBtn.addEventListener('click', () => {
+        try {
+          const data = JSON.parse(productDataEl.textContent || '{}');
+          addToCart(data);
+          const originalText = addBtn.textContent || 'Agregar a la selección';
+          addBtn.textContent = '✓ Agregado a la selección';
+          addBtn.classList.add('added');
+          setTimeout(() => {
+            addBtn.textContent = originalText;
+            addBtn.classList.remove('added');
+          }, 2000);
+        } catch (err) {
+          console.error('Error al agregar al carrito:', err);
+        }
+      });
+    }
+
+    // Image Gallery Thumbnail Switching
+    const mainImg = document.getElementById('main-product-image') as HTMLImageElement | null;
+    const thumbBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-thumbnail-btn]'));
+
+    thumbBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const nextSrc = btn.dataset.imageSrc;
+        if (mainImg && nextSrc) {
+          mainImg.src = nextSrc;
+          thumbBtns.forEach((b) => {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProductPage);
+  } else {
+    initProductPage();
+  }
+</script>

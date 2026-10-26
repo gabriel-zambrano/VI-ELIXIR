@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://vi-elixir.com/sitemap.xml
+
+# VI-ELIXIR - Proyecto académico de Comercio Electrónico
+# Este sitio es una demostración con fines educativos

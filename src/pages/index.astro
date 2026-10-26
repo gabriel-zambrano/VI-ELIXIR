@@ -1,16 +1,1105 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { products, categories, giftSets, formatPrice } from '../data/products';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Inicio">
+  <!-- 1. Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="text-label">Perfumería Árabe Contemporánea</span>
+      <h1 class="hero-title">Dejá tu esencia.</h1>
+      <p class="hero-subtitle">Fragancias para explorar nuevas facetas de tu identidad.</p>
+      <div class="hero-actions">
+        <a href="/perfumes" class="btn btn--primary">Explorar fragancias</a>
+        <a href="/la-marca" class="btn btn--outline">Descubrir VI-ELIXIR</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="/images/editorial/hero.svg" alt="Frasco de perfume VI-ELIXIR sobre fondo minimalista" width="800" height="450" />
+    </div>
+  </section>
+
+  <!-- 2. Featured Products Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="text-label">Colección</span>
+        <h2>El arte de elegir una esencia.</h2>
+        <p>Explorá fragancias con distintas personalidades, familias olfativas y formas de expresión.</p>
+      </div>
+      <div class="products-grid reveal">
+        {products.map(product => (
+          <a href={`/perfumes/${product.slug}`} class="product-card">
+            <div class="product-card-image">
+              <img src={product.image} alt={product.name} width="400" height="530" loading="lazy" />
+            </div>
+            <div class="product-card-info">
+              <span class="product-card-family">{product.family}</span>
+              <h3 class="product-card-name">{product.name}</h3>
+              <p class="product-card-desc">{product.shortDescription}</p>
+              <span class="product-card-price">{formatPrice(product.price)}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="section-cta reveal">
+        <a href="/perfumes" class="btn btn--outline">Ver todo el catálogo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Brand Story Section -->
+  <section class="brand-story section-padding" style="background: var(--color-carbon); color: var(--color-ivory);">
+    <div class="container">
+      <div class="brand-story-grid reveal">
+        <div class="brand-story-content">
+          <span class="text-label" style="color: var(--color-stone);">Nuestra Esencia</span>
+          <h2 style="color: var(--color-ivory);">Una esencia. Muchas formas de expresarte.</h2>
+          <p>En VI-ELIXIR entendemos la perfumería como una forma de expresión personal. Exploramos el universo de las fragancias árabes desde una mirada contemporánea, donde cada aroma invita a descubrir nuevas sensaciones, preferencias y formas de identidad.</p>
+          <a href="/la-marca" class="btn btn--outline" style="border-color: var(--color-ivory); color: var(--color-ivory);">Conocer la marca</a>
+        </div>
+        <div class="brand-story-image">
+          <img src="/images/editorial/brand.svg" alt="Universo VI-ELIXIR" width="600" height="400" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Discovery / Fragrance Finder Section -->
+  <section class="discovery section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="text-label">Descubrimiento</span>
+        <h2>Encontrá tu próxima esencia.</h2>
+        <p>Respondé estas preguntas para descubrir qué fragancias conectan con tu estilo.</p>
+      </div>
+      <div class="finder reveal" id="descubrimiento">
+        <!-- Rendered by JS, but provide a noscript fallback -->
+        <div class="finder-steps" data-finder>
+          <!-- Step 1 -->
+          <div class="finder-step" data-step="1">
+            <span class="finder-step-badge">Paso 1 de 3</span>
+            <h3>¿Qué familias olfativas te atraen?</h3>
+            <div class="finder-options">
+              <button type="button" class="finder-option" data-family="amaderadas">Amaderadas</button>
+              <button type="button" class="finder-option" data-family="ambar-especiadas">Ámbar y especiadas</button>
+              <button type="button" class="finder-option" data-family="florales">Florales</button>
+              <button type="button" class="finder-option" data-family="almizcladas">Almizcladas</button>
+              <button type="button" class="finder-option" data-family="frescas">Frescas</button>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div class="finder-step" data-step="2" style="display:none;">
+            <span class="finder-step-badge">Paso 2 de 3</span>
+            <h3>¿Qué intensidad preferís?</h3>
+            <div class="finder-options">
+              <button type="button" class="finder-option" data-intensity="Suave">Sutil y cercana a la piel</button>
+              <button type="button" class="finder-option" data-intensity="Moderada">Moderada y versátil</button>
+              <button type="button" class="finder-option" data-intensity="Intensa">Intensa y envolvente</button>
+            </div>
+            <div class="finder-step-nav">
+              <button type="button" class="finder-back-btn" data-finder-back="1">← Volver al paso anterior</button>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div class="finder-step" data-step="3" style="display:none;">
+            <span class="finder-step-badge">Paso 3 de 3</span>
+            <h3>¿Para qué ocasión?</h3>
+            <div class="finder-options">
+              <button type="button" class="finder-option" data-occasion="dia">Día y uso cotidiano</button>
+              <button type="button" class="finder-option" data-occasion="noche">Noche y eventos</button>
+              <button type="button" class="finder-option" data-occasion="todas">Todas las ocasiones</button>
+            </div>
+            <div class="finder-step-nav">
+              <button type="button" class="finder-back-btn" data-finder-back="2">← Volver al paso anterior</button>
+            </div>
+          </div>
+          <!-- Results -->
+          <div class="finder-results" data-finder-results style="display:none;"></div>
+        </div>
+        <noscript>
+          <p>Para usar el selector de fragancias, necesitás tener JavaScript habilitado. También podés <a href="/perfumes">explorar el catálogo completo</a>.</p>
+        </noscript>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Gift Sets Section -->
+  <section class="sets section-padding" style="background: var(--color-ivory-dark, #E8E2D8);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="text-label">Sets y Regalos</span>
+        <h2>Regalá una experiencia.</h2>
+        <p>Descubrí nuestras propuestas de regalo y sets de descubrimiento.</p>
+      </div>
+      <div class="sets-grid reveal">
+        {giftSets.map(set => (
+          <div class="set-card">
+            <div class="set-card-content">
+              <h3>{set.name}</h3>
+              <p>{set.description}</p>
+              <p class="set-card-presentation">{set.presentation}</p>
+              <div class="set-card-pricing">
+                <span class="set-card-price">{formatPrice(set.price)}</span>
+                <span class="set-card-savings">Ahorrás {formatPrice(set.savings)}</span>
+              </div>
+              <a href="/contacto" class="btn btn--outline">Consultar disponibilidad</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Journal Teaser -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="text-label">Journal</span>
+        <h2>Explorá el universo olfativo.</h2>
+      </div>
+      <div class="journal-teaser reveal">
+        <a href="/journal/como-elegir-perfume-arabe" class="journal-teaser-card">
+          <img src="/images/editorial/journal-elegir-perfume.svg" alt="Guía de perfumes árabes" width="800" height="400" loading="lazy" />
+          <div class="journal-teaser-content">
+            <span class="text-label">Guías</span>
+            <h3>Cómo elegir un perfume árabe: familias olfativas, notas y consejos</h3>
+            <span class="journal-read-more">Leer artículo →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==========================================================================
+     HERO SECTION
+     ========================================================================== */
+  .hero {
+    min-height: 90vh;
+    min-height: max(90vh, 580px);
+    background-color: var(--color-ivory);
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    padding: var(--space-2xl) var(--space-md) var(--space-3xl);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    max-width: 580px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    line-height: var(--line-height-tight, 1.1);
+    letter-spacing: var(--letter-spacing-tight, -0.02em);
+    color: var(--color-carbon);
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    font-weight: 300;
+    line-height: var(--line-height-normal, 1.6);
+    color: var(--color-carbon-light);
+    margin-bottom: var(--space-2xl);
+    max-width: 480px;
+    margin-inline: auto;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero-image img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--border-radius-sm);
+    filter: drop-shadow(0 12px 28px rgba(32, 32, 31, 0.08));
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-image img:hover {
+    transform: scale(1.02);
+  }
+
+  @media (min-width: 1024px) {
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+      gap: var(--space-3xl);
+      padding: var(--space-4xl) var(--space-2xl);
+      max-width: var(--container-wide);
+      margin-inline: auto;
+      flex-direction: initial;
+    }
+
+    .hero-content {
+      margin-inline: 0;
+      text-align: left;
+    }
+
+    .hero-subtitle {
+      margin-inline: 0;
+    }
+
+    .hero-actions {
+      justify-content: flex-start;
+    }
+
+    .hero-image {
+      margin-bottom: 0;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      max-height: 72vh;
+    }
+  }
+
+  /* ==========================================================================
+     SECTION HEADERS (REUSABLE)
+     ========================================================================== */
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin-inline: auto;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .section-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 300;
+    line-height: var(--line-height-snug);
+    margin-top: var(--space-xs);
+    margin-bottom: var(--space-sm);
+    color: inherit;
+  }
+
+  .section-header p {
+    font-family: var(--font-body);
+    font-size: clamp(0.95rem, 1.2vw, 1.125rem);
+    font-weight: 300;
+    line-height: var(--line-height-normal);
+    color: var(--color-carbon-light);
+  }
+
+  /* ==========================================================================
+     FEATURED PRODUCTS SECTION
+     ========================================================================== */
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 640px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xl);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-2xl);
+    }
+  }
+
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    border: 1px solid rgba(184, 178, 168, 0.3);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--transition-base),
+                box-shadow var(--transition-base),
+                border-color var(--transition-base);
+    height: 100%;
+  }
+
+  .product-card:hover {
+    text-decoration: none;
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-burgundy);
+  }
+
+  .product-card-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5.3;
+    background-color: var(--color-ivory-dark);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .product-card:hover .product-card-image img {
+    transform: scale(1.05);
+  }
+
+  .product-card-info {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .product-card-family {
+    font-size: var(--font-size-xs);
+    font-family: var(--font-body);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-stone-text, #6B665E);
+    font-weight: 500;
+    margin-bottom: var(--space-xs);
+  }
+
+  .product-card-name {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: 400;
+    line-height: var(--line-height-snug);
+    color: var(--color-carbon);
+    margin-bottom: var(--space-xs);
+    transition: color var(--transition-fast);
+  }
+
+  .product-card:hover .product-card-name {
+    color: var(--color-burgundy);
+  }
+
+  .product-card-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-carbon-light);
+    line-height: var(--line-height-normal);
+    font-weight: 300;
+    margin-bottom: var(--space-md);
+    flex-grow: 1;
+  }
+
+  .product-card-price {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-carbon);
+    margin-top: auto;
+  }
+
+  .section-cta {
+    text-align: center;
+    margin-top: var(--space-3xl);
+  }
+
+  /* ==========================================================================
+     BRAND STORY SECTION
+     ========================================================================== */
+  .brand-story {
+    background-color: var(--color-carbon);
+    color: var(--color-ivory);
+  }
+
+  .brand-story-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .brand-story-grid {
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--space-4xl);
+    }
+  }
+
+  .brand-story-content h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3.25rem);
+    font-weight: 300;
+    line-height: var(--line-height-snug);
+    margin-block: var(--space-xs) var(--space-lg);
+    color: var(--color-ivory);
+  }
+
+  .brand-story-content p {
+    color: #D2CFC8;
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: var(--space-2xl);
+    max-width: 540px;
+  }
+
+  .brand-story-content .btn--outline:hover {
+    background-color: var(--color-ivory) !important;
+    color: var(--color-carbon) !important;
+  }
+
+  .brand-story-image {
+    width: 100%;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+  }
+
+  .brand-story-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-sm);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .brand-story-image:hover img {
+    transform: scale(1.02);
+  }
+
+  /* ==========================================================================
+     FRAGRANCE FINDER / DISCOVERY SECTION
+     ========================================================================== */
+  .finder {
+    max-width: 860px;
+    margin-inline: auto;
+    background-color: var(--color-white);
+    border: 1px solid rgba(184, 178, 168, 0.35);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-2xl) var(--space-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  @media (min-width: 640px) {
+    .finder {
+      padding: var(--space-3xl) var(--space-2xl);
+    }
+  }
+
+  .finder-steps {
+    position: relative;
+    width: 100%;
+  }
+
+  .finder-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: finderFadeIn 0.4s ease forwards;
+  }
+
+  .finder-step-badge {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+    color: var(--color-stone-text, #6B665E);
+    margin-bottom: var(--space-xs);
+  }
+
+  .finder-step h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+    font-weight: 400;
+    color: var(--color-carbon);
+    margin-bottom: var(--space-xl);
+  }
+
+  .finder-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    width: 100%;
+    max-width: 680px;
+    margin-bottom: var(--space-lg);
+  }
+
+  .finder-option {
+    padding: 0.875rem 1.625rem;
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    border: 1px solid var(--color-stone);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-ivory);
+    color: var(--color-carbon);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    min-width: 140px;
+    text-align: center;
+  }
+
+  .finder-option:hover {
+    border-color: var(--color-burgundy);
+    color: var(--color-burgundy);
+    background-color: rgba(84, 43, 53, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .finder-option:focus-visible {
+    outline: 2px solid var(--color-burgundy);
+    outline-offset: 2px;
+  }
+
+  .finder-step-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 680px;
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(184, 178, 168, 0.25);
+    margin-top: var(--space-md);
+  }
+
+  .finder-back-btn {
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: var(--color-carbon-light);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: var(--space-xs) var(--space-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .finder-back-btn:hover {
+    color: var(--color-burgundy);
+  }
+
+  .finder-results {
+    animation: finderFadeIn 0.4s ease forwards;
+    width: 100%;
+  }
+
+  .finder-results-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .finder-results-header h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 400;
+    color: var(--color-carbon);
+    margin-top: var(--space-xs);
+    margin-bottom: var(--space-xs);
+  }
+
+  .finder-results-header p {
+    font-size: var(--font-size-sm);
+    color: var(--color-carbon-light);
+    font-weight: 300;
+  }
+
+  .finder-results-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+    text-align: left;
+  }
+
+  @media (min-width: 640px) {
+    .finder-results-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-xl);
+    }
+  }
+
+  .finder-empty {
+    padding: var(--space-2xl) var(--space-md);
+    max-width: 520px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .finder-empty h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-weight: 400;
+    color: var(--color-carbon);
+    margin-bottom: var(--space-sm);
+  }
+
+  .finder-empty p {
+    font-size: var(--font-size-base);
+    color: var(--color-carbon-light);
+    line-height: var(--line-height-normal);
+    font-weight: 300;
+    margin-bottom: var(--space-xl);
+  }
+
+  .finder-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-xl);
+  }
+
+  @keyframes finderFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ==========================================================================
+     GIFT SETS SECTION
+     ========================================================================== */
+  .sets {
+    background-color: var(--color-ivory-dark, #E8E2D8);
+  }
+
+  .sets-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 640px) {
+    .sets-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .sets-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-2xl);
+    }
+  }
+
+  .set-card {
+    background-color: var(--color-white);
+    border: 1px solid rgba(184, 178, 168, 0.4);
+    border-radius: var(--border-radius-sm);
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-base),
+                box-shadow var(--transition-base),
+                border-color var(--transition-base);
+  }
+
+  .set-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-burgundy);
+  }
+
+  .set-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .set-card-content h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-weight: 400;
+    color: var(--color-carbon);
+    margin-bottom: var(--space-sm);
+  }
+
+  .set-card-content p {
+    font-size: var(--font-size-sm);
+    color: var(--color-carbon-light);
+    line-height: var(--line-height-normal);
+    font-weight: 300;
+    margin-bottom: var(--space-md);
+  }
+
+  .set-card-presentation {
+    font-size: var(--font-size-xs) !important;
+    color: var(--color-stone) !important;
+    font-style: italic;
+    margin-bottom: var(--space-xl) !important;
+  }
+
+  .set-card-pricing {
+    margin-top: auto;
+    margin-bottom: var(--space-xl);
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .set-card-price {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    color: var(--color-carbon);
+  }
+
+  .set-card-savings {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-burgundy);
+    background-color: rgba(84, 43, 53, 0.08);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--border-radius-sm);
+  }
+
+  .set-card-content .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* ==========================================================================
+     JOURNAL TEASER SECTION
+     ========================================================================== */
+  .journal-teaser {
+    max-width: 960px;
+    margin-inline: auto;
+  }
+
+  .journal-teaser-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: var(--color-white);
+    border: 1px solid rgba(184, 178, 168, 0.35);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--transition-base),
+                box-shadow var(--transition-base),
+                border-color var(--transition-base);
+  }
+
+  @media (min-width: 768px) {
+    .journal-teaser-card {
+      grid-template-columns: 1.15fr 1fr;
+      align-items: stretch;
+    }
+  }
+
+  .journal-teaser-card:hover {
+    text-decoration: none;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-stone);
+  }
+
+  .journal-teaser-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 16 / 10;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .journal-teaser-card:hover img {
+    transform: scale(1.03);
+  }
+
+  .journal-teaser-content {
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .journal-teaser-content h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: 400;
+    line-height: var(--line-height-snug);
+    color: var(--color-carbon);
+    margin-block: var(--space-xs) var(--space-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .journal-teaser-card:hover .journal-teaser-content h3 {
+    color: var(--color-burgundy);
+  }
+
+  .journal-read-more {
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-burgundy);
+    margin-top: var(--space-md);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: transform var(--transition-fast);
+  }
+
+  .journal-teaser-card:hover .journal-read-more {
+    transform: translateX(4px);
+  }
+
+  /* ==========================================================================
+     SCROLL REVEAL INTEGRATION
+     ========================================================================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-reveal, 800ms cubic-bezier(0.16, 1, 0.3, 1)),
+                transform var(--transition-reveal, 800ms cubic-bezier(0.16, 1, 0.3, 1));
+    will-change: opacity, transform;
+  }
+
+  .reveal.revealed,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    .hero-image img,
+    .product-card-image img,
+    .journal-teaser-card img,
+    .brand-story-image img {
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  import { products, formatPrice } from '../data/products';
+
+  // Fragrance Finder State
+  let selectedFamily: string | null = null;
+  let selectedIntensity: string | null = null;
+  let selectedOccasion: string | null = null;
+
+  const finder = document.querySelector('[data-finder]');
+  if (finder) {
+    const step1 = finder.querySelector('[data-step="1"]') as HTMLElement | null;
+    const step2 = finder.querySelector('[data-step="2"]') as HTMLElement | null;
+    const step3 = finder.querySelector('[data-step="3"]') as HTMLElement | null;
+    const resultsContainer = finder.querySelector('[data-finder-results]') as HTMLElement | null;
+
+    // Helper to normalize strings for comparison
+    function normalize(str: string): string {
+      return str
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim();
+    }
+
+    // Step 1: Family selection
+    const familyButtons = finder.querySelectorAll<HTMLButtonElement>('[data-family]');
+    familyButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLButtonElement;
+        selectedFamily = target.dataset.family || null;
+
+        if (step1) step1.style.display = 'none';
+        if (step2) step2.style.display = 'flex';
+      });
+    });
+
+    // Step 2: Intensity selection
+    const intensityButtons = finder.querySelectorAll<HTMLButtonElement>('[data-intensity]');
+    intensityButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLButtonElement;
+        selectedIntensity = target.dataset.intensity || null;
+
+        if (step2) step2.style.display = 'none';
+        if (step3) step3.style.display = 'flex';
+      });
+    });
+
+    // Step 3: Occasion selection
+    const occasionButtons = finder.querySelectorAll<HTMLButtonElement>('[data-occasion]');
+    occasionButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLButtonElement;
+        selectedOccasion = target.dataset.occasion || null;
+
+        if (step3) step3.style.display = 'none';
+        renderResults();
+      });
+    });
+
+    // Back buttons
+    const backButtons = finder.querySelectorAll<HTMLButtonElement>('[data-finder-back]');
+    backButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLButtonElement;
+        const toStep = target.dataset.finderBack;
+        if (toStep === '1') {
+          if (step2) step2.style.display = 'none';
+          if (step1) step1.style.display = 'flex';
+        } else if (toStep === '2') {
+          if (step3) step3.style.display = 'none';
+          if (step2) step2.style.display = 'flex';
+        }
+      });
+    });
+
+    function renderResults() {
+      if (!resultsContainer) return;
+
+      const normFamily = selectedFamily ? normalize(selectedFamily) : '';
+      const normIntensity = selectedIntensity ? normalize(selectedIntensity) : '';
+      const normOccasion = selectedOccasion ? normalize(selectedOccasion) : '';
+
+      const matchedProducts = products.filter(p => {
+        // Family filter
+        if (normFamily && normFamily !== 'all') {
+          const pFamily = normalize(p.family);
+          const pTags = p.tags.map(normalize);
+          const matchesFamily =
+            pFamily.includes(normFamily) ||
+            pTags.some(t => t.includes(normFamily)) ||
+            (normFamily === 'amaderadas' && (pFamily.includes('amaderada') || pTags.includes('amaderada'))) ||
+            (normFamily === 'ambar-especiadas' && (pFamily.includes('ambar') || pFamily.includes('especiada') || pTags.includes('ambar') || pTags.includes('especiada'))) ||
+            (normFamily === 'florales' && (pFamily.includes('floral') || pTags.includes('floral'))) ||
+            (normFamily === 'almizcladas' && (pFamily.includes('almizclada') || pTags.includes('almizclada'))) ||
+            (normFamily === 'frescas' && (pFamily.includes('fresca') || pTags.includes('fresca')));
+
+          if (!matchesFamily) return false;
+        }
+
+        // Intensity filter
+        if (normIntensity && normIntensity !== 'all' && normIntensity !== 'todas') {
+          const pIntensity = normalize(p.intensity);
+          if (!pIntensity.includes(normIntensity)) return false;
+        }
+
+        // Occasion filter
+        if (normOccasion && normOccasion !== 'all' && normOccasion !== 'todas') {
+          const pOccasion = normalize(p.occasion);
+          const pTags = p.tags.map(normalize);
+          const matchesOccasion =
+            pOccasion.includes(normOccasion) ||
+            pTags.some(t => t.includes(normOccasion)) ||
+            (normOccasion === 'noche' && (pTags.includes('noche') || pTags.includes('eventos') || pOccasion.includes('eventos') || pOccasion.includes('especiales')));
+          if (!matchesOccasion) return false;
+        }
+
+        return true;
+      });
+
+      resultsContainer.style.display = 'block';
+
+      if (matchedProducts.length === 0) {
+        resultsContainer.innerHTML = `
+          <div class="finder-empty">
+            <span class="text-label" style="margin-bottom: var(--space-xs);">Sin coincidencias exactas</span>
+            <h3>Tu esencia única espera ser descubierta</h3>
+            <p>No encontramos una coincidencia exacta para esta combinación de notas y momentos, pero te invitamos a explorar nuestro catálogo completo o reiniciar el selector con otras preferencias.</p>
+            <div class="finder-actions">
+              <button type="button" class="btn btn--outline" data-finder-reset>Reiniciar selector</button>
+              <a href="/perfumes" class="btn btn--primary">Explorar catálogo completo</a>
+            </div>
+          </div>
+        `;
+      } else {
+        resultsContainer.innerHTML = `
+          <div class="finder-results-header">
+            <span class="text-label">Resultado personalizado</span>
+            <h3>Fragancias recomendadas para vos</h3>
+            <p>Seleccionadas según tus preferencias olfativas y forma de expresión.</p>
+          </div>
+          <div class="finder-results-grid">
+            ${matchedProducts.map(product => `
+              <a href="/perfumes/${product.slug}" class="product-card">
+                <div class="product-card-image">
+                  <img src="${product.image}" alt="${product.name}" width="400" height="530" loading="lazy" />
+                </div>
+                <div class="product-card-info">
+                  <span class="product-card-family">${product.family}</span>
+                  <h3 class="product-card-name">${product.name}</h3>
+                  <p class="product-card-desc">${product.shortDescription}</p>
+                  <span class="product-card-price">${formatPrice(product.price)}</span>
+                </div>
+              </a>
+            `).join('')}
+          </div>
+          <div class="finder-actions">
+            <button type="button" class="btn btn--outline" data-finder-reset>Reiniciar selector</button>
+            <a href="/perfumes" class="btn btn--primary">Ver todo el catálogo</a>
+          </div>
+        `;
+      }
+
+      // Re-attach reset handler
+      const resetButtons = resultsContainer.querySelectorAll<HTMLButtonElement>('[data-finder-reset]');
+      resetButtons.forEach(btn => {
+        btn.addEventListener('click', resetFinder);
+      });
+    }
+
+    function resetFinder() {
+      selectedFamily = null;
+      selectedIntensity = null;
+      selectedOccasion = null;
+
+      if (resultsContainer) {
+        resultsContainer.style.display = 'none';
+        resultsContainer.innerHTML = '';
+      }
+      if (step3) step3.style.display = 'none';
+      if (step2) step2.style.display = 'none';
+      if (step1) step1.style.display = 'flex';
+    }
+  }
+</script>

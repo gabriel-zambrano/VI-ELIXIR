@@ -1,0 +1,947 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description = 'Perfumería árabe contemporánea. Explorá fragancias con carácter, identidad y una experiencia digital cuidada. Proyecto académico de Comercio Electrónico.',
+  ogImage = '/images/editorial/hero.svg',
+  canonicalUrl,
+  noIndex = false,
+} = Astro.props;
+
+import '../styles/global.css';
+
+const siteTitle = 'VI-ELIXIR · Perfumería Árabe';
+const fullTitle = title === 'Inicio' ? siteTitle : `${title} — ${siteTitle}`;
+const currentPath = Astro.url.pathname;
+
+const siteUrl = Astro.site ? Astro.site.origin : 'https://vi-elixir.com';
+const canonical = canonicalUrl || `${siteUrl}${currentPath === '/' ? '/' : currentPath.replace(/\/$/, '')}`;
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+---
+
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {noIndex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow" />
+    )}
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:site_name" content="VI-ELIXIR" />
+    <meta property="og:locale" content="es_AR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+  </head>
+  <body>
+    <!-- Skip to main content -->
+    <a href="#main-content" class="sr-only" style="position:absolute;top:0;left:0;z-index:9999;padding:1rem;background:var(--color-carbon);color:var(--color-ivory);">
+      Saltar al contenido principal
+    </a>
+
+    <!-- Header -->
+    <header class="site-header" id="site-header">
+      <div class="header-inner container--wide">
+        <a href="/" class="header-logo" aria-label="VI-ELIXIR — Inicio">
+          <img
+            src="/images/logo-header.png"
+            alt="VI-ELIXIR Perfumería Árabe"
+            class="logo-img"
+            width="140"
+            height="38"
+          />
+        </a>
+
+        <nav class="header-nav" aria-label="Navegación principal">
+          <ul class="nav-list">
+            <li><a href="/perfumes" class:list={[{ active: currentPath.startsWith('/perfumes') }]}>Perfumes</a></li>
+            <li><a href="/la-marca" class:list={[{ active: currentPath === '/la-marca' }]}>La Marca</a></li>
+            <li><a href="/journal" class:list={[{ active: currentPath.startsWith('/journal') }]}>Journal</a></li>
+            <li><a href="/blog" class:list={[{ active: currentPath.startsWith('/blog') }]}>Blog</a></li>
+            <li><a href="/contacto" class:list={[{ active: currentPath === '/contacto' }]}>Contacto</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button
+            class="cart-toggle"
+            aria-label="Abrir carrito"
+            data-cart-toggle
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            <span class="cart-count" data-cart-count aria-live="polite" aria-label="Productos en el carrito">0</span>
+          </button>
+
+          <button
+            class="menu-toggle"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            data-menu-toggle
+          >
+            <span class="menu-toggle-bar"></span>
+            <span class="menu-toggle-bar"></span>
+            <span class="menu-toggle-bar"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="mobile-menu" data-mobile-menu aria-hidden="true">
+        <nav aria-label="Navegación móvil">
+          <ul class="mobile-nav-list">
+            <li><a href="/perfumes">Perfumes</a></li>
+            <li><a href="/la-marca">La Marca</a></li>
+            <li><a href="/journal">Journal</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" data-cart-overlay aria-hidden="true"></div>
+    <aside class="cart-drawer" data-cart-drawer aria-label="Carrito de compras" aria-hidden="true">
+      <div class="cart-drawer-header">
+        <h2 class="cart-drawer-title">Tu selección</h2>
+        <button class="cart-close" data-cart-close aria-label="Cerrar carrito">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="cart-drawer-body" data-cart-body>
+        <p class="cart-empty">Tu selección está vacía.<br><a href="/perfumes">Explorar fragancias</a></p>
+      </div>
+      <div class="cart-drawer-footer" data-cart-footer style="display:none;">
+        <div class="cart-total">
+          <span>Subtotal</span>
+          <span data-cart-total>$0</span>
+        </div>
+        <p class="cart-demo-notice">
+          Este carrito es demostrativo. No se procesan pagos reales.
+        </p>
+        <a href="/contacto?origen=carrito" class="btn btn--primary cart-checkout-btn">Consultar disponibilidad</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="/" aria-label="VI-ELIXIR — Inicio">
+              <img
+                src="/images/logo-footer.png"
+                alt="VI-ELIXIR Perfumería Árabe"
+                class="footer-logo"
+                width="140"
+                height="38"
+                loading="lazy"
+              />
+            </a>
+            <p class="footer-tagline">
+              Perfumería árabe contemporánea. Fragancias para explorar nuevas facetas de tu identidad.
+            </p>
+          </div>
+
+          <div class="footer-nav-col">
+            <h3 class="footer-heading">Explorar</h3>
+            <ul class="footer-links">
+              <li><a href="/perfumes">Catálogo</a></li>
+              <li><a href="/la-marca">La Marca</a></li>
+              <li><a href="/journal">Journal</a></li>
+              <li><a href="/blog">Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
+            <h3 class="footer-heading">Información</h3>
+            <ul class="footer-links">
+              <li><a href="/contacto">Contacto</a></li>
+              <li><a href="/contacto#faq">Preguntas frecuentes</a></li>
+              <li>
+                <a href="https://instagram.com/vi.elixir" target="_blank" rel="noopener noreferrer">
+                  Instagram
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
+            <h3 class="footer-heading">Proyecto</h3>
+            <p class="footer-note">
+              VI-ELIXIR es un proyecto académico desarrollado como trabajo práctico de Comercio Electrónico. Los productos, precios e información comercial son ficticios.
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            &copy; {new Date().getFullYear()} VI-ELIXIR · Proyecto académico · Todos los derechos reservados
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // ============================================
+      // Mobile Menu Toggle
+      // ============================================
+      const menuToggle = document.querySelector('[data-menu-toggle]') as HTMLButtonElement;
+      const mobileMenu = document.querySelector('[data-mobile-menu]') as HTMLElement;
+
+      menuToggle?.addEventListener('click', () => {
+        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!isOpen));
+        mobileMenu.setAttribute('aria-hidden', String(isOpen));
+        document.body.classList.toggle('menu-open', !isOpen);
+      });
+
+      // ============================================
+      // Header scroll behavior
+      // ============================================
+      let lastScroll = 0;
+      const header = document.getElementById('site-header');
+
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.scrollY;
+        if (header) {
+          header.classList.toggle('header--scrolled', currentScroll > 60);
+          header.classList.toggle('header--hidden', currentScroll > lastScroll && currentScroll > 200);
+        }
+        lastScroll = currentScroll;
+      }, { passive: true });
+
+      // ============================================
+      // Cart Drawer
+      // ============================================
+      import { getCart, getCartTotal, getCartCount, removeFromCart, updateQuantity, formatPrice, toggleCart, subscribe } from '../scripts/cart';
+
+      const cartToggleBtn = document.querySelector('[data-cart-toggle]');
+      const cartDrawer = document.querySelector('[data-cart-drawer]') as HTMLElement;
+      const cartOverlay = document.querySelector('[data-cart-overlay]') as HTMLElement;
+      const cartCloseBtn = document.querySelector('[data-cart-close]');
+      const cartBody = document.querySelector('[data-cart-body]') as HTMLElement;
+      const cartFooter = document.querySelector('[data-cart-footer]') as HTMLElement;
+      const cartCountEl = document.querySelector('[data-cart-count]') as HTMLElement;
+      const cartTotalEl = document.querySelector('[data-cart-total]') as HTMLElement;
+
+      function openCart() {
+        cartDrawer?.setAttribute('aria-hidden', 'false');
+        cartOverlay?.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('cart-open');
+      }
+
+      function closeCart() {
+        cartDrawer?.setAttribute('aria-hidden', 'true');
+        cartOverlay?.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('cart-open');
+      }
+
+      function renderCart() {
+        const cart = getCart();
+        const count = getCartCount();
+        const total = getCartTotal();
+
+        if (cartCountEl) {
+          cartCountEl.textContent = String(count);
+          cartCountEl.style.display = count > 0 ? '' : 'none';
+        }
+
+        if (cartBody) {
+          if (cart.items.length === 0) {
+            cartBody.innerHTML = '<p class="cart-empty">Tu selección está vacía.<br><a href="/perfumes">Explorar fragancias</a></p>';
+            if (cartFooter) cartFooter.style.display = 'none';
+          } else {
+            cartBody.innerHTML = cart.items.map(item => `
+              <div class="cart-item" data-item-id="${item.id}">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-img" width="80" height="100" loading="lazy" />
+                <div class="cart-item-info">
+                  <h3 class="cart-item-name">${item.name}</h3>
+                  <p class="cart-item-presentation">${item.presentation}</p>
+                  <p class="cart-item-price">${formatPrice(item.price)}</p>
+                  <div class="cart-item-qty">
+                    <button class="qty-btn" data-qty-minus="${item.id}" aria-label="Reducir cantidad">−</button>
+                    <span class="qty-value">${item.quantity}</span>
+                    <button class="qty-btn" data-qty-plus="${item.id}" aria-label="Aumentar cantidad">+</button>
+                  </div>
+                </div>
+                <button class="cart-item-remove" data-remove-item="${item.id}" aria-label="Eliminar ${item.name}">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </button>
+              </div>
+            `).join('');
+            if (cartFooter) cartFooter.style.display = '';
+          }
+        }
+
+        if (cartTotalEl) {
+          cartTotalEl.textContent = formatPrice(total);
+        }
+      }
+
+      // Event delegation for cart items
+      cartBody?.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const minusBtn = target.closest('[data-qty-minus]') as HTMLElement;
+        const plusBtn = target.closest('[data-qty-plus]') as HTMLElement;
+        const removeBtn = target.closest('[data-remove-item]') as HTMLElement;
+
+        if (minusBtn) {
+          const id = minusBtn.dataset.qtyMinus!;
+          const item = getCart().items.find(i => i.id === id);
+          if (item) updateQuantity(id, item.quantity - 1);
+        }
+        if (plusBtn) {
+          const id = plusBtn.dataset.qtyPlus!;
+          const item = getCart().items.find(i => i.id === id);
+          if (item) updateQuantity(id, item.quantity + 1);
+        }
+        if (removeBtn) {
+          removeFromCart(removeBtn.dataset.removeItem!);
+        }
+      });
+
+      cartToggleBtn?.addEventListener('click', openCart);
+      cartCloseBtn?.addEventListener('click', closeCart);
+      cartOverlay?.addEventListener('click', closeCart);
+
+      // Listen for cart updates
+      subscribe(renderCart);
+
+      // Also listen for custom event from other pages
+      window.addEventListener('cart-updated', () => renderCart());
+
+      // Initial render
+      renderCart();
+
+      // ============================================
+      // Scroll Reveal Animation
+      // ============================================
+      const revealElements = document.querySelectorAll('.reveal');
+      if (revealElements.length > 0 && 'IntersectionObserver' in window) {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReducedMotion) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+          revealElements.forEach(el => observer.observe(el));
+        } else {
+          revealElements.forEach(el => el.classList.add('revealed'));
+        }
+      }
+
+      // Close menu on escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (document.body.classList.contains('cart-open')) closeCart();
+          if (document.body.classList.contains('menu-open')) {
+            menuToggle?.setAttribute('aria-expanded', 'false');
+            mobileMenu?.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('menu-open');
+          }
+        }
+      });
+    </script>
+
+    <style>
+      /* ============================================
+         HEADER
+         ============================================ */
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: var(--z-header);
+        background: var(--color-ivory);
+        transition: transform var(--transition-base), box-shadow var(--transition-base);
+      }
+
+      .site-header.header--scrolled {
+        box-shadow: var(--shadow-sm);
+      }
+
+      .site-header.header--hidden {
+        transform: translateY(-100%);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: var(--header-height);
+        padding: 0 var(--space-xl);
+        max-width: var(--container-wide);
+        margin: 0 auto;
+      }
+
+      .header-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .logo-img {
+        height: 32px;
+        width: auto;
+        object-fit: contain;
+        object-position: left center;
+      }
+
+      .header-nav {
+        display: none;
+      }
+
+      @media (min-width: 1024px) {
+        .header-nav {
+          display: flex;
+        }
+      }
+
+      .nav-list {
+        display: flex;
+        align-items: center;
+        gap: var(--space-xl);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-list a {
+        font-family: var(--font-body);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-regular);
+        letter-spacing: var(--letter-spacing-wide);
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--color-carbon);
+        transition: color var(--transition-fast);
+        padding: var(--space-xs) 0;
+        position: relative;
+      }
+
+      .nav-list a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--color-burgundy);
+        transition: width var(--transition-base);
+      }
+
+      .nav-list a:hover::after,
+      .nav-list a.active::after {
+        width: 100%;
+      }
+
+      .nav-list a:hover {
+        color: var(--color-burgundy);
+      }
+
+      .nav-list a.active {
+        color: var(--color-burgundy);
+      }
+
+      /* Header Actions */
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+      }
+
+      .cart-toggle {
+        position: relative;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--color-carbon);
+        padding: var(--space-sm);
+        min-width: 44px;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: color var(--transition-fast);
+      }
+
+      .cart-toggle:hover {
+        color: var(--color-burgundy);
+      }
+
+      .cart-count {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        background: var(--color-burgundy);
+        color: var(--color-white);
+        font-size: 10px;
+        font-weight: var(--font-weight-semibold);
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+      }
+
+      /* Menu Toggle (Mobile) */
+      .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: var(--space-sm);
+        min-width: 44px;
+        min-height: 44px;
+      }
+
+      @media (min-width: 1024px) {
+        .menu-toggle {
+          display: none;
+        }
+      }
+
+      .menu-toggle-bar {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--color-carbon);
+        transition: transform var(--transition-base), opacity var(--transition-fast);
+      }
+
+      .menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+
+      .menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      /* Mobile Menu */
+      .mobile-menu {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--color-ivory);
+        z-index: var(--z-overlay);
+        padding: var(--space-2xl);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity var(--transition-base), visibility var(--transition-base);
+      }
+
+      .mobile-menu[aria-hidden="false"] {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .mobile-nav-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .mobile-nav-list li {
+        border-bottom: 1px solid rgba(184, 178, 168, 0.3);
+      }
+
+      .mobile-nav-list a {
+        display: block;
+        padding: var(--space-lg) 0;
+        font-family: var(--font-display);
+        font-size: var(--font-size-2xl);
+        font-weight: 400;
+        color: var(--color-carbon);
+        text-decoration: none;
+        transition: color var(--transition-fast);
+      }
+
+      .mobile-nav-list a:hover {
+        color: var(--color-burgundy);
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      /* ============================================
+         CART DRAWER
+         ============================================ */
+      .cart-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(32, 32, 31, 0.5);
+        z-index: var(--z-overlay);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity var(--transition-base), visibility var(--transition-base);
+      }
+
+      .cart-overlay[aria-hidden="false"] {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .cart-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-width: 420px;
+        background: var(--color-ivory);
+        z-index: var(--z-cart);
+        display: flex;
+        flex-direction: column;
+        transform: translateX(100%);
+        transition: transform var(--transition-base);
+      }
+
+      .cart-drawer[aria-hidden="false"] {
+        transform: translateX(0);
+      }
+
+      body.cart-open {
+        overflow: hidden;
+      }
+
+      .cart-drawer-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-xl);
+        border-bottom: 1px solid rgba(184, 178, 168, 0.3);
+      }
+
+      .cart-drawer-title {
+        font-family: var(--font-display);
+        font-size: var(--font-size-xl);
+        font-weight: 400;
+        margin: 0;
+      }
+
+      .cart-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--color-carbon);
+        padding: var(--space-xs);
+      }
+
+      .cart-drawer-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: var(--space-xl);
+      }
+
+      .cart-empty {
+        text-align: center;
+        color: var(--color-stone);
+        padding: var(--space-3xl) 0;
+        line-height: var(--line-height-normal);
+      }
+
+      .cart-empty a {
+        color: var(--color-burgundy);
+        text-decoration: underline;
+      }
+
+      .cart-item {
+        display: flex;
+        gap: var(--space-md);
+        padding: var(--space-md) 0;
+        border-bottom: 1px solid rgba(184, 178, 168, 0.2);
+        position: relative;
+      }
+
+      .cart-item-img {
+        width: 70px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: var(--border-radius-sm);
+        background: var(--color-ivory-dark, #E8E2D8);
+        flex-shrink: 0;
+      }
+
+      .cart-item-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .cart-item-name {
+        font-family: var(--font-display);
+        font-size: var(--font-size-base);
+        font-weight: 500;
+        margin: 0 0 var(--space-xs);
+      }
+
+      .cart-item-presentation {
+        font-size: var(--font-size-xs);
+        color: var(--color-stone);
+        margin: 0 0 var(--space-xs);
+      }
+
+      .cart-item-price {
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        margin: 0 0 var(--space-sm);
+      }
+
+      .cart-item-qty {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+
+      .qty-btn {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--color-stone);
+        background: transparent;
+        cursor: pointer;
+        font-size: var(--font-size-base);
+        color: var(--color-carbon);
+        border-radius: var(--border-radius-sm);
+        transition: border-color var(--transition-fast);
+      }
+
+      .qty-btn:hover {
+        border-color: var(--color-carbon);
+      }
+
+      .qty-value {
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        min-width: 24px;
+        text-align: center;
+      }
+
+      .cart-item-remove {
+        position: absolute;
+        top: var(--space-md);
+        right: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--color-stone);
+        padding: var(--space-xs);
+        min-width: 36px;
+        min-height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color var(--transition-fast);
+      }
+
+      .cart-item-remove:hover {
+        color: var(--color-carbon);
+      }
+
+      .cart-drawer-footer {
+        padding: var(--space-xl);
+        border-top: 1px solid rgba(184, 178, 168, 0.3);
+      }
+
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-medium);
+        margin-bottom: var(--space-md);
+      }
+
+      .cart-demo-notice {
+        font-size: var(--font-size-xs);
+        color: var(--color-stone);
+        text-align: center;
+        margin-bottom: var(--space-md);
+        font-style: italic;
+      }
+
+      .cart-checkout-btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      /* ============================================
+         FOOTER
+         ============================================ */
+      .site-footer {
+        background: var(--color-carbon);
+        color: var(--color-ivory);
+        padding: var(--space-4xl) 0 var(--space-2xl);
+      }
+
+      .footer-grid {
+        display: grid;
+        gap: var(--space-2xl);
+        margin-bottom: var(--space-3xl);
+      }
+
+      @media (min-width: 640px) {
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .footer-grid {
+          grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+        }
+      }
+
+      .footer-brand {
+        max-width: 300px;
+      }
+
+      .footer-logo {
+        height: 28px;
+        width: auto;
+        object-fit: contain;
+        margin-bottom: var(--space-lg);
+      }
+
+      .footer-tagline {
+        font-size: var(--font-size-sm);
+        color: var(--color-stone);
+        line-height: var(--line-height-normal);
+      }
+
+      .footer-heading {
+        font-family: var(--font-body);
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-semibold);
+        letter-spacing: var(--letter-spacing-widest);
+        text-transform: uppercase;
+        color: var(--color-stone);
+        margin-bottom: var(--space-lg);
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: var(--space-sm);
+      }
+
+      .footer-links a {
+        font-size: var(--font-size-sm);
+        color: var(--color-ivory);
+        text-decoration: none;
+        transition: color var(--transition-fast);
+        opacity: 0.8;
+      }
+
+      .footer-links a:hover {
+        opacity: 1;
+        color: var(--color-white);
+      }
+
+      .footer-note {
+        font-size: var(--font-size-xs);
+        color: var(--color-stone);
+        line-height: var(--line-height-normal);
+        opacity: 0.8;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(184, 178, 168, 0.15);
+        padding-top: var(--space-xl);
+      }
+
+      .footer-copyright {
+        font-size: var(--font-size-xs);
+        color: var(--color-stone);
+        text-align: center;
+        opacity: 0.6;
+      }
+
+      /* ============================================
+         MAIN CONTENT OFFSET
+         ============================================ */
+      #main-content {
+        padding-top: var(--header-height);
+      }
+    </style>
+  </body>
+</html>

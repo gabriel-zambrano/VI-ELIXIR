@@ -1,0 +1,124 @@
+---
+import { formatPrice } from '../data/products';
+
+export interface Props {
+  name: string;
+  slug: string;
+  image: string;
+  family: string;
+  shortDescription: string;
+  price: number;
+}
+
+const { name, slug, image, family, shortDescription, price } = Astro.props;
+---
+
+<a href={`/perfumes/${slug}`} class="product-card">
+  <div class="product-card-image">
+    <img src={image} alt={name} width="400" height="530" loading="lazy" />
+  </div>
+  <div class="product-card-info">
+    <span class="product-card-family">{family}</span>
+    <h3 class="product-card-name">{name}</h3>
+    <p class="product-card-desc">{shortDescription}</p>
+    <span class="product-card-price">{formatPrice(price)}</span>
+  </div>
+</a>
+
+<style>
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    background-color: transparent;
+    outline-offset: 4px;
+  }
+
+  .product-card:focus-visible {
+    outline: 2px solid var(--color-burgundy);
+  }
+
+  .product-card-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background-color: var(--color-ivory-dark);
+    border-radius: var(--border-radius-sm);
+  }
+
+  .product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base, 0.3s ease);
+  }
+
+  .product-card:hover .product-card-image img {
+    transform: scale(1.04);
+  }
+
+  .product-card-info {
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--space-md);
+    gap: var(--space-xs);
+    flex-grow: 1;
+  }
+
+  .product-card-family {
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-widest);
+    color: var(--color-stone-text, #6B665E);
+    line-height: 1.2;
+  }
+
+  .product-card-name {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-carbon);
+    line-height: var(--line-height-snug);
+    margin: 0;
+    transition: color var(--transition-fast, 150ms ease);
+  }
+
+  .product-card:hover .product-card-name {
+    color: var(--color-burgundy);
+  }
+
+  .product-card-desc {
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    color: var(--color-carbon-light);
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-card-price {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-carbon);
+    margin-top: auto;
+    padding-top: var(--space-xs);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-card-image img {
+      transition: none;
+    }
+    .product-card:hover .product-card-image img {
+      transform: none;
+    }
+  }
+</style>

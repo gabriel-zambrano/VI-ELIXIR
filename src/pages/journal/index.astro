@@ -1,0 +1,339 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { journalArticles } from '../../data/articles';
+
+function formatDate(dateStr: string): string {
+  try {
+    const [year, month, day] = dateStr.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
+    return date.toLocaleDateString('es-AR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+  } catch {
+    return dateStr;
+  }
+}
+---
+
+<BaseLayout
+  title="Journal"
+  description="Guías olfativas, notas sobre ingredientes y reflexiones sobre la perfumería árabe contemporánea por VI-ELIXIR."
+>
+  <div class="journal-page">
+    <!-- Header -->
+    <header class="journal-header section-padding--lg bg-ivory">
+      <div class="container--narrow text-center">
+        <span class="text-label reveal">Publicación Editorial</span>
+        <h1 class="journal-title reveal reveal-delay-1">Journal</h1>
+        <p class="journal-lead lead reveal reveal-delay-2">
+          Guías olfativas, notas sobre materias primas y reflexiones sobre el universo de la perfumería oriental contemporánea.
+        </p>
+      </div>
+    </header>
+
+    <!-- Articles Listing -->
+    <main class="journal-main section-padding bg-ivory-dark">
+      <div class="container">
+        <div class="articles-grid">
+          {journalArticles.map((article, idx) => (
+            <article class="article-card reveal" style={`transition-delay: ${idx * 150}ms;`}>
+              <a href={`/journal/${article.slug}`} class="article-card-image-link" tabindex="-1" aria-hidden="true">
+                <div class="article-image-container">
+                  <img
+                    src={article.image}
+                    alt={article.imageAlt}
+                    class="article-image"
+                    width="600"
+                    height="380"
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                  />
+                  <div class="article-badge-overlay">
+                    <span class="badge badge--burgundy">{article.category}</span>
+                  </div>
+                </div>
+              </a>
+
+              <div class="article-card-body">
+                <div class="article-meta">
+                  <time datetime={article.date} class="article-date">
+                    {formatDate(article.date)}
+                  </time>
+                  <span class="meta-separator" aria-hidden="true">·</span>
+                  <span class="article-readtime">{article.readTime} de lectura</span>
+                </div>
+
+                <h2 class="article-title">
+                  <a href={`/journal/${article.slug}`} class="article-title-link">
+                    {article.title}
+                  </a>
+                </h2>
+
+                <p class="article-excerpt">{article.excerpt}</p>
+
+                <div class="article-footer">
+                  <a href={`/journal/${article.slug}`} class="article-read-btn">
+                    <span>Leer artículo</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+
+                  {article.tags && article.tags.length > 0 && (
+                    <div class="article-tags" aria-label="Etiquetas del artículo">
+                      {article.tags.slice(0, 2).map(tag => (
+                        <span class="tag-chip">#{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {journalArticles.length === 0 && (
+          <div class="empty-state text-center">
+            <p>Próximamente publicaremos nuevas guías en esta sección.</p>
+          </div>
+        )}
+      </div>
+    </main>
+
+    <!-- Cross-link banner to Blog -->
+    <section class="journal-crosslink section-padding bg-ivory">
+      <div class="container--narrow text-center reveal">
+        <span class="text-label text-stone">Lecturas Complementarias</span>
+        <h2 class="crosslink-title">¿Buscás comparativas y notas de cata?</h2>
+        <p class="crosslink-text">
+          En nuestro Blog exploramos análisis detallados entre fragancias de la colección, como NOCTURNE vs SAFFRON y el balance de OUD BLANC.
+        </p>
+        <a href="/blog" class="btn btn--outline">Ir al Blog de Fragancias</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  /* ==========================================================================
+     Journal Index — Scoped Styles
+     ========================================================================== */
+
+  .journal-page {
+    min-height: 80vh;
+  }
+
+  .journal-header {
+    border-bottom: 1px solid rgba(184, 178, 168, 0.25);
+  }
+
+  .journal-title {
+    font-size: clamp(3rem, 7vw, 5rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: var(--letter-spacing-wide);
+    margin-top: var(--space-xs);
+    margin-bottom: var(--space-md);
+  }
+
+  .journal-lead {
+    font-size: var(--font-size-lg);
+    line-height: 1.7;
+    max-width: 620px;
+    margin-inline: auto;
+  }
+
+  /* Articles Grid: Minimal editorial layout, 1 column or 2 columns max */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    max-width: 1040px;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 768px) {
+    .articles-grid {
+      grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+      gap: var(--space-3xl);
+    }
+  }
+
+  .article-card {
+    background-color: var(--color-ivory);
+    border: 1px solid rgba(184, 178, 168, 0.35);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  }
+
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(84, 43, 53, 0.4);
+  }
+
+  .article-card-image-link {
+    display: block;
+    overflow: hidden;
+  }
+
+  .article-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: var(--color-carbon);
+    overflow: hidden;
+  }
+
+  .article-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .article-card:hover .article-image {
+    transform: scale(1.03);
+  }
+
+  .article-badge-overlay {
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-md);
+    z-index: 2;
+  }
+
+  .article-card-body {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--font-size-xs);
+    color: var(--color-stone-text, #6B665E);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+  }
+
+  .meta-separator {
+    color: var(--color-stone);
+    opacity: 0.6;
+  }
+
+  .article-title {
+    font-size: clamp(1.5rem, 3vw, 1.875rem);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-snug);
+    margin-bottom: var(--space-md);
+  }
+
+  .article-title-link {
+    color: var(--color-carbon);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .article-title-link:hover {
+    color: var(--color-burgundy);
+    text-decoration: none;
+  }
+
+  .article-excerpt {
+    font-size: var(--font-size-sm);
+    line-height: 1.7;
+    color: var(--color-carbon-light);
+    margin-bottom: var(--space-xl);
+    flex-grow: 1;
+  }
+
+  .article-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(184, 178, 168, 0.25);
+    margin-top: auto;
+  }
+
+  .article-read-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-burgundy);
+    text-decoration: none;
+    transition: transform var(--transition-fast), color var(--transition-fast);
+  }
+
+  .article-read-btn svg {
+    transition: transform var(--transition-fast);
+  }
+
+  .article-read-btn:hover {
+    color: var(--color-burgundy-light);
+    text-decoration: none;
+  }
+
+  .article-read-btn:hover svg {
+    transform: translateX(4px);
+  }
+
+  .article-tags {
+    display: flex;
+    gap: var(--space-xs);
+  }
+
+  .tag-chip {
+    font-size: 0.6875rem;
+    color: var(--color-stone);
+    letter-spacing: var(--letter-spacing-wide);
+  }
+
+  /* Crosslink section */
+  .journal-crosslink {
+    border-top: 1px solid rgba(184, 178, 168, 0.25);
+  }
+
+  .crosslink-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: var(--font-weight-light);
+    margin-top: var(--space-xs);
+    margin-bottom: var(--space-sm);
+  }
+
+  .crosslink-text {
+    font-size: var(--font-size-base);
+    color: var(--color-carbon-light);
+    max-width: 580px;
+    margin-inline: auto;
+    margin-bottom: var(--space-xl);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 639px) {
+    .article-card-body {
+      padding: var(--space-lg) var(--space-md);
+    }
+
+    .article-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+  }
+</style>

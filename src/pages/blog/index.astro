@@ -1,0 +1,339 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { blogArticles } from '../../data/articles';
+
+function formatDate(dateStr: string): string {
+  try {
+    const [year, month, day] = dateStr.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
+    return date.toLocaleDateString('es-AR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+  } catch {
+    return dateStr;
+  }
+}
+---
+
+<BaseLayout
+  title="Blog"
+  description="Crónicas olfativas, comparativas y análisis de fragancias de la colección VI-ELIXIR."
+>
+  <div class="blog-page">
+    <!-- Header -->
+    <header class="blog-header section-padding--lg bg-ivory">
+      <div class="container--narrow text-center">
+        <span class="text-label reveal">Crónicas & Notas de Cata</span>
+        <h1 class="blog-title reveal reveal-delay-1">Blog</h1>
+        <p class="blog-lead lead reveal reveal-delay-2">
+          Análisis de materias primas, comparativas entre fragancias y notas de cata para profundizar en la colección de VI-ELIXIR.
+        </p>
+      </div>
+    </header>
+
+    <!-- Blog Articles Listing -->
+    <main class="blog-main section-padding bg-ivory-dark">
+      <div class="container">
+        <div class="blog-grid">
+          {blogArticles.map((article, idx) => (
+            <article class="blog-card reveal" style={`transition-delay: ${idx * 120}ms;`}>
+              <a href={`/blog/${article.slug}`} class="blog-card-image-link" tabindex="-1" aria-hidden="true">
+                <div class="blog-image-container">
+                  <img
+                    src={article.image}
+                    alt={article.imageAlt}
+                    class="blog-image"
+                    width="600"
+                    height="380"
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                  />
+                  <div class="blog-badge-overlay">
+                    <span class="badge badge--burgundy">{article.category}</span>
+                  </div>
+                </div>
+              </a>
+
+              <div class="blog-card-body">
+                <div class="blog-meta">
+                  <time datetime={article.date} class="blog-date">
+                    {formatDate(article.date)}
+                  </time>
+                  <span class="meta-separator" aria-hidden="true">·</span>
+                  <span class="blog-readtime">{article.readTime} de lectura</span>
+                </div>
+
+                <h2 class="blog-card-title">
+                  <a href={`/blog/${article.slug}`} class="blog-title-link">
+                    {article.title}
+                  </a>
+                </h2>
+
+                <p class="blog-excerpt">{article.excerpt}</p>
+
+                <div class="blog-card-footer">
+                  <a href={`/blog/${article.slug}`} class="blog-read-btn">
+                    <span>Leer nota</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+
+                  {article.tags && article.tags.length > 0 && (
+                    <div class="blog-tags" aria-label="Etiquetas de la nota">
+                      {article.tags.slice(0, 2).map((tag) => (
+                        <span class="blog-tag-chip">#{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {blogArticles.length === 0 && (
+          <div class="empty-state text-center">
+            <p>Próximamente publicaremos nuevas notas y comparativas.</p>
+          </div>
+        )}
+      </div>
+    </main>
+
+    <!-- Cross-link banner to Journal -->
+    <section class="blog-crosslink section-padding bg-ivory">
+      <div class="container--narrow text-center reveal">
+        <span class="text-label text-stone">Lecturas Fundamentales</span>
+        <h2 class="crosslink-title">¿Primera vez con perfumes árabes?</h2>
+        <p class="crosslink-text">
+          En nuestro Journal podés consultar nuestra guía completa sobre familias olfativas, notas de salida, corazón y fondo, y consejos para encontrar tu fragancia ideal.
+        </p>
+        <a href="/journal" class="btn btn--outline">Explorar el Journal</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  /* ==========================================================================
+     Blog Index — Scoped Styles
+     ========================================================================== */
+
+  .blog-page {
+    min-height: 80vh;
+  }
+
+  .blog-header {
+    border-bottom: 1px solid rgba(184, 178, 168, 0.25);
+  }
+
+  .blog-title {
+    font-size: clamp(3rem, 7vw, 5rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: var(--letter-spacing-wide);
+    margin-top: var(--space-xs);
+    margin-bottom: var(--space-md);
+  }
+
+  .blog-lead {
+    font-size: var(--font-size-lg);
+    line-height: 1.7;
+    max-width: 620px;
+    margin-inline: auto;
+  }
+
+  /* 1 column mobile, max 2 columns desktop */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    max-width: 1040px;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 768px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3xl);
+    }
+  }
+
+  .blog-card {
+    background-color: var(--color-ivory);
+    border: 1px solid rgba(184, 178, 168, 0.35);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(84, 43, 53, 0.4);
+  }
+
+  .blog-card-image-link {
+    display: block;
+    overflow: hidden;
+  }
+
+  .blog-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: var(--color-carbon);
+    overflow: hidden;
+  }
+
+  .blog-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .blog-card:hover .blog-image {
+    transform: scale(1.03);
+  }
+
+  .blog-badge-overlay {
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-md);
+    z-index: 2;
+  }
+
+  .blog-card-body {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--font-size-xs);
+    color: var(--color-stone-text, #6B665E);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+  }
+
+  .meta-separator {
+    color: var(--color-stone);
+    opacity: 0.6;
+  }
+
+  .blog-card-title {
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-snug);
+    margin-bottom: var(--space-md);
+  }
+
+  .blog-title-link {
+    color: var(--color-carbon);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .blog-title-link:hover {
+    color: var(--color-burgundy);
+    text-decoration: none;
+  }
+
+  .blog-excerpt {
+    font-size: var(--font-size-sm);
+    line-height: 1.7;
+    color: var(--color-carbon-light);
+    margin-bottom: var(--space-xl);
+    flex-grow: 1;
+  }
+
+  .blog-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(184, 178, 168, 0.25);
+    margin-top: auto;
+  }
+
+  .blog-read-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    color: var(--color-burgundy);
+    text-decoration: none;
+    transition: transform var(--transition-fast), color var(--transition-fast);
+  }
+
+  .blog-read-btn svg {
+    transition: transform var(--transition-fast);
+  }
+
+  .blog-read-btn:hover {
+    color: var(--color-burgundy-light);
+    text-decoration: none;
+  }
+
+  .blog-read-btn:hover svg {
+    transform: translateX(4px);
+  }
+
+  .blog-tags {
+    display: flex;
+    gap: var(--space-xs);
+  }
+
+  .blog-tag-chip {
+    font-size: 0.6875rem;
+    color: var(--color-stone);
+    letter-spacing: var(--letter-spacing-wide);
+  }
+
+  /* Crosslink section */
+  .blog-crosslink {
+    border-top: 1px solid rgba(184, 178, 168, 0.25);
+  }
+
+  .crosslink-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: var(--font-weight-light);
+    margin-top: var(--space-xs);
+    margin-bottom: var(--space-sm);
+  }
+
+  .crosslink-text {
+    font-size: var(--font-size-base);
+    color: var(--color-carbon-light);
+    max-width: 580px;
+    margin-inline: auto;
+    margin-bottom: var(--space-xl);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 639px) {
+    .blog-card-body {
+      padding: var(--space-lg) var(--space-md);
+    }
+
+    .blog-card-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+  }
+</style>

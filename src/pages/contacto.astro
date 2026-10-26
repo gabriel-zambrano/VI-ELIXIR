@@ -1,0 +1,584 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    question: '¿Los productos de VI-ELIXIR son reales?',
+    answer: 'VI-ELIXIR es un proyecto académico desarrollado como trabajo práctico de Comercio Electrónico. Los productos, precios, descripciones y datos comerciales presentados en este sitio son ficticios y tienen fines exclusivamente demostrativos y educativos.',
+  },
+  {
+    question: '¿Puedo comprar fragancias en este sitio?',
+    answer: 'No. Este sitio no procesa compras ni pagos reales. El carrito de compras es una funcionalidad demostrativa que ilustra la experiencia de un e-commerce, pero no está conectado a ninguna pasarela de pago ni sistema de gestión de pedidos.',
+  },
+  {
+    question: '¿Qué es la perfumería árabe?',
+    answer: 'La perfumería árabe es una tradición olfativa que se distingue por el uso de ingredientes como el oud (madera de agar), el almizcle, el ámbar, el azafrán y la rosa. Suele caracterizarse por composiciones más concentradas e intensas que la perfumería occidental convencional, aunque la perfumería árabe contemporánea también explora versiones más ligeras y frescas.',
+  },
+  {
+    question: '¿Qué son las notas de salida, corazón y fondo?',
+    answer: 'Son las tres capas de una fragancia. Las notas de salida son las primeras que se perciben (15-30 minutos). Las notas de corazón constituyen el carácter principal y duran varias horas. Las notas de fondo son la base, las más duraderas y profundas. Cada fragancia evoluciona a medida que estas capas se desarrollan sobre la piel.',
+  },
+  {
+    question: '¿Qué significa la intensidad de una fragancia?',
+    answer: 'La intensidad describe cuánto se proyecta una fragancia y cuán presente es en el espacio. Una fragancia "suave" se mantiene cerca de la piel, mientras que una "intensa" tiene mayor proyección y presencia. Esta clasificación es descriptiva y puede variar según la química de la piel de cada persona.',
+  },
+  {
+    question: '¿Cómo puedo contactar al equipo del proyecto?',
+    answer: 'Podés usar el formulario de contacto en esta misma página. También podés visitar nuestro perfil de Instagram. Recordá que VI-ELIXIR es un proyecto académico, por lo que las consultas se responden en el marco del trabajo práctico.',
+  },
+];
+---
+
+<BaseLayout
+  title="Contacto"
+  description="Contactá al equipo de VI-ELIXIR. Formulario de contacto, preguntas frecuentes e información sobre el proyecto académico."
+>
+  <!-- Page Header -->
+  <section class="contact-header">
+    <div class="container container--narrow">
+      <nav class="breadcrumb" aria-label="Ubicación">
+        <a href="/">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span>Contacto</span>
+      </nav>
+      <span class="text-label">Hablemos</span>
+      <h1>Contacto</h1>
+      <p class="contact-subtitle">
+        ¿Tenés alguna consulta sobre el proyecto, las fragancias o la experiencia VI-ELIXIR?
+        Escribinos y te respondemos.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="contact-form-section section-padding">
+    <div class="container container--narrow">
+      <div class="contact-grid">
+        <div class="contact-form-wrapper reveal">
+          <h2>Envianos tu mensaje</h2>
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="contact-name">Nombre</label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                required
+                autocomplete="name"
+                placeholder="Tu nombre"
+              />
+              <span class="form-error" data-error="name">Por favor, ingresá tu nombre.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email">Correo electrónico</label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                required
+                autocomplete="email"
+                placeholder="tu@email.com"
+              />
+              <span class="form-error" data-error="email">Por favor, ingresá un correo electrónico válido.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject">Asunto</label>
+              <select id="contact-subject" name="subject" required>
+                <option value="">Seleccioná un asunto</option>
+                <option value="consulta-producto">Consulta sobre un producto</option>
+                <option value="disponibilidad">Consultar disponibilidad</option>
+                <option value="proyecto">Sobre el proyecto académico</option>
+                <option value="otro">Otro</option>
+              </select>
+              <span class="form-error" data-error="subject">Por favor, seleccioná un asunto.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">Mensaje</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="5"
+                required
+                placeholder="Contanos en qué podemos ayudarte"
+              ></textarea>
+              <span class="form-error" data-error="message">Por favor, escribí tu mensaje.</span>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full">Enviar mensaje</button>
+
+            <!-- Status messages -->
+            <div class="form-status" data-form-status style="display: none;"></div>
+          </form>
+
+          <p class="form-disclaimer">
+            <strong>Nota:</strong> Este formulario es demostrativo y no envía datos a ningún servidor.
+            En un entorno real, estaría conectado a un servicio de correo electrónico o CRM.
+          </p>
+        </div>
+
+        <div class="contact-info reveal">
+          <h2>Información de contacto</h2>
+
+          <div class="contact-detail">
+            <h3>Correo electrónico</h3>
+            <p>
+              <a href="mailto:contacto@vi-elixir.com">contacto@vi-elixir.com</a>
+            </p>
+            <p class="contact-note">
+              Este correo es ficticio y forma parte del proyecto académico.
+            </p>
+          </div>
+
+          <div class="contact-detail">
+            <h3>Instagram</h3>
+            <p>
+              <a href="https://instagram.com/vi.elixir" target="_blank" rel="noopener noreferrer">
+                @vi.elixir
+              </a>
+            </p>
+          </div>
+
+          <div class="contact-detail">
+            <h3>Horario de consultas</h3>
+            <p>Lunes a viernes, 10:00 a 18:00 (horario de Argentina)</p>
+            <p class="contact-note">
+              Horario simulado con fines demostrativos.
+            </p>
+          </div>
+
+          <div class="contact-academic">
+            <h3>Sobre este proyecto</h3>
+            <p>
+              VI-ELIXIR es un proyecto académico desarrollado como trabajo práctico para la materia de Comercio Electrónico.
+              Todos los productos, precios y datos comerciales son ficticios.
+              No se realizan transacciones comerciales reales.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section section-padding" id="faq" style="background: var(--color-ivory-dark, #E8E2D8);">
+    <div class="container container--narrow">
+      <div class="section-header reveal">
+        <span class="text-label">Preguntas Frecuentes</span>
+        <h2>Todo lo que necesitás saber</h2>
+      </div>
+
+      <div class="faq-list reveal">
+        {faqs.map((faq, index) => (
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>{faq.question}</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </summary>
+            <div class="faq-answer">
+              <p>{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding">
+    <div class="container" style="text-align: center;">
+      <div class="reveal">
+        <span class="text-label">Explorar</span>
+        <h2>¿Listo para descubrir tu esencia?</h2>
+        <p style="max-width: 500px; margin: 0 auto var(--space-xl);">
+          Explorá nuestra colección completa de fragancias árabes contemporáneas.
+        </p>
+        <a href="/perfumes" class="btn btn--primary">Ver el catálogo</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Contact Header */
+  .contact-header {
+    padding: var(--space-5xl) 0 var(--space-3xl);
+    background: var(--color-ivory);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-stone-text, #6B665E);
+    margin-bottom: var(--space-xl);
+  }
+
+  .breadcrumb a {
+    color: var(--color-stone-text, #6B665E);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-carbon);
+  }
+
+  .contact-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    color: var(--color-carbon);
+    margin: var(--space-sm) 0 var(--space-lg);
+  }
+
+  .contact-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-carbon-light, #3A3A39);
+    max-width: 600px;
+    line-height: var(--line-height-normal);
+  }
+
+  /* Contact Grid */
+  .contact-grid {
+    display: grid;
+    gap: var(--space-4xl);
+  }
+
+  @media (min-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+
+  /* Form Styles */
+  .contact-form-wrapper h2,
+  .contact-info h2 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-weight: 400;
+    margin-bottom: var(--space-xl);
+  }
+
+  .form-group {
+    margin-bottom: var(--space-lg);
+  }
+
+  .form-group label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: var(--color-carbon);
+    margin-bottom: var(--space-sm);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: var(--space-md);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    color: var(--color-carbon);
+    background: var(--color-white);
+    border: 1px solid var(--color-stone);
+    border-radius: var(--border-radius-sm);
+    transition: border-color var(--transition-fast);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-burgundy);
+    box-shadow: 0 0 0 3px rgba(84, 43, 53, 0.1);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--color-stone-text, #6B665E);
+    opacity: 0.75;
+  }
+
+  .form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23B8B2A8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-error {
+    display: none;
+    font-size: var(--font-size-sm);
+    color: var(--color-error, #C53030);
+    margin-top: var(--space-xs);
+  }
+
+  .form-group.has-error input,
+  .form-group.has-error select,
+  .form-group.has-error textarea {
+    border-color: var(--color-error, #C53030);
+  }
+
+  .form-group.has-error .form-error {
+    display: block;
+  }
+
+  .form-status {
+    margin-top: var(--space-lg);
+    padding: var(--space-md);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    text-align: center;
+  }
+
+  .form-status.success {
+    background: rgba(45, 106, 79, 0.1);
+    color: var(--color-success, #2D6A4F);
+    border: 1px solid rgba(45, 106, 79, 0.2);
+  }
+
+  .form-status.info {
+    background: rgba(84, 43, 53, 0.05);
+    color: var(--color-carbon);
+    border: 1px solid rgba(84, 43, 53, 0.15);
+  }
+
+  .form-disclaimer {
+    margin-top: var(--space-lg);
+    font-size: var(--font-size-sm);
+    color: var(--color-carbon-light, #3A3A39);
+    line-height: var(--line-height-normal);
+    padding: var(--space-md);
+    background: rgba(184, 178, 168, 0.1);
+    border-radius: var(--border-radius-sm);
+  }
+
+  /* Contact Info */
+  .contact-detail {
+    margin-bottom: var(--space-xl);
+  }
+
+  .contact-detail h3 {
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: var(--color-carbon);
+    margin-bottom: var(--space-sm);
+  }
+
+  .contact-detail a {
+    color: var(--color-burgundy);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .contact-detail a:hover {
+    color: var(--color-carbon);
+  }
+
+  .contact-note {
+    font-size: var(--font-size-xs);
+    color: var(--color-stone-text, #6B665E);
+    font-style: italic;
+    margin-top: var(--space-xs);
+  }
+
+  .contact-academic {
+    margin-top: var(--space-2xl);
+    padding: var(--space-lg);
+    background: rgba(184, 178, 168, 0.1);
+    border-radius: var(--border-radius-sm);
+    border-left: 3px solid var(--color-burgundy);
+  }
+
+  .contact-academic h3 {
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+  }
+
+  .contact-academic p {
+    font-size: var(--font-size-sm);
+    color: var(--color-carbon-light, #3A3A39);
+    line-height: var(--line-height-normal);
+  }
+
+  /* FAQ */
+  .faq-list {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-stone);
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-carbon);
+    list-style: none;
+    transition: color var(--transition-fast);
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question:hover {
+    color: var(--color-burgundy);
+  }
+
+  .faq-question span {
+    flex: 1;
+    padding-right: var(--space-md);
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    transition: transform var(--transition-base);
+  }
+
+  details[open] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding: 0 0 var(--space-lg);
+  }
+
+  .faq-answer p {
+    font-size: var(--font-size-sm);
+    color: var(--color-carbon-light, #3A3A39);
+    line-height: var(--line-height-normal);
+  }
+</style>
+
+<script>
+  // ============================================
+  // Contact Form Validation & Demo Submission
+  // ============================================
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const statusEl = document.querySelector('[data-form-status]') as HTMLElement;
+
+  function validateField(field: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement): boolean {
+    const group = field.closest('.form-group');
+    if (!group) return true;
+
+    let valid = true;
+
+    if (field.required && !field.value.trim()) {
+      valid = false;
+    }
+
+    if (field.type === 'email' && field.value.trim()) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      valid = emailRegex.test(field.value.trim());
+    }
+
+    group.classList.toggle('has-error', !valid);
+    return valid;
+  }
+
+  // Check URL parameters for pre-filling (e.g. from product detail or cart)
+  function handleUrlParams() {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const consulta = params.get('consulta');
+    const asunto = params.get('asunto');
+    const origen = params.get('origen');
+
+    const subjectSelect = form?.elements.namedItem('subject') as HTMLSelectElement | null;
+    const messageArea = form?.elements.namedItem('message') as HTMLTextAreaElement | null;
+
+    if (consulta) {
+      if (subjectSelect) subjectSelect.value = 'disponibilidad';
+      if (messageArea && !messageArea.value) {
+        messageArea.value = `Hola, quisiera consultar sobre la ${consulta}.`;
+      }
+    } else if (asunto && subjectSelect) {
+      subjectSelect.value = asunto;
+    } else if (origen === 'carrito' && messageArea && !messageArea.value) {
+      if (subjectSelect) subjectSelect.value = 'disponibilidad';
+      try {
+        const stored = localStorage.getItem('vi-elixir-cart');
+        if (stored) {
+          const cart = JSON.parse(stored);
+          if (cart.items && cart.items.length > 0) {
+            const list = cart.items.map((i: any) => `- ${i.name} (${i.quantity} u.)`).join('\n');
+            messageArea.value = `Hola, quisiera consultar la disponibilidad de los productos seleccionados en mi carrito:\n${list}`;
+          }
+        }
+      } catch (_) {}
+    }
+  }
+
+  handleUrlParams();
+
+  // Real-time validation on blur
+  form?.querySelectorAll('input, textarea, select').forEach(field => {
+    field.addEventListener('blur', () => validateField(field as HTMLInputElement));
+    field.addEventListener('input', () => {
+      const group = field.closest('.form-group');
+      if (group?.classList.contains('has-error')) {
+        validateField(field as HTMLInputElement);
+      }
+    });
+  });
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const fields = form.querySelectorAll('input, textarea, select') as NodeListOf<HTMLInputElement>;
+    let allValid = true;
+
+    fields.forEach(field => {
+      if (!validateField(field)) {
+        allValid = false;
+      }
+    });
+
+    if (!allValid) return;
+
+    // Demo submission - no real backend
+    if (statusEl) {
+      statusEl.style.display = 'block';
+      statusEl.className = 'form-status info';
+      statusEl.innerHTML = `
+        <strong>Formulario demostrativo</strong><br>
+        Este formulario no envía datos a ningún servidor. En un entorno de producción, tu mensaje se enviaría al equipo de VI-ELIXIR.
+        <br><br>
+        <strong>Datos ingresados:</strong><br>
+        Nombre: ${(form.elements.namedItem('name') as HTMLInputElement).value}<br>
+        Email: ${(form.elements.namedItem('email') as HTMLInputElement).value}<br>
+        Asunto: ${(form.elements.namedItem('subject') as HTMLSelectElement).selectedOptions[0].textContent}<br>
+      `;
+    }
+
+    // Don't reset form so user can see what they entered
+  });
+</script>

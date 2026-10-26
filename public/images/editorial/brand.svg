@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" fill="none">
+  <rect width="1200" height="600" fill="#20201F"/>
+  <rect x="100" y="80" width="400" height="440" rx="4" fill="#2A2A29"/>
+  <text x="300" y="310" text-anchor="middle" font-family="serif" font-size="18" fill="#B8B2A8" letter-spacing="3">VI-ELIXIR</text>
+  <text x="300" y="340" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#7A6A5A" letter-spacing="5">PERFUMERÍA ÁRABE</text>
+  <rect x="700" y="80" width="400" height="440" rx="4" fill="#2A2A29"/>
+  <text x="900" y="300" text-anchor="middle" font-family="serif" font-size="14" fill="#F2EEE6" letter-spacing="2" opacity="0.6">Imagen editorial</text>
+  <text x="900" y="325" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#F2EEE6" letter-spacing="1" opacity="0.4">Sustituir por fotografía real</text>
+</svg>

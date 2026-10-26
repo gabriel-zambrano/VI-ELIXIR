@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" fill="none">
+  <rect width="600" height="800" fill="#EDEBE7"/>
+  <rect x="215" y="210" width="170" height="380" rx="6" fill="#F2EEE6" stroke="#B8B2A8" stroke-width="1.5"/>
+  <rect x="270" y="165" width="60" height="55" rx="4" fill="#E8E2D8" stroke="#B8B2A8" stroke-width="1"/>
+  <rect x="290" y="135" width="20" height="35" rx="2" fill="#D4CEC4"/>
+  <text x="300" y="420" text-anchor="middle" font-family="serif" font-size="16" fill="#542B35" letter-spacing="3">VI-ELIXIR</text>
+  <text x="300" y="445" text-anchor="middle" font-family="serif" font-size="11" fill="#7A6A5A" letter-spacing="2">OUD BLANC</text>
+  <text x="300" y="470" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#B8B2A8" letter-spacing="1">N.º 03</text>
+  <circle cx="300" cy="750" r="4" fill="#B8B2A8"/>
+</svg>
