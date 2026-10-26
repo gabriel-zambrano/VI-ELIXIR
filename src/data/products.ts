@@ -33,6 +33,7 @@ export interface OlfactoryFamily {
 
 export interface Product {
   id: string;
+  sku: string;
   name: string;
   nombre?: string;
   slug: string;
@@ -41,6 +42,7 @@ export interface Product {
   subcategoria: string;
   subcategoriaId: string;
   familiasOlfativas: string[];
+  familiasOlfativasSlugs: string[];
   family: string;
   shortDescription: string;
   descripcion?: string;
@@ -205,6 +207,7 @@ export const categories = olfactoryFamilies;
 export const products: Product[] = [
   {
     id: 'vi-01',
+    sku: 'VI-01-NOC',
     name: 'VI-ELIXIR N.º 01 — NOCTURNE',
     nombre: 'VI-ELIXIR N.º 01 — NOCTURNE',
     slug: 'nocturne',
@@ -213,6 +216,7 @@ export const products: Product[] = [
     subcategoria: 'Amaderados intensos',
     subcategoriaId: 'amaderados-intensos',
     familiasOlfativas: ['Amaderados', 'Ámbar y especiados'],
+    familiasOlfativasSlugs: ['amaderados', 'ambar-especiados'],
     family: 'Amaderada Oriental',
     shortDescription: 'Una composición nocturna de maderas oscuras y resinas profundas.',
     descripcion: 'Una composición nocturna de maderas oscuras y resinas profundas.',
@@ -244,6 +248,7 @@ export const products: Product[] = [
   },
   {
     id: 'vi-02',
+    sku: 'VI-02-AMB',
     name: 'VI-ELIXIR N.º 02 — AMBRE',
     nombre: 'VI-ELIXIR N.º 02 — AMBRE',
     slug: 'ambre',
@@ -252,6 +257,7 @@ export const products: Product[] = [
     subcategoria: 'Ámbar y envolventes',
     subcategoriaId: 'ambar-envolventes',
     familiasOlfativas: ['Ámbar y especiados', 'Amaderados'],
+    familiasOlfativasSlugs: ['ambar-especiados', 'amaderados'],
     family: 'Ámbar Especiada',
     shortDescription: 'Calidez envolvente de ámbar, vainilla y especias doradas.',
     descripcion: 'Calidez envolvente de ámbar, vainilla y especias doradas.',
@@ -283,6 +289,7 @@ export const products: Product[] = [
   },
   {
     id: 'vi-03',
+    sku: 'VI-03-OUD',
     name: 'VI-ELIXIR N.º 03 — OUD BLANC',
     nombre: 'VI-ELIXIR N.º 03 — OUD BLANC',
     slug: 'oud-blanc',
@@ -291,6 +298,7 @@ export const products: Product[] = [
     subcategoria: 'Amaderados contemporáneos',
     subcategoriaId: 'amaderados-contemporaneos',
     familiasOlfativas: ['Amaderados', 'Frescos'],
+    familiasOlfativasSlugs: ['amaderados', 'frescos'],
     family: 'Amaderada Fresca',
     shortDescription: 'La luminosidad del oud en una interpretación fresca y contemporánea.',
     descripcion: 'La luminosidad del oud en una interpretación fresca y contemporánea.',
@@ -322,6 +330,7 @@ export const products: Product[] = [
   },
   {
     id: 'vi-04',
+    sku: 'VI-04-ROSE',
     name: 'VI-ELIXIR N.º 04 — VELVET ROSE',
     nombre: 'VI-ELIXIR N.º 04 — VELVET ROSE',
     slug: 'velvet-rose',
@@ -330,6 +339,7 @@ export const products: Product[] = [
     subcategoria: 'Florales orientales',
     subcategoriaId: 'florales-orientales',
     familiasOlfativas: ['Florales', 'Amaderados'],
+    familiasOlfativasSlugs: ['florales', 'amaderados'],
     family: 'Floral Oriental',
     shortDescription: 'Rosa de Taif envuelta en terciopelo de oud y especias suaves.',
     descripcion: 'Rosa de Taif envuelta en terciopelo de oud y especias suaves.',
@@ -361,6 +371,7 @@ export const products: Product[] = [
   },
   {
     id: 'vi-05',
+    sku: 'VI-05-SAF',
     name: 'VI-ELIXIR N.º 05 — SAFFRON',
     nombre: 'VI-ELIXIR N.º 05 — SAFFRON',
     slug: 'saffron',
@@ -369,6 +380,7 @@ export const products: Product[] = [
     subcategoria: 'Ámbar y especiados',
     subcategoriaId: 'ambar-especiados',
     familiasOlfativas: ['Ámbar y especiados', 'Amaderados'],
+    familiasOlfativasSlugs: ['ambar-especiados', 'amaderados'],
     family: 'Especiada Oriental',
     shortDescription: 'La nobleza del azafrán en una composición magnética y cálida.',
     descripcion: 'La nobleza del azafrán en una composición magnética y cálida.',
@@ -400,6 +412,7 @@ export const products: Product[] = [
   },
   {
     id: 'vi-06',
+    sku: 'VI-06-MUSK',
     name: 'VI-ELIXIR N.º 06 — MUSK VEIL',
     nombre: 'VI-ELIXIR N.º 06 — MUSK VEIL',
     slug: 'musk-veil',
@@ -407,7 +420,8 @@ export const products: Product[] = [
     categoriaPrincipalId: 'unisex',
     subcategoria: 'Almizclados y suaves',
     subcategoriaId: 'almizclados-suaves',
-    familiasOlfativas: ['Almizclados'],
+    familiasOlfativas: ['Almizclados', 'Frescos'],
+    familiasOlfativasSlugs: ['almizclados', 'frescos'],
     family: 'Almizclada Suave',
     shortDescription: 'Una caricia sutil de almizcles blancos y notas limpias.',
     descripcion: 'Una caricia sutil de almizcles blancos y notas limpias.',

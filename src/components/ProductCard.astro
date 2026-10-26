@@ -4,6 +4,7 @@ import { formatPrice } from '../data/products';
 export interface Props {
   name: string;
   slug: string;
+  sku?: string;
   image: string;
   family: string;
   category?: string;
@@ -12,7 +13,7 @@ export interface Props {
   price: number;
 }
 
-const { name, slug, image, family, category, subcategory, shortDescription, price } = Astro.props;
+const { name, slug, sku, image, family, category, subcategory, shortDescription, price } = Astro.props;
 ---
 
 <a href={`/perfumes/${slug}`} class="product-card">
@@ -21,7 +22,8 @@ const { name, slug, image, family, category, subcategory, shortDescription, pric
   </div>
   <div class="product-card-info">
     <div class="product-card-tags">
-      {category && <span class="product-card-cat">{category}</span>}
+      {sku && <span class="product-card-sku-badge">{sku}</span>}
+      {category && <span class="product-card-cat">{sku ? ' · ' : ''}{category}</span>}
       {subcategory && <span class="product-card-subcat"> · {subcategory}</span>}
     </div>
     <h3 class="product-card-name">{name}</h3>
@@ -83,6 +85,12 @@ const { name, slug, image, family, category, subcategory, shortDescription, pric
     text-transform: uppercase;
     color: var(--color-burgundy);
     font-weight: var(--font-weight-medium);
+  }
+
+  .product-card-sku-badge {
+    color: var(--color-stone-text, #6B665E);
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-semibold);
   }
 
   .product-card-subcat {

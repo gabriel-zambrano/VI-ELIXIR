@@ -1,0 +1,496 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Marco Académico y Estrategia"
+  description="Documentación estratégica, análisis de mercado, buyer personas y justificación del proyecto VI-ELIXIR para la cátedra de Comercio Electrónico."
+>
+  <header class="project-header">
+    <div class="container container--narrow">
+      <nav class="breadcrumb" aria-label="Ubicación">
+        <a href="/">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Marco Académico</span>
+      </nav>
+      <span class="text-label text-burgundy">Documentación del Trabajo Práctico</span>
+      <h1 class="project-title">Marco Académico & Estrategia Comercial</h1>
+      <p class="project-subtitle lead">
+        Fundamentación estratégica, buyer personas, análisis de competencia y arquitectura de la experiencia digital de <strong>VI-ELIXIR</strong> para la cátedra de Comercio Electrónico.
+      </p>
+    </div>
+  </header>
+
+  <div class="project-main section-padding">
+    <div class="container container--narrow">
+      <!-- 1. Ficha Técnica del Emprendimiento -->
+      <section class="doc-section" aria-labelledby="sec-empresa">
+        <div class="section-badge">01. Emprendimiento</div>
+        <h2 id="sec-empresa" class="doc-h2">Identidad y Propuesta de Valor</h2>
+        <div class="doc-card">
+          <ul class="doc-spec-list">
+            <li><strong>Marca:</strong> VI-ELIXIR</li>
+            <li><strong>Categoría:</strong> Alta perfumería árabe contemporánea de autor</li>
+            <li><strong>Mercado Objetivo:</strong> Argentina (consumidores urbanos de 20 a 40 años)</li>
+            <li><strong>Slogan Oficial:</strong> «Dejá tu esencia.»</li>
+            <li><strong>Canales:</strong> Plataforma de comercio electrónico (web propia), Instagram (@vi.elixir) y contenido audiovisual vertical (Reels / TikTok).</li>
+          </ul>
+          <p class="doc-p">
+            <strong>Propuesta de valor:</strong> VI-ELIXIR conecta la tradición milenaria de la perfumería árabe (oud, ámbar, azafrán, rosa de Taif) con una dirección de arte minimalista y editorial. Se distancia conscientemente de los clichés ornamentales de la perfumería oriental clásica (dorados pesados, coronas, tipografías recargadas) para proponer un lujo contemporáneo, accesible y sensorial enfocado en la autoexpresión.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2. Buyer Personas -->
+      <section class="doc-section" aria-labelledby="sec-personas">
+        <div class="section-badge">02. Público Objetivo</div>
+        <h2 id="sec-personas" class="doc-h2">Buyer Personas Definidos</h2>
+        <p class="doc-intro">
+          La propuesta digital y comercial de VI-ELIXIR se diseñó para conectar con dos perfiles psicográficos complementarios:
+        </p>
+
+        <div class="personas-grid">
+          <!-- Persona 1 -->
+          <article class="persona-card">
+            <div class="persona-header">
+              <span class="persona-tag">Buyer Persona 1 · Cazador de Estatus</span>
+              <h3 class="persona-name">Lucas Martínez</h3>
+              <p class="persona-meta">23 años · Futbolista profesional · Córdoba, Argentina</p>
+            </div>
+            <div class="persona-body">
+              <p><strong>Situación:</strong> En pareja, sin hijos. Vida activa vinculada al deporte de alto rendimiento y vida social nocturna.</p>
+              <p><strong>Estilo:</strong> Streetwear de marcas exclusivas, calzado de autor, imagen cuidada, gusto por lo visualmente impactante y diferenciador.</p>
+              <p><strong>Intereses:</strong> Fragancias de gran potencia, estela y fijación que se hagan notar en salidas y eventos. Tendencias de moda internacional.</p>
+              <p><strong>Puntos de dolor:</strong> Fragancias comerciales masivas que todos usan, perfumes que duran poco en la piel, compras a ciegas decepcionantes.</p>
+              <div class="persona-match">
+                <strong>Fragancias afines en VI-ELIXIR:</strong>
+                <a href="/perfumes/nocturne" class="doc-pill">NOCTURNE (VI-01)</a>
+                <a href="/perfumes/saffron" class="doc-pill">SAFFRON (VI-05)</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Persona 2 -->
+          <article class="persona-card">
+            <div class="persona-header">
+              <span class="persona-tag">Buyer Persona 2 · Buscadora de Autor</span>
+              <h3 class="persona-name">Sofía Valenzuela</h3>
+              <p class="persona-meta">28 años · Diseñadora de interiores independiente · CABA, Argentina</p>
+            </div>
+            <div class="persona-body">
+              <p><strong>Situación:</strong> Soltera, vive sola en Palermo. Disfruta del diseño, el arte contemporáneo, la gastronomía y la arquitectura.</p>
+              <p><strong>Estilo:</strong> Lujo silencioso, paletas neutras, prendas de diseñadores locales independientes, estética minimalista y limpia.</p>
+              <p><strong>Intereses:</strong> Aromas sensoriales no invasivos, notas botánicas nobles, packaging sobrio y marcas con narrativa auténtica.</p>
+              <p><strong>Puntos de dolor:</strong> Perfumes dulces empalagosos del retail tradicional, marcas que gritan en lugar de sugerir, falta de información sobre notas.</p>
+              <div class="persona-match">
+                <strong>Fragancias afines en VI-ELIXIR:</strong>
+                <a href="/perfumes/oud-blanc" class="doc-pill">OUD BLANC (VI-03)</a>
+                <a href="/perfumes/velvet-rose" class="doc-pill">VELVET ROSE (VI-04)</a>
+                <a href="/perfumes/musk-veil" class="doc-pill">MUSK VEIL (VI-06)</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 3. Análisis de Competencia -->
+      <section class="doc-section" aria-labelledby="sec-competencia">
+        <div class="section-badge">03. Mercado & Competencia</div>
+        <h2 id="sec-competencia" class="doc-h2">Posicionamiento Competitivo en Argentina</h2>
+        <div class="doc-card">
+          <p class="doc-p">
+            El mercado de perfumería oriental en Argentina ha experimentado un crecimiento acelerado impulsado por redes sociales (TikTok e Instagram). El panorama competitivo se divide en tres segmentos:
+          </p>
+          <div class="table-responsive">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Segmento</th>
+                  <th>Características</th>
+                  <th>Debilidades del Segmento</th>
+                  <th>Diferencial de VI-ELIXIR</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Marcas Árabes Importadas Masivas</strong> (ej. Lattafa, Armaf, Afnan)</td>
+                  <td>Precios accesibles, alta potencia sintética, envases muy ornamentados.</td>
+                  <td>Presentación recargada, compras a ciegas sin guía, percepción masiva.</td>
+                  <td>Dirección de arte minimalista, curaduría de 6 creaciones distinguidas y guía sensorial asistida.</td>
+                </tr>
+                <tr>
+                  <td><strong>Perfumería de Nicho Internacional</strong> (ej. Amouage, Tom Ford)</td>
+                  <td>Altísima calidad, prestigio global, fórmulas ricas en materias primas.</td>
+                  <td>Precios prohibitivos en moneda extranjera (USD 300+), canales limitados en Argentina.</td>
+                  <td>Ecuación de valor verosímil y accesible para el público local (\$36.900 a \$49.900 ARS) con lenguaje cercano.</td>
+                </tr>
+                <tr>
+                  <td><strong>Perfumería Nacional Tradicional</strong></td>
+                  <td>Disponibilidad inmediata en farmacias y shoppings.</td>
+                  <td>Fórmulas repetitivas, baja concentración de esencias orientales reales.</td>
+                  <td>Inspiración genuina en acordes orientales (oud, azafrán, resinas) con intensidad y permanencia superior.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Canales & Marketing de Contenidos -->
+      <section class="doc-section" aria-labelledby="sec-canales">
+        <div class="section-badge">04. Estrategia Omnicanal</div>
+        <h2 id="sec-canales" class="doc-h2">Canales Digitales y Marketing de Contenidos</h2>
+        <div class="doc-card">
+          <h3 class="doc-h3">1. Plataforma Web (E-commerce)</h3>
+          <p class="doc-p">
+            Construida con tecnología moderna (Astro, TypeScript, Netlify Edge). Presenta arquitectura jerárquica con categorías, subcategorías y familias olfativas, selector de descubrimiento en 3 pasos, carrito interactivo y artículo de marketing de contenidos de <strong>949 palabras</strong> enfocado en resolver el principal dolor del usuario: <em>cómo elegir un perfume sin olerlo físicamente</em>.
+          </p>
+
+          <h3 class="doc-h3">2. Estrategia de Redes Sociales (Instagram & TikTok)</h3>
+          <p class="doc-p">
+            Canal previsto: <a href="https://instagram.com/vi.elixir" target="_blank" rel="noopener noreferrer">@vi.elixir</a>. Se estructura en 5 pilares de publicación (sin recurrir a sorteos para no devaluar el estatus de marca):
+          </p>
+          <ul class="doc-bullet-list">
+            <li><strong>Pilar 1 — Ingredientes nobles:</strong> Desglose visual de materias primas (madera de agar, rosa de Taif, azafrán).</li>
+            <li><strong>Pilar 2 — Pirámides y evolución:</strong> Explicación gráfica de salidas, corazones y fijación en piel.</li>
+            <li><strong>Pilar 3 — Ocasiones y personalidades:</strong> Contraste entre fragancias diurnas y nocturnas vinculadas a Lucas y Sofía.</li>
+            <li><strong>Pilar 4 — Experiencia de unboxing y diseño:</strong> Fotografía de producto macro y estética minimalista.</li>
+            <li><strong>Pilar 5 — Consejos de aplicación:</strong> Cómo maximizar la estela y longevidad de un perfume árabe en climas templados.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 5. Checklist de Cumplimiento de la Consigna -->
+      <section class="doc-section" aria-labelledby="sec-checklist">
+        <div class="section-badge">05. Auditoría de Consigna</div>
+        <h2 id="sec-checklist" class="doc-h2">Checklist de Cumplimiento Académico</h2>
+        <div class="doc-card">
+          <ul class="checklist-list">
+            <li class="checked">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Empresa ficticia y presentación formal:</strong> Documentada en <code>/la-marca</code> y en este marco estratégico.
+              </div>
+            </li>
+            <li class="checked">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Logo e identidad visual completa:</strong> Tipografía Cormorant Garamond / Inter, paleta Ivory/Carbon/Burgundy, favicon SVG y logotipo de 40px en cabecera.
+              </div>
+            </li>
+            <li class="checked">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Sitio web navegable de alta fidelidad:</strong> 17 rutas estáticas compiladas en Astro con cero errores de consola.
+              </div>
+            </li>
+            <li class="checked">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Catálogo jerárquico multinivel:</strong> Categoría Principal → Subcategoría → Productos, complementado con familias olfativas independientes.
+              </div>
+            </li>
+            <li class="checked">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Dos Buyer Personas documentados:</strong> Lucas Martínez (23) y Sofía Valenzuela (28) con justificación olfativa.
+              </div>
+            </li>
+            <li class="checked">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Análisis de competencia:</strong> Mapeo comparativo frente a importaciones árabes y perfumería de nicho.
+              </div>
+            </li>
+            <li class="checked">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Artículo de marketing de contenidos (≥600 palabras):</strong> Guía de 949 palabras en <code>/journal/como-elegir-perfume-arabe</code> con enlaces internos contextuales.
+              </div>
+            </li>
+            <li class="checked">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Selector de fragancias interactivo:</strong> Recomendador en 3 pasos con resultados adaptados en home.
+              </div>
+            </li>
+            <li class="pending">
+              <span class="check-icon">●</span>
+              <div>
+                <strong>Publicaciones en Instagram & Formato Vertical (Reel/TikTok):</strong> Entregables de gestión externa asignados a la cuenta del alumno.
+              </div>
+            </li>
+            <li class="pending">
+              <span class="check-icon">●</span>
+              <div>
+                <strong>Presentación oral (5 a 15 min):</strong> Guion de exposición que sintetiza esta documentación y el recorrido por el sitio.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .project-header {
+    background-color: var(--color-ivory);
+    border-bottom: 1px solid var(--color-ivory-dark);
+    padding-top: calc(var(--header-height) + var(--space-2xl));
+    padding-bottom: var(--space-2xl);
+  }
+
+  .text-burgundy {
+    color: var(--color-burgundy);
+  }
+
+  .project-title {
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: var(--font-weight-light);
+    color: var(--color-carbon);
+    line-height: 1.15;
+    margin: var(--space-xs) 0 var(--space-md);
+  }
+
+  .project-subtitle {
+    color: var(--color-carbon-light);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+  }
+
+  .doc-section {
+    margin-bottom: var(--space-4xl);
+  }
+
+  .section-badge {
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-widest);
+    color: var(--color-burgundy);
+    margin-bottom: var(--space-xs);
+  }
+
+  .doc-h2 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-weight: 500;
+    color: var(--color-carbon);
+    margin-bottom: var(--space-lg);
+  }
+
+  .doc-h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-carbon);
+    margin: var(--space-lg) 0 var(--space-xs);
+  }
+
+  .doc-intro {
+    font-size: var(--font-size-base);
+    color: var(--color-carbon-light);
+    margin-bottom: var(--space-lg);
+  }
+
+  .doc-card {
+    background: var(--color-white);
+    border: 1px solid rgba(184, 178, 168, 0.4);
+    border-radius: var(--border-radius-sm);
+    padding: var(--space-xl);
+  }
+
+  .doc-spec-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-lg) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    font-size: var(--font-size-sm);
+    color: var(--color-carbon);
+  }
+
+  .doc-spec-list strong {
+    color: var(--color-carbon);
+    min-width: 140px;
+    display: inline-block;
+  }
+
+  .doc-p {
+    font-size: var(--font-size-sm);
+    color: var(--color-carbon-light);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+  }
+
+  .doc-p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Personas Grid */
+  .personas-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .personas-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .persona-card {
+    background: var(--color-white);
+    border: 1px solid rgba(184, 178, 168, 0.4);
+    border-radius: var(--border-radius-sm);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .persona-header {
+    border-bottom: 1px solid var(--color-ivory-dark);
+    padding-bottom: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  .persona-tag {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-widest);
+    color: var(--color-burgundy);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .persona-name {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    margin: 0 0 4px;
+    color: var(--color-carbon);
+  }
+
+  .persona-meta {
+    font-size: var(--font-size-xs);
+    color: var(--color-stone-text, #6B665E);
+    margin: 0;
+  }
+
+  .persona-body {
+    font-size: var(--font-size-xs);
+    color: var(--color-carbon-light);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    flex-grow: 1;
+  }
+
+  .persona-match {
+    margin-top: auto;
+    padding-top: var(--space-md);
+    border-top: 1px dashed rgba(184, 178, 168, 0.3);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .doc-pill {
+    background: rgba(84, 43, 53, 0.08);
+    color: var(--color-burgundy);
+    padding: 3px 8px;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    transition: background var(--transition-fast);
+  }
+
+  .doc-pill:hover {
+    background: var(--color-burgundy);
+    color: var(--color-white);
+  }
+
+  /* Table */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: var(--space-md);
+  }
+
+  .doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-xs);
+    text-align: left;
+  }
+
+  .doc-table th,
+  .doc-table td {
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--color-ivory-dark);
+    line-height: 1.5;
+  }
+
+  .doc-table th {
+    background: var(--color-ivory);
+    font-weight: 600;
+    color: var(--color-carbon);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    font-size: 0.6875rem;
+  }
+
+  .doc-bullet-list {
+    font-size: var(--font-size-sm);
+    color: var(--color-carbon-light);
+    padding-left: var(--space-lg);
+    line-height: 1.7;
+    margin: var(--space-sm) 0;
+  }
+
+  /* Checklist */
+  .checklist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .checklist-list li {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+    font-size: var(--font-size-sm);
+    color: var(--color-carbon);
+    line-height: 1.5;
+  }
+
+  .checklist-list li.checked .check-icon {
+    color: #2D6A4F;
+    font-weight: bold;
+    font-size: 1.125rem;
+  }
+
+  .checklist-list li.pending .check-icon {
+    color: #B8860B;
+    font-size: 1.25rem;
+  }
+
+  .checklist-list code {
+    background: var(--color-ivory);
+    padding: 2px 6px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.75rem;
+    color: var(--color-burgundy);
+  }
+</style>

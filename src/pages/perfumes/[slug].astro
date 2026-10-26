@@ -97,6 +97,7 @@ const galleryImages = product.images && product.images.length > 0 ? product.imag
             <div class="product-price-row">
               <span class="product-price">{formatPrice(product.price)}</span>
               <span class="product-presentation-badge">{product.presentation}</span>
+              <span class="product-sku-badge">REF: {product.sku}</span>
             </div>
           </div>
 
@@ -146,6 +147,12 @@ const galleryImages = product.images && product.images.length > 0 ? product.imag
 
           <!-- Specifications -->
           <div class="product-meta-card">
+            <!-- Código SKU -->
+            <div class="meta-row">
+              <span class="meta-key">Código SKU</span>
+              <span class="meta-value">{product.sku}</span>
+            </div>
+
             <!-- Categoría Principal -->
             <div class="meta-row">
               <span class="meta-key">Categoría</span>
@@ -272,6 +279,7 @@ const galleryImages = product.images && product.images.length > 0 ? product.imag
               <ProductCard
                 name={item.name}
                 slug={item.slug}
+                sku={item.sku}
                 image={item.image}
                 family={item.family}
                 category={item.categoriaPrincipal}
@@ -451,6 +459,16 @@ const galleryImages = product.images && product.images.length > 0 ? product.imag
     font-size: var(--font-size-xs);
     color: var(--color-stone-text, #6B665E);
     letter-spacing: var(--letter-spacing-wide);
+  }
+
+  .product-sku-badge {
+    font-size: 0.6875rem;
+    color: var(--color-burgundy);
+    background: rgba(84, 43, 53, 0.08);
+    padding: 2px 8px;
+    border-radius: var(--border-radius-sm);
+    letter-spacing: var(--letter-spacing-widest);
+    font-weight: var(--font-weight-medium);
   }
 
   .info-descriptions {
