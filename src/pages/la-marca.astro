@@ -155,27 +155,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- Editorial Visual Section (Light / Ivory) -->
-  <section class="brand-visual-section section-padding--lg bg-ivory" aria-labelledby="visual-title">
+  <!-- Informative Formulation Section (Light / Ivory) -->
+  <section class="brand-visual-section section-padding--lg bg-ivory" aria-labelledby="formulation-title">
     <div class="container">
       <div class="visual-card reveal">
         <div class="visual-image-wrapper">
           <img
             src="/images/editorial/universo-aromas-editorial.jpg"
-            alt="Un universo de aromas por descubrir — Dirección de arte VI-ELIXIR con materias primas sobre piedra travertino"
+            alt="Materias primas y acordes nobles: maderas de agar, resinas y especias sobre piedra travertino — VI-ELIXIR"
             class="visual-image"
             width="1200"
             height="600"
+            decoding="async"
             loading="lazy"
           />
         </div>
         <div class="visual-caption">
           <div class="visual-caption-inner">
-            <span class="text-label text-stone">Dirección de Arte</span>
-            <h3 id="visual-title" class="visual-title">Materia prima, silencio y forma</h3>
+            <span class="text-label text-stone">Formulación & Origen</span>
+            <h3 id="formulation-title" class="visual-title">Materias nobles, alta concentración y maceración paciente</h3>
             <p class="visual-text">
-              La dirección de arte de VI-ELIXIR fusiona la calidez del marfil, la sobriedad del carbón y la profundidad del borgoña con líneas puras y tipografía editorial. Una puesta en escena donde el aroma es el verdadero protagonista.
+              Cada fragancia de VI-ELIXIR se concibe bajo el estándar de la alta perfumería oriental: una graduación superior de aceites esenciales al 20% (Eau de Parfum), combinando resinas densas de oud, maderas nobles, azafrán dorado y pétalos de rosa de Taif. Las fórmulas atraviesan un período de maceración protegida en reposo frío para permitir que las notas de salida, corazón y fondo alcancen su punto de redondez perfecto, garantizando una permanencia en piel de 8 a 12 horas y una estela distinguida.
             </p>
+
+            <div class="formulation-pillars">
+              <div class="formulation-item">
+                <div class="formulation-metric">20%</div>
+                <h4 class="formulation-label">Concentración Eau de Parfum</h4>
+                <p class="formulation-desc">Alta densidad aromática que asegura una fijación notable sin necesidad de reaplicación constante.</p>
+              </div>
+              <div class="formulation-item">
+                <div class="formulation-metric">6 Semanas</div>
+                <h4 class="formulation-label">Maceración en Frío</h4>
+                <p class="formulation-desc">Reposo paciente en oscuridad controlada para fundir las moléculas complejas de resinas y flores.</p>
+              </div>
+              <div class="formulation-item">
+                <div class="formulation-metric">100% Noble</div>
+                <h4 class="formulation-label">Esencias Seleccionadas</h4>
+                <p class="formulation-desc">Oud de Aquilaria, azafrán y bálsamos seleccionados por su pureza botánica y comportamiento térmico.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -525,7 +544,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .visual-caption-inner {
-    max-width: 640px;
+    max-width: 880px;
+    margin-inline: auto;
   }
 
   .visual-title {
@@ -539,6 +559,47 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: var(--font-size-base);
     color: var(--color-carbon-light);
     line-height: var(--line-height-normal);
+  }
+
+  /* Formulation Pillars */
+  .formulation-pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(184, 178, 168, 0.35);
+  }
+
+  @media (min-width: 768px) {
+    .formulation-pillars {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .formulation-metric {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-light);
+    color: var(--color-burgundy);
+    margin-bottom: var(--space-2xs);
+  }
+
+  .formulation-label {
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-carbon);
+    margin-bottom: var(--space-2xs);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+  }
+
+  .formulation-desc {
+    font-size: var(--font-size-xs);
+    color: var(--color-carbon-light);
+    line-height: var(--line-height-normal);
+    margin: 0;
   }
 
   /* Ritual Olfativo */
