@@ -408,6 +408,230 @@ No es necesario elegir un único punto en ese espectro. Muchas personas alternan
 Podés explorar ambas y el resto de la colección en nuestro [catálogo completo](/perfumes).
     `,
   },
+  {
+    id: 'blog-04',
+    title: 'El Armario Olfativo: Las 3 fragancias que todo coleccionista debe tener',
+    slug: 'el-armario-olfativo-fragancias-esenciales',
+    excerpt: 'Superá el concepto del perfume único para toda la vida. Te enseñamos a estructurar una cápsula olfativa versátil con tres fragancias clave para cada momento y estado de ánimo.',
+    author: 'Club del Perfume · VI-ELIXIR',
+    date: '2026-10-24',
+    readTime: '6 min',
+    image: '/images/editorial/catalogo-universo.jpg',
+    imageAlt: 'Colección de frascos alineados en piedra travertino — El Armario Olfativo VI-ELIXIR',
+    category: 'Club del Perfume',
+    tags: ['armario olfativo', 'colección', 'consejos', 'club del perfume'],
+    metaTitle: 'El Armario Olfativo: 3 fragancias esenciales de colección | VI-ELIXIR',
+    metaDescription: 'Aprendé a armar tu guardarropa de fragancias con la regla de las 3 esencias: uso diario, noche de impacto y ceremonia íntima. Guía curada por VI-ELIXIR.',
+    type: 'blog',
+    content: `
+## Más allá del «perfume para siempre»
+
+Durante décadas, la cultura occidental nos inculcó la noción del «aroma insignia»: encontrar un único perfume en la juventud y mantenerse fiel a él durante toda la existencia como una marca registrada inmutable.
+
+Sin embargo, en los círculos de perfumería contemporánea y en las tradiciones de Oriente Medio, esta idea resulta tan restrictiva como vestirse con el mismo traje los 365 días del año. ¿Acaso nos sentimos iguales en una mañana luminosa de primavera que en una cena nocturna de invierno? ¿Buscamos proyectar la misma energía en una reunión ejecutiva que en un encuentro íntimo?
+
+Construir un **armario olfativo** (*fragrance wardrobe*) no significa acumular decenas de frascos en una repisa por mero coleccionismo. Se trata de seleccionar con inteligencia tres o cuatro piezas clave que dialoguen con nuestras facetas, climas y estados de ánimo.
+
+Acá te compartimos la estructura en tres pilares que recomendamos desde el **Club del Perfume de VI-ELIXIR**:
+
+---
+
+## 1. El pilar diurno: la fragancia «segunda piel»
+
+Es la fragancia de cabecera para el día a día: oficina, reuniones de trabajo, mañanas activas y climas templados o cálidos. Debe cumplir una condición fundamental: **acompañar con distinción sin saturar el espacio ajeno**.
+
+En este rol buscamos notas limpias, acordes almizclados, maderas ligeras o toques cítricos y solares que aporten una sensación de pulcritud, bienestar y claridad mental.
+
+- **Nuestra recomendación en el catálogo:**
+  - [MUSK VEIL](/perfumes/musk-veil): Un velo etéreo de almizcle blanco, flor de algodón y pera que se funde con la piel como una camisa de lino recién planchada.
+  - [OUD BLANC](/perfumes/oud-blanc): Para quienes desean el misterio noble del oud pero en una versión solar y transparente, coronada por neroli mediterráneo y pomelo.
+
+---
+
+## 2. El pilar de impacto: la fragancia de declaración
+
+Toda persona necesita una creación imponente reservada para cuando se busca dejar una huella imborrable: eventos nocturnos, galas, negociaciones trascendentes o momentos donde la fragancia debe hablar antes que las palabras.
+
+En este pilar reinan las resinas oscuras, las maderas densas, el cuero y las especias orientales. Son fórmulas con una estela generosa y una fijación que supera las 10 horas.
+
+- **Nuestra recomendación en el catálogo:**
+  - [NOCTURNE](/perfumes/nocturne): La quintaesencia de la noche oriental. Madera de agar camboyana, acordes de cuero añejo, incienso y rosa damascena. Solemne, regio e inolvidable.
+  - [SAFFRON](/perfumes/saffron): Un golpe magnético de azafrán dorado («el oro rojo»), cuero y cardamomo que proyecta calidez, seguridad y un carisma electrizante.
+
+---
+
+## 3. El pilar íntimo: la fragancia de emoción y ceremonia
+
+Es la fragancia que se viste para uno mismo o para compartir en la cercanía más absoluta. Se reserva para tardes frías de lectura, veladas distendidas, celebraciones personales o escapadas de fin de semana.
+
+En este terreno triunfan los acordes licorosos, las resinas ambarinas, la vainilla bourbon y las flores opulentas. Son aromas que invitan a acercarse, transmiten confort afectivo y despiertan la memoria sensorial.
+
+- **Nuestra recomendación en el catálogo:**
+  - [AMBRE](/perfumes/ambre): Un cálido abrazo de ámbar balcánico, canela y haba tonka con fondo de benjuí. Envuelve como una manta de lana merino en una tarde lluviosa.
+  - [VELVET ROSE](/perfumes/velvet-rose): La floración de la mítica rosa de Taif entrelazada con frambuesa madura y un corazón noble de oud aterciopelado. Sensual, profunda y cautivadora.
+
+---
+
+## Cómo rotar tu armario según la temperatura
+
+Un error común entre los entusiastas es no considerar cómo la temperatura ambiente altera el comportamiento de las moléculas aromáticas:
+
+1. **En días cálidos (> 24 °C):** El calor acelera la evaporación del alcohol y proyecta las notas de fondo de forma agresiva. Es el momento ideal para fragancias como OUD BLANC o MUSK VEIL.
+2. **En días fríos (< 15 °C):** El aire frío contrae la proyección. Fragancias con densidad molecular como AMBRE, NOCTURNE o SAFFRON encuentran aquí su escenario perfecto para brillar sin abrumar.
+
+Estructurar tu propia cápsula no requiere presupuestos desmedidos; requiere curiosidad y criterio. Te invitamos a [descubrir nuestro catálogo](/perfumes) o probar nuestro [Set de Regalo](/contacto) para comenzar a diseñar tu propio guardarropa de esencias.
+    `,
+  },
+  {
+    id: 'blog-05',
+    title: 'El Ritual de la Cata a Ciegas: Cómo entrenar tu nariz y memoria sensorial en casa',
+    slug: 'el-ritual-cata-a-ciegas-perfume',
+    excerpt: 'Una guía paso a paso del Club para degustar fragancias orientales sin sesgos visuales ni etiquetas. Aprendé a identificar familias, texturas y evoluciones sobre papel secante.',
+    author: 'Club del Perfume · VI-ELIXIR',
+    date: '2026-10-25',
+    readTime: '7 min',
+    image: '/images/editorial/esencias-arcos.jpg',
+    imageAlt: 'Acordes de cata olfativa con notas botánicas y maderas nobles — VI-ELIXIR',
+    category: 'Cata Olfativa',
+    tags: ['cata a ciegas', 'entrenamiento olfativo', 'club del perfume', 'notas'],
+    metaTitle: 'El Ritual de la Cata a Ciegas: Cómo entrenar tu olfato | VI-ELIXIR',
+    metaDescription: 'Descubrí cómo realizar una cata a ciegas de perfumes en tu hogar. Herramientas, tiempos de respiración y el método para evaluar notas sin prejuicios.',
+    type: 'blog',
+    content: `
+## El poder de juzgar sin ver la etiqueta
+
+¿Alguna vez te enamoraste de un perfume únicamente porque su frasco era exquisito o porque la campaña publicitaria apelaba a tu aspiración personal? En la industria de la perfumería masiva, el diseño del packaging y el marketing audiovisual representan hasta el 70% de la decisión de compra.
+
+La **cata a ciegas** (*blind tasting*) es el ejercicio que practican los maestros perfumistas para despojarse de todos los prejuicios comerciales. Al eliminar la marca, el frasco y el precio de la ecuación, nos quedamos a solas con el líquido puro, forzando a nuestro sistema límbico a interpretar la verdadera calidad de las materias primas.
+
+En esta entrega del **Club del Perfume**, te enseñamos a montar tu propio taller de degustación en casa en sencillos pasos.
+
+---
+
+## Lo que necesitás en tu mesa de cata
+
+Para realizar una sesión de evaluación profesional no necesitás un laboratorio químico. Basta con reunir estos elementos en un espacio silencioso, ventilado y libre de olores de cocina o velas aromatizadas:
+
+1. **Tiras secantes (*mouillettes*):** Si no contás con tiras de perfumería profesional, podés cortar tiras de 15 cm x 1 cm de papel de acuarela o cartulina sin blanqueadores ópticos (alrededor de 200 a 300 g/m²). El papel estándar de impresora no sirve porque contiene almidones y cloro que alteran la evaporación.
+2. **Lápiz de grafito:** Para numerar las tiras en el extremo superior (evitá bolígrafos de tinta, cuyo solvente huele fuertemente a alcohol).
+3. **Agua fresca a temperatura ambiente:** Fundamental para hidratar las mucosas nasales entre una muestra y otra.
+
+---
+
+## El gran mito de los granos de café
+
+En muchas perfumerías comerciales se ofrece un recipiente con granos de café para «limpiar el olfato» entre fragancias. **Desde el Club te aconsejamos rechazarlo de inmediato**.
+
+El café no es un neutralizador: es una molécula aromática sumamente compleja, pesada y cargada de pirazinas y aceites tostados. Al oler café, lo único que lográs es someter a tus receptores olfativos a una sobreestimulación adicional.
+
+**El verdadero método de reseteo:**
+El mejor neutralizador olfativo del mundo es **el aroma de tu propia piel limpia**. Doblá el codo y respirá profundamente sobre la piel limpia de tu propio antebrazo (libre de perfume o crema perfumada) dos o tres veces. Tu cerebro reconoce tu propio olor corporal como «nivel cero» y desactiva instantáneamente la saturación sensorial.
+
+---
+
+## La regla de los tres tiempos de respiración
+
+Al catar una muestra, no acerques la tira a tu nariz de inmediato. Las moléculas aromáticas se desprenden en tres fases cronológicas rigurosas:
+
+### Minuto 0 a 1: La salida y la disipación del alcohol
+Aplicá una única pulverización a unos 10 cm de la punta de la tira. Agitá la tira suavemente durante 30 segundos en el aire para que el alcohol transportador se evapore. Si la olés antes, anestesiarás tus receptores con vapor etílico. La primera inspiración debe ser ligera y a unos 5 cm de distancia: notarás los cítricos, las especias frescas y las notas aldehídicas.
+
+### Minuto 15 a 30: El corazón o la identidad real
+Acá es donde el perfume revela su alma botánica o especiada. En creaciones como [VELVET ROSE](/perfumes/velvet-rose), los matices de frambuesa iniciales dan paso a la majestuosidad de la rosa de Taif y el jazmín. Anotá si la sensación es floral, dulce, amarga, empolvada o cremosa.
+
+### Hora 2 a 4: El fondo y la nobleza de las resinas
+Las moléculas pesadas quedan fijadas a las fibras de celulosa del papel. En fragancias orientales como [NOCTURNE](/perfumes/nocturne) o [AMBRE](/perfumes/ambre), aquí emergen el oud ahumado, las maderas de sándalo, el benjuí y el ámbar gris. Un fondo de alta calidad conserva nitidez y elegancia, sin tornarse rancio ni químico.
+
+---
+
+## La libreta de notas: traducir sensaciones a palabras
+
+Para describir lo que sentís, recurrí a la **sinestesia** (vincular el olfato con el tacto, la vista o la temperatura):
+
+- **Textura:** ¿Se siente aterciopelado (como la rosa), áspero como la lija (como el cuero o el vetiver) o suave como la seda (como el almizcle de [MUSK VEIL](/perfumes/musk-veil))?
+- **Temperatura:** ¿Es una fragancia fría y mineral o cálida y licorosa?
+- **Color y Luz:** ¿Evoca tonos marfil, ámbar dorado o negro azabache?
+
+Entrenar el olfato es una práctica placentera que expande tu sensibilidad estética. Te invitamos a poner a prueba tu nariz con nuestro [catálogo de fragancias](/perfumes) y descubrir matices que jamás habías percibido.
+    `,
+  },
+  {
+    id: 'blog-06',
+    title: '¿Por qué en vos dura horas y en otros desaparece? Mitos, química de la piel y fijación real',
+    slug: 'mitos-quimica-fijacion-duracion-perfume',
+    excerpt: 'Desmitificamos la fatiga olfativa, el pH y la evaporación molecular. Descubrí qué determina realmente la longevidad de un perfume árabe y cómo potenciar su estela.',
+    author: 'Club del Perfume · VI-ELIXIR',
+    date: '2026-10-26',
+    readTime: '6 min',
+    image: '/images/editorial/bodegon-ingredientes.jpg',
+    imageAlt: 'Ingredientes botánicos y resinas en estudio de formulación — VI-ELIXIR',
+    category: 'Ciencia Olfativa',
+    tags: ['fijación', 'longevidad', 'química de la piel', 'mitos', 'club del perfume'],
+    metaTitle: 'Mitos de la fijación y longevidad en perfumes | VI-ELIXIR',
+    metaDescription: '¿Tu perfume no dura? Aprendé qué es la fatiga olfativa, cómo influye el manto lipídico de la piel y 4 técnicas profesionales para prolongar su duración.',
+    type: 'blog',
+    content: `
+## La gran paradoja de la longevidad
+
+«Me apliqué el perfume hace dos horas y ya no huelo a nada; este lote vino rebajado». Esta frase es, por amplio margen, la queja más recurrente en los mostradores de perfumería de todo el mundo.
+
+Sin embargo, en más del 85% de los casos, cuando esa misma persona entra a una sala o saluda a un conocido, recibe de inmediato un cumplido por su aroma. ¿Por qué ocurre esto? ¿Es un problema de calidad del perfume, una incompatibilidad química de la piel o un truco biológico de nuestro propio cerebro?
+
+Desde el **Club del Perfume de VI-ELIXIR** analizamos la ciencia detrás de la fijación y te revelamos cómo maximizar el rendimiento de las esencias orientales nobles.
+
+---
+
+## 1. El gran culpable: la fatiga olfativa (anosmia por adaptación)
+
+El sentido del olfato humano evolucionó con un único propósito primario: **la supervivencia**. Su función biológica es alertar al organismo ante peligros inminentes (humo de incendio, alimentos descompuestos, gases venenosos o predadores).
+
+Cuando tu cerebro detecta un estímulo olfativo constante y comprueba que no representa una amenaza para tu vida, procede a **desactivar los receptores** para no saturar el canal de procesamiento. Si no lo hiciera, serías incapaz de oler nada más a tu alrededor durante todo el día.
+
+A este fenómeno se lo conoce médicamente como **anosmia por adaptación** o fatiga olfativa. Por eso vos dejás de percibir tu propio perfume a los 45 minutos, mientras que cualquier persona que se acerque a vos lo sentirá con total claridad. La prueba definitiva es simple: consultale a un tercero de confianza antes de volver a pulverizarte compulsivamente.
+
+---
+
+## 2. La química de la piel: lípidos vs. deshidratación
+
+A menudo se culpa erróneamente al «pH de la piel» por la falta de fijación. En realidad, el pH de una piel humana sana oscila en un rango muy estrecho (entre 4.7 y 5.5) y rara vez altera de forma drástica la durabilidad de una fórmula.
+
+El factor verdaderamente determinante es el **manto lipídico (la presencia de aceites naturales en la epidermis)**:
+
+- **Pieles grasas o mixtas:** Cuentan con una película lipídica natural que retiene las moléculas hidrofóbicas del perfume. Las esencias se adhieren a los aceites de la piel y su evaporación se ralentiza, ofreciendo una longevidad excepcional.
+- **Pieles secas o deshidratadas:** Carecen de lípidos suficientes. El alcohol de la fórmula se evapora en minutos y absorbe la humedad superficial, haciendo que las moléculas aromáticas se desprendan prematuramente hacia el ambiente.
+
+---
+
+## 3. El peso molecular de las notas
+
+No todas las familias aromáticas tienen la misma capacidad de permanencia física:
+
+- **Notas volátiles (Bajo peso molecular):** Limón, bergamota, mandarina, menta. Su estructura microscópica es pequeña y ligera; su evaporación completa ocurre entre 15 y 45 minutos, sin importar la marca o el precio.
+- **Notas densas (Alto peso molecular):** Oud, madera de agar, ámbar gris, cuero, mirra y almizcle. Sus cadenas de carbono son complejas y pesadas; pueden anclarse a la piel o a las fibras de la ropa durante más de 12 a 24 horas.
+
+Por esta razón, creaciones de nuestra colección como [NOCTURNE](/perfumes/nocturne) (con base de oud y cuero) o [AMBRE](/perfumes/ambre) (con resinas orientales) tienen una fijación natural muy superior a fragancias puramente cítricas o florales ligeras.
+
+---
+
+## 4 técnicas de experto para prolongar la fijación
+
+Si sentís que tu piel consume las fragancias rápidamente, aplicá estas cuatro pautas recomendadas por el Club:
+
+### 1. La hidratación lipídica previa
+Nunca apliques perfume sobre la piel reseca después de salir de la ducha. Utilizá primero una crema emoliente o loción hidratante **completamente neutra y sin perfume**. La base grasa actuará como un imán fijador para las notas aromáticas.
+
+### 2. Elegí textiles naturales
+La piel humana transpira y produce calor continuo, lo que acelera el consumo del perfume. Las fibras textiles naturales —como la lana, el lino, la seda o el algodón— no transpiran ni tienen enzimas que degraden la fórmula. Una pulverización sutil sobre una bufanda, solapa de abrigo o cuello de camisa puede durar intacta durante días.
+
+### 3. Olvidate de frotar
+Frotar las muñecas entre sí rompe los enlaces más frágiles de la pirámide y calienta la superficie cutánea por fricción, acelerando la fuga de las notas de corazón. Rociá y dejá secar al aire.
+
+### 4. La técnica del «layering» con aceites
+En Oriente Medio, la base de fijación ancestral es el aceite puro (*attar*). Si aplicás una capa sutil de una fragancia con alta concentración de almizcle como [MUSK VEIL](/perfumes/musk-veil) antes de rociar un perfume especiado como [SAFFRON](/perfumes/saffron), crearás una película adherente que multiplicará las horas de estela.
+
+En VI-ELIXIR formulamos cada creación con concentraciones elevadas de aceites esenciales para asegurar una permanencia digna de la alta perfumería oriental. Te invitamos a explorar las notas de fondo de [nuestras fragancias](/perfumes) y comprobar su evolución en tu propia piel.
+    `,
+  },
 ];
 
 export function getArticleBySlug(slug: string, type?: 'journal' | 'blog'): Article | undefined {
