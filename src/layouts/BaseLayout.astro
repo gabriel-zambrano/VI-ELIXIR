@@ -496,21 +496,32 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
       // Scroll Reveal Animation
       // ============================================
       const revealElements = document.querySelectorAll('.reveal');
-      if (revealElements.length > 0 && 'IntersectionObserver' in window) {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!prefersReducedMotion) {
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-          revealElements.forEach(el => observer.observe(el));
+      if (revealElements.length > 0) {
+        if ('IntersectionObserver' in window) {
+          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (!prefersReducedMotion) {
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('revealed', 'is-visible');
+                  observer.unobserve(entry.target);
+                }
+              });
+            }, { threshold: 0.02, rootMargin: '50px 0px 50px 0px' });
+            revealElements.forEach(el => observer.observe(el));
+          } else {
+            revealElements.forEach(el => el.classList.add('revealed', 'is-visible'));
+          }
         } else {
-          revealElements.forEach(el => el.classList.add('revealed'));
+          revealElements.forEach(el => el.classList.add('revealed', 'is-visible'));
         }
+
+        // Safety fallback: reveal all elements after load to ensure no content is hidden
+        setTimeout(() => {
+          document.querySelectorAll('.reveal:not(.revealed)').forEach(el => {
+            el.classList.add('revealed', 'is-visible');
+          });
+        }, 500);
       }
 
       // Close menu on escape
