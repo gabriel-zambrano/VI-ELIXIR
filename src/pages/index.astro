@@ -16,14 +16,50 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
       </div>
     </div>
     <div class="hero-image">
-      <img
-        src="/images/editorial/bodegon-ingredientes.jpg"
-        alt="Materias primas nobles de VI-ELIXIR: vainilla, flor de azahar, maderas nobles y café sobre piedra travertino"
-        width="800"
-        height="450"
-        class="hero-img-photo"
-        loading="eager"
-      />
+      <div class="hero-video-card">
+        <div class="hero-video-wrapper">
+          <video
+            id="hero-ambient-video"
+            src="/videos/perfumevideo.mp4"
+            poster="/videos/perfumevideo-poster.webp"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            class="hero-video-element"
+            aria-label="Campaña audiovisual VI-ELIXIR: frasco de autor y experiencia sensorial"
+          >
+            Tu navegador no soporta reproducción de video HTML5.
+          </video>
+          <div class="hero-video-overlay-badge">
+            <span class="video-badge-dot"></span>
+            <span class="video-badge-text">Film Editorial · VI-ELIXIR</span>
+          </div>
+        </div>
+        <div class="hero-video-controls" role="group" aria-label="Seleccionar versión del video">
+          <button
+            type="button"
+            class="hero-video-btn is-active"
+            data-video-src="/videos/perfumevideo.mp4"
+            data-poster-src="/videos/perfumevideo-poster.webp"
+            aria-pressed="true"
+          >
+            <span class="btn-indicator"></span>
+            Frasco de Autor
+          </button>
+          <button
+            type="button"
+            class="hero-video-btn"
+            data-video-src="/videos/videoperfume01.mp4"
+            data-poster-src="/videos/videoperfume01-poster.webp"
+            aria-pressed="false"
+          >
+            <span class="btn-indicator"></span>
+            Noche en el Desierto
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -267,18 +303,124 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
     margin-bottom: var(--space-xl);
   }
 
-  .hero-image img {
+  .hero-video-card {
     width: 100%;
     max-width: 600px;
-    height: auto;
-    object-fit: contain;
-    border-radius: var(--border-radius-sm);
-    filter: drop-shadow(0 12px 28px rgba(32, 32, 31, 0.08));
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
   }
 
-  .hero-image img:hover {
-    transform: scale(1.02);
+  .hero-video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    background: var(--color-black);
+    box-shadow: 0 16px 36px rgba(32, 32, 31, 0.16);
+    border: 1px solid rgba(184, 178, 168, 0.35);
+  }
+
+  .hero-video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s ease;
+  }
+
+  .hero-video-overlay-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: rgba(32, 32, 31, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(242, 238, 230, 0.18);
+    border-radius: 999px;
+    color: var(--color-warm-ivory);
+    font-size: var(--text-xs);
+    font-family: var(--font-body);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .video-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #d4af37;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.8);
+    animation: pulseDot 2.4s infinite ease-in-out;
+  }
+
+  @keyframes pulseDot {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+
+  .hero-video-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: 4px;
+    background: rgba(184, 178, 168, 0.15);
+    border-radius: 999px;
+    border: 1px solid rgba(184, 178, 168, 0.25);
+    width: fit-content;
+    margin-inline: auto;
+  }
+
+  .hero-video-btn {
+    appearance: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--color-stone-gray);
+    transition: all 0.25s ease;
+  }
+
+  .hero-video-btn .btn-indicator {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.4;
+    transition: all 0.25s ease;
+  }
+
+  .hero-video-btn:hover {
+    color: var(--color-charcoal);
+  }
+
+  .hero-video-btn.is-active {
+    background: var(--color-white);
+    color: var(--color-charcoal);
+    box-shadow: 0 2px 8px rgba(32, 32, 31, 0.08);
+  }
+
+  .hero-video-btn.is-active .btn-indicator {
+    background: var(--color-deep-burgundy);
+    opacity: 1;
+    transform: scale(1.2);
   }
 
   @media (min-width: 1024px) {
@@ -310,9 +452,8 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
       margin-bottom: 0;
     }
 
-    .hero-image img {
+    .hero-video-card {
       max-width: 100%;
-      max-height: 72vh;
     }
   }
 
@@ -978,6 +1119,36 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
 
 <script>
   import { products, formatPrice } from '../data/products';
+
+  // Hero Video Switcher
+  const ambientVideo = document.getElementById('hero-ambient-video') as HTMLVideoElement | null;
+  const videoControlBtns = document.querySelectorAll<HTMLButtonElement>('.hero-video-btn');
+
+  if (ambientVideo && videoControlBtns.length > 0) {
+    videoControlBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const newSrc = btn.getAttribute('data-video-src');
+        const newPoster = btn.getAttribute('data-poster-src');
+        if (!newSrc || ambientVideo.getAttribute('src') === newSrc) return;
+
+        videoControlBtns.forEach(b => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-pressed', 'true');
+
+        ambientVideo.style.opacity = '0';
+        setTimeout(() => {
+          if (newPoster) ambientVideo.poster = newPoster;
+          ambientVideo.src = newSrc;
+          ambientVideo.load();
+          ambientVideo.play().catch(() => {});
+          ambientVideo.style.opacity = '1';
+        }, 220);
+      });
+    });
+  }
 
   // Fragrance Finder State
   let selectedFamily: string | null = null;
