@@ -5,59 +5,65 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
 
 <BaseLayout title="Inicio">
   <!-- 1. Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <span class="text-label">Perfumería Árabe Contemporánea</span>
-      <h1 class="hero-title">Dejá tu esencia.</h1>
-      <p class="hero-subtitle">Fragancias para explorar nuevas facetas de tu identidad.</p>
-      <div class="hero-actions">
-        <a href="/perfumes" class="btn btn--primary">Explorar fragancias</a>
-        <a href="/la-marca" class="btn btn--outline">Descubrir VI-ELIXIR</a>
-      </div>
+  <div class="hero-wrapper">
+    <div class="hero-ambient" aria-hidden="true">
+      <div class="hero-ambient-canvas"></div>
+      <div class="hero-ambient-tint"></div>
     </div>
-    <div class="hero-image">
-      <div class="hero-video-card">
-        <div class="hero-video-wrapper">
-          <video
-            id="hero-ambient-video"
-            src="/videos/perfumevideo.mp4"
-            poster="/videos/perfumevideo-poster.webp"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-            class="hero-video-element"
-            aria-label="Campaña audiovisual VI-ELIXIR: frasco de autor y experiencia sensorial"
-          >
-            Tu navegador no soporta reproducción de video HTML5.
-          </video>
-        </div>
-        <div class="hero-video-controls" role="group" aria-label="Seleccionar versión del video">
-          <button
-            type="button"
-            class="hero-video-btn is-active"
-            data-video-src="/videos/perfumevideo.mp4"
-            data-poster-src="/videos/perfumevideo-poster.webp"
-            aria-pressed="true"
-          >
-            <span class="btn-indicator"></span>
-            Frasco de Autor
-          </button>
-          <button
-            type="button"
-            class="hero-video-btn"
-            data-video-src="/videos/videoperfume01.mp4"
-            data-poster-src="/videos/videoperfume01-poster.webp"
-            aria-pressed="false"
-          >
-            <span class="btn-indicator"></span>
-            Noche en el Desierto
-          </button>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="text-label">Perfumería Árabe Contemporánea</span>
+        <h1 class="hero-title">Dejá tu esencia.</h1>
+        <p class="hero-subtitle">Fragancias para explorar nuevas facetas de tu identidad.</p>
+        <div class="hero-actions">
+          <a href="/perfumes" class="btn btn--primary">Explorar fragancias</a>
+          <a href="/la-marca" class="btn btn--outline">Descubrir VI-ELIXIR</a>
         </div>
       </div>
-    </div>
-  </section>
+      <div class="hero-image">
+        <div class="hero-video-card">
+          <div class="hero-video-wrapper">
+            <video
+              id="hero-ambient-video"
+              src="/videos/perfumevideo.mp4"
+              poster="/videos/perfumevideo-poster.webp"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              class="hero-video-element"
+              aria-label="Campaña audiovisual VI-ELIXIR: frasco de autor y experiencia sensorial"
+            >
+              Tu navegador no soporta reproducción de video HTML5.
+            </video>
+          </div>
+          <div class="hero-video-controls" role="group" aria-label="Seleccionar versión del video">
+            <button
+              type="button"
+              class="hero-video-btn is-active"
+              data-video-src="/videos/perfumevideo.mp4"
+              data-poster-src="/videos/perfumevideo-poster.webp"
+              aria-pressed="true"
+            >
+              <span class="btn-indicator"></span>
+              Frasco de Autor
+            </button>
+            <button
+              type="button"
+              class="hero-video-btn"
+              data-video-src="/videos/videoperfume01.mp4"
+              data-poster-src="/videos/videoperfume01-poster.webp"
+              aria-pressed="false"
+            >
+              <span class="btn-indicator"></span>
+              Noche en el Desierto
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <!-- 2. Featured Products Section -->
   <section class="section-padding">
@@ -241,18 +247,70 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
 
 <style>
   /* ==========================================================================
-     HERO SECTION
+     HERO SECTION & AMBIENT BACKDROP
      ========================================================================== */
-  .hero {
+  .hero-wrapper {
+    position: relative;
+    width: 100%;
     min-height: 90vh;
     min-height: max(90vh, 580px);
     background-color: var(--color-ivory);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-ambient {
+    position: absolute;
+    inset: -40px;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero-ambient-canvas {
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/editorial/desert-ambient-bg.webp');
+    background-size: cover;
+    background-position: center 25%;
+    filter: blur(28px) saturate(1.2);
+    opacity: 0.28;
+    transform: scale(1.06);
+    animation: ambientFloat 26s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  @keyframes ambientFloat {
+    0% {
+      transform: scale(1.04) translate3d(0, 0, 0);
+    }
+    50% {
+      transform: scale(1.09) translate3d(-1.5%, -1%, 0);
+    }
+    100% {
+      transform: scale(1.06) translate3d(1%, 0.8%, 0);
+    }
+  }
+
+  .hero-ambient-tint {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 45% 45%, rgba(242, 238, 230, 0.4) 0%, rgba(242, 238, 230, 0.75) 60%, var(--color-ivory) 100%),
+      linear-gradient(to bottom, rgba(242, 238, 230, 0.2) 0%, transparent 45%, var(--color-ivory) 98%);
+  }
+
+  .hero {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    background-color: transparent;
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
     padding: var(--space-2xl) var(--space-md) var(--space-3xl);
-    position: relative;
-    overflow: hidden;
   }
 
   .hero-content {
@@ -1065,6 +1123,11 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
       opacity: 1 !important;
       transform: none !important;
       transition: none !important;
+    }
+
+    .hero-ambient-canvas {
+      animation: none !important;
+      transform: scale(1.04) !important;
     }
 
     .hero-image img,
