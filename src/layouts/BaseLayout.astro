@@ -1250,7 +1250,9 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
          FOOTER
          ============================================ */
       .site-footer {
-        background: var(--color-carbon);
+        position: relative;
+        z-index: 20;
+        background-color: var(--color-carbon) !important;
         color: var(--color-ivory);
         padding: var(--space-4xl) 0 var(--space-2xl);
       }
