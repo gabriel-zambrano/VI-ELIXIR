@@ -4,6 +4,12 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
 ---
 
 <BaseLayout title="Inicio">
+  <!-- Dynamic Ambient Desert Backdrop for the entire Home Page -->
+  <div class="page-ambient-backdrop" aria-hidden="true">
+    <div class="page-ambient-canvas"></div>
+    <div class="page-ambient-vignette"></div>
+  </div>
+
   <!-- 1. Hero Section -->
   <div class="hero-wrapper">
     <div class="hero-ambient" aria-hidden="true">
@@ -247,6 +253,43 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
 
 <style>
   /* ==========================================================================
+     GLOBAL AMBIENT BACKDROP (ENTIRE HOME PAGE)
+     ========================================================================== */
+  .page-ambient-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .page-ambient-canvas {
+    position: absolute;
+    inset: -30px;
+    background-image: url('/images/editorial/desert-ambient-bg.webp');
+    background-size: cover;
+    background-position: center 35%;
+    filter: blur(14px) saturate(1.15);
+    opacity: 0.35;
+    animation: ambientFloat 30s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .page-ambient-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(242, 238, 230, 0.45) 0%, rgba(242, 238, 230, 0.78) 60%, var(--color-ivory) 100%);
+  }
+
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ==========================================================================
      HERO SECTION & AMBIENT BACKDROP
      ========================================================================== */
   .hero-wrapper {
@@ -254,16 +297,17 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
     width: 100%;
     min-height: 90vh;
     min-height: max(90vh, 580px);
-    background-color: var(--color-ivory);
+    background-color: transparent;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
   }
 
   .hero-ambient {
     position: absolute;
-    inset: -40px;
+    inset: -30px;
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
@@ -274,11 +318,11 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
     inset: 0;
     background-image: url('/images/editorial/desert-ambient-bg.webp');
     background-size: cover;
-    background-position: center 25%;
-    filter: blur(28px) saturate(1.2);
-    opacity: 0.28;
-    transform: scale(1.06);
-    animation: ambientFloat 26s ease-in-out infinite alternate;
+    background-position: center 30%;
+    filter: blur(6px) saturate(1.2);
+    opacity: 0.85;
+    transform: scale(1.05);
+    animation: ambientFloat 24s ease-in-out infinite alternate;
     will-change: transform;
   }
 
@@ -287,10 +331,10 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
       transform: scale(1.04) translate3d(0, 0, 0);
     }
     50% {
-      transform: scale(1.09) translate3d(-1.5%, -1%, 0);
+      transform: scale(1.08) translate3d(-1%, -1%, 0);
     }
     100% {
-      transform: scale(1.06) translate3d(1%, 0.8%, 0);
+      transform: scale(1.05) translate3d(1%, 0.8%, 0);
     }
   }
 
@@ -298,8 +342,16 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 45% 45%, rgba(242, 238, 230, 0.4) 0%, rgba(242, 238, 230, 0.75) 60%, var(--color-ivory) 100%),
-      linear-gradient(to bottom, rgba(242, 238, 230, 0.2) 0%, transparent 45%, var(--color-ivory) 98%);
+      linear-gradient(to right, rgba(242, 238, 230, 0.9) 0%, rgba(242, 238, 230, 0.65) 42%, rgba(242, 238, 230, 0.15) 75%, rgba(242, 238, 230, 0.35) 100%),
+      linear-gradient(to bottom, transparent 65%, rgba(242, 238, 230, 0.85) 90%, var(--color-ivory) 100%);
+  }
+
+  @media (max-width: 1023px) {
+    .hero-ambient-tint {
+      background:
+        radial-gradient(circle at center, rgba(242, 238, 230, 0.85) 0%, rgba(242, 238, 230, 0.6) 65%, rgba(242, 238, 230, 0.95) 100%),
+        linear-gradient(to bottom, transparent 60%, var(--color-ivory) 100%);
+    }
   }
 
   .hero {
@@ -1125,6 +1177,7 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
       transition: none !important;
     }
 
+    .page-ambient-canvas,
     .hero-ambient-canvas {
       animation: none !important;
       transform: scale(1.04) !important;
