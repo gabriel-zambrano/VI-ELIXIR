@@ -17,6 +17,7 @@ const {
 
 import '../styles/global.css';
 import { mainCategories, olfactoryFamilies } from '../data/products';
+import FloatingCta from '../components/FloatingCta.astro';
 
 const siteTitle = 'VI-ELIXIR · Perfumería Árabe';
 const fullTitle = title === 'Inicio' ? siteTitle : `${title} — ${siteTitle}`;
@@ -343,6 +344,9 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
         </div>
       </div>
     </footer>
+
+    <!-- Floating Concierge CTA Dock -->
+    <FloatingCta currentPath={currentPath} />
 
     <!-- Scripts -->
     <script>
