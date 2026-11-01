@@ -101,8 +101,8 @@ const isContactPage = currentPath === '/contacto';
     left: 50%;
     transform: translate3d(-50%, 120%, 0);
     z-index: 180;
-    width: calc(100% - 32px);
-    max-width: 820px;
+    width: calc(100% - 190px);
+    max-width: 680px;
     opacity: 0;
     pointer-events: none;
     transition:
@@ -288,7 +288,8 @@ const isContactPage = currentPath === '/contacto';
   .floating-launcher {
     position: fixed;
     bottom: 24px;
-    right: 24px;
+    left: 24px;
+    right: auto;
     z-index: 180;
     display: inline-flex;
     align-items: center;
@@ -327,7 +328,7 @@ const isContactPage = currentPath === '/contacto';
   /* --------------------------------------------------------------------------
      RESPONSIVE BREAKPOINTS
      -------------------------------------------------------------------------- */
-  @media (max-width: 768px) {
+  @media (max-width: 860px) {
     .floating-cta-dock {
       bottom: calc(12px + env(safe-area-inset-bottom, 0px));
       width: calc(100% - 20px);
@@ -369,7 +370,8 @@ const isContactPage = currentPath === '/contacto';
 
     .floating-launcher {
       bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-      right: 16px;
+      left: 16px;
+      right: auto;
       padding: 0.6rem 0.9rem;
     }
   }
@@ -408,15 +410,22 @@ const isContactPage = currentPath === '/contacto';
       const conciergeSection = document.querySelector('.concierge-cta-section');
       const checkElem = conciergeSection || footer;
 
+      let isNearFooter = false;
       if (checkElem) {
         const rect = checkElem.getBoundingClientRect();
-        // If bottom block is appearing in viewport, hide floating dock to prevent collision
         if (rect.top <= window.innerHeight - 50) {
-          dock.classList.add('is-hidden-by-footer');
-        } else {
-          dock.classList.remove('is-hidden-by-footer');
+          isNearFooter = true;
         }
       }
+
+      if (isNearFooter) {
+        dock.classList.add('is-hidden-by-footer');
+      } else {
+        dock.classList.remove('is-hidden-by-footer');
+      }
+
+      const isActuallyVisible = shouldShow && !isNearFooter;
+      document.body.classList.toggle('has-floating-cta-visible', isActuallyVisible);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -425,6 +434,7 @@ const isContactPage = currentPath === '/contacto';
     // Close / Minimize
     closeBtn?.addEventListener('click', () => {
       dock.classList.remove('is-visible');
+      document.body.classList.remove('has-floating-cta-visible');
       isDismissed = true;
       sessionStorage.setItem('vi_floating_cta_dismissed', 'true');
       if (launcher) {
@@ -439,6 +449,7 @@ const isContactPage = currentPath === '/contacto';
       launcher.style.display = 'none';
       dock.classList.remove('is-hidden-by-footer');
       dock.classList.add('is-visible');
+      document.body.classList.add('has-floating-cta-visible');
     });
   }
 
