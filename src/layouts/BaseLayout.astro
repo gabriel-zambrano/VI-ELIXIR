@@ -18,6 +18,7 @@ const {
 import '../styles/global.css';
 import { mainCategories, olfactoryFamilies } from '../data/products';
 import FloatingCta from '../components/FloatingCta.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 
 const siteTitle = 'VI-ELIXIR · Perfumería Árabe';
 const fullTitle = title === 'Inicio' ? siteTitle : `${title} — ${siteTitle}`;
@@ -347,6 +348,9 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
 
     <!-- Floating Concierge CTA Dock -->
     <FloatingCta currentPath={currentPath} />
+
+    <!-- Floating WhatsApp Concierge Button -->
+    <WhatsAppButton />
 
     <!-- Scripts -->
     <script>
