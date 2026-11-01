@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { products, categories, giftSets, formatPrice } from '../data/products';
+import ConciergeCta from '../components/ConciergeCta.astro';
 ---
 
 <BaseLayout title="Inicio">
@@ -243,6 +244,9 @@ import { products, categories, giftSets, formatPrice } from '../data/products';
       </div>
     </div>
   </section>
+
+  <!-- 7. Concierge Olfativo & Pre-Footer CTA -->
+  <ConciergeCta />
 </BaseLayout>
 
 <style>

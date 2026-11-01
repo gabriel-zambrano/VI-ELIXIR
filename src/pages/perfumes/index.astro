@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductCard from '../../components/ProductCard.astro';
+import ConciergeCta from '../../components/ConciergeCta.astro';
 import {
   products,
   mainCategories,
@@ -266,6 +267,17 @@ import {
       </section>
     </div>
   </div>
+
+  <!-- Concierge Olfativo & Pre-Footer CTA -->
+  <ConciergeCta
+    eyebrow="Concierge Olfativo & Asesoramiento"
+    title="¿Dudas sobre qué <em>fragancia</em> elegir?"
+    subtitle="Elegir una fragancia oriental requiere conocer su intensidad, proyección y cómo evoluciona cada acorde en tu piel. Nuestro equipo te asesora para que elijas con total seguridad."
+    primaryCtaText="Explorar Sets y Regalos"
+    primaryCtaUrl="/#sets"
+    secondaryCtaText="Consultar a un Especialista"
+    secondaryCtaUrl="/contacto?consulta=Asesoramiento+Catalogo"
+  />
 </BaseLayout>
 
 <style>
